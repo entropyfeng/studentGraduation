@@ -210,12 +210,12 @@
 
 ### 系统的结构化功能建模、分层流程图
 #### 顶层数据流图
-![Alt text](./绘图1.jpg)
+![image](https://github.com/fushang000/studentGraduation/blob/master/graduation.doc/topdata.jpg)
 
 ### 系统数据建模、E-R模型图、关系模式表示
-![Alt text](./1538221556399.png)
+![image](https://github.com/fushang000/studentGraduation/blob/master/graduation.doc/RBAC.png)
 
-![Alt text](./数据库表设计.jpg)
+![image](https://github.com/fushang000/studentGraduation/blob/master/graduation.doc/databasedef.jpg)
 
 
 
