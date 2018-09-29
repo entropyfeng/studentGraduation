@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <!-- mysql-connector-java-5.1.46.jar的绝对路径 -->
+    <classPathEntry location="E:/mysql-connector-java-5.1.46.jar" />数据库驱动路径
+
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+        <!-- 配置数据源 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/数据库名称"
+                        userId="root"
+                        password="vs2015">
+        </jdbcConnection>
+
+        <javaTypeResolver >
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+        <!-- 配置生成的javabean所存放的路径和包（使用绝对路径） -->
+        <javaModelGenerator targetPackage="com.university.graduation.domain" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+
+        <!-- 配置生成的**Mapper.xml文件所存放的路径和包（使用绝对路径） -->
+        <sqlMapGenerator targetPackage="resources.mapper"  targetProject="src/main">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+
+        <!-- 配置生成的**Mapper.java接口文件所存放的路径和包（使用绝对路径） -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.university.graduation.dao"  targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+
+        <!-- 指定我们要操作的表明和生成的javabean类名 -->
+        <table tableName="" domainObjectName=""></table>
+        <table tableName="" domainObjectName=""></table>
+
+
+
+    </context>
+
+</generatorConfiguration>

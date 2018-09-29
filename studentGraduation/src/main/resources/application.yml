@@ -1,0 +1,21 @@
+
+spring:
+    redis:
+        database: 0      # Redis数据库索引（默认为0）
+        host: localhost  # Redis服务器地址
+        port: 6379       # Redis服务器连接端口
+        password:        # Redis服务器连接密码（默认为空）
+
+    thymeleaf:
+      suffix: .html
+      prefix: classpath:/templates/
+      mode: LEGACYHTML5
+      encoding: UTF-8
+      cache: false
+
+
+    datasource:
+      url:jdbc:mysql://localhost:3306/student_graduation?useUnicode=true&characterEncoding=utf-8&useSSL=false
+      username:root
+      password:vs2015
+      driver-class-name: com.mysql.jdbc.Driver
