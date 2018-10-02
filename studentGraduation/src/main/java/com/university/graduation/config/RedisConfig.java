@@ -13,8 +13,8 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 
+
 @Configuration
-@SuppressWarnings("all")
 public class RedisConfig {
 
     @Bean
