@@ -6,12 +6,12 @@
 <generatorConfiguration>
 
     <!-- mysql-connector-java-5.1.46.jar的绝对路径 -->
-    <classPathEntry location="E:/mysql-connector-java-5.1.46.jar" />数据库驱动路径
+    <classPathEntry location="E:/mysql-connector-java-5.1.46.jar" />
 
     <context id="DB2Tables" targetRuntime="MyBatis3">
         <!-- 配置数据源 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/数据库名称"
+                        connectionURL="jdbc:mysql://localhost:3306/graduation"
                         userId="root"
                         password="vs2015">
         </jdbcConnection>
@@ -37,9 +37,9 @@
         </javaClientGenerator>
 
         <!-- 指定我们要操作的表明和生成的javabean类名 -->
-        <table tableName="" domainObjectName=""></table>
-        <table tableName="" domainObjectName=""></table>
-
+        <table tableName="sys_role" domainObjectName="sysRole"></table>
+        <table tableName="sys_user" domainObjectName="sysUser"></table>
+        <table tableName="sys_permission" domainObjectName="sysPermission"></table>
 
 
     </context>
