@@ -16,74 +16,64 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-public class MyShiroRealm  extends AuthorizingRealm {
+public class MyShiroRealm extends AuthorizingRealm {
 
 
- @Autowired
+    @Autowired
     SysUserServiceImpl sysUserServiceImpl;
 
- @Autowired
+    @Autowired
     SysRoleServiceImpl sysRoleServiceImpl;
 
 
- //授权
+    //授权
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
 
 
-        SysUser sysUser=(SysUser)principalCollection.getPrimaryPrincipal();
+        SysUser sysUser = (SysUser) principalCollection.getPrimaryPrincipal();
 
-        SimpleAuthorizationInfo simpleAuthorizationInfo=new SimpleAuthorizationInfo();
+        SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
 
-        List<SysRole> list=sysUserServiceImpl.findUserByUserName(sysUser.getSysUsername()).getRoles();
-
+        List<SysRole> list = sysUserServiceImpl.findUserByUserName(sysUser.getSysUsername()).getRoles();
 
 
 //注入角色
-     for (SysRole role:list){
-         simpleAuthorizationInfo.addRole(role.getSysRolename());
-       //添加权限
-         for (SysPermission permission:role.getPermissions()){
-             simpleAuthorizationInfo.addStringPermission(permission.getPermission());
-         }
-     }
+        for (SysRole role : list) {
+            simpleAuthorizationInfo.addRole(role.getSysRolename());
+            //添加权限
+            for (SysPermission permission : role.getPermissions()) {
+                simpleAuthorizationInfo.addStringPermission(permission.getPermission());
+            }
+        }
         return simpleAuthorizationInfo;
     }
 
-//验证
+    //验证
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
-        System.out.println("MyShiroRealm.oGetAuthenticationInfo()");
-      UsernamePasswordToken usernamePasswordToken=(UsernamePasswordToken)authenticationToken;
+        System.out.println("MyShiroRealm.GetAuthenticationInfo()");
+        UsernamePasswordToken usernamePasswordToken = (UsernamePasswordToken) authenticationToken;
 
 
-        String username=usernamePasswordToken.getUsername();
-        String password=new String(usernamePasswordToken.getPassword());
+        String username = usernamePasswordToken.getUsername();
+        String password = new String(usernamePasswordToken.getPassword());
+        System.out.println("MyShiroRealm username :" + username + " password " + password);
 
+        SysUser sysUser = sysUserServiceImpl.findUserByUserName(username);
 
-        SysUser sysUser=sysUserServiceImpl.findUserByUserName(username);
-
-        if(sysUser==null){
+        if (sysUser == null) {
             throw new UnknownAccountException(); //没找到账号
-        }else if(password.equals(sysUser.getSysPassword())){
+        } else if (sysUser.getSysState() == 0) {
+            throw new LockedAccountException();
+        } else if (sysUser.getSysState() == 2) {
+            throw new DisabledAccountException();
+        } else {
 
-            if(sysUser.getSysState()==0){
-                throw new LockedAccountException();
-            }else if(sysUser.getSysState()==2){
-                throw new DisabledAccountException();
-            }else
-                {
+            System.out.println("使用了 SimpleAuthenticationInfo");
+            return new SimpleAuthenticationInfo(sysUser.getSysUsername(), sysUser.getSysPassword(), ByteSource.Util.bytes(sysUser.getSysSalt()), getName());
 
-                   return new SimpleAuthenticationInfo(sysUser.getSysUsername(),sysUser.getSysPassword(),ByteSource.Util.bytes(sysUser.getSysSalt()),getName());
-
-                }
-
-        }else {
-            throw new IncorrectCredentialsException();
         }
-
-
-
 
 
     }

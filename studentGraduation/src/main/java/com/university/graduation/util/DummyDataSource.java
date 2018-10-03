@@ -11,7 +11,8 @@ public class DummyDataSource {
         sysUser.setSysUsername("admin");
         sysUser.setSysSalt(MD5Util.generateSalt());
         sysUser.setSysPassword(MD5Util.encryptPassword("admin",sysUser.getSysSalt()));
-        sysUser.setSysState(0);
+        System.out.println("DummyDataSource password "+sysUser.getSysPassword()+" salt :"+sysUser.getSysSalt());
+        sysUser.setSysState(5);
 
 
         SysRole sysRole=new SysRole();

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh_CN" xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+
+<script>
+    function sendAjax() {
+        var username = $("#username").val();
+        var password = $("#password").val();
+        var rememberMe = $('#rememberMe').is(':checked');
+        $.ajax({
+            url: "/ajaxLogin",
+            data: {"username": username, "password": password, "rememberMe": rememberMe},
+            type: "post",
+            dataType: "json",
+            success: function (data) {
+                if (data.status == 200) {
+                    location.href = "/index";
+                } else {
+                    $("#erro").html(data.message);
+                }
+            },
+            error: function () {
+                $("#erro").html("登录失败");
+            }
+        });
+    }
+
+
+</script>
+<body> 错误信息：<h4 id="erro"></h4>
+<p>账号：<input type="text" name="username" id="username" value="admin"/></p>
+<p>密码：<input type="text" name="password" id="password" value="admin"/></p>
+<P><input type="checkbox" name="rememberMe" id="rememberMe"/>记住我</P>
+<p><input type="button" onclick="sendAjax()" value="登录" id="ajaxLogin"/></p>
+</body>
+
+
+</html>
