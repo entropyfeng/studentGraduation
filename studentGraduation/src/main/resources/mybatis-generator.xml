@@ -37,11 +37,14 @@
         </javaClientGenerator>
 
         <!-- 指定我们要操作的表明和生成的javabean类名 -->
-        <table tableName="sys_role" domainObjectName="SysRole"></table>
-        <table tableName="sys_user" domainObjectName="SysUser"></table>
-        <table tableName="sys_permission" domainObjectName="SysPermission"></table>
 
-
+        <table tableName="class" domainObjectName="Class"></table>
+<table tableName="college" domainObjectName="College"></table>
+<table tableName="department" domainObjectName="Department"></table>
+        <table tableName="graduation_flow" domainObjectName="GraduationFlow"></table>
+        <table tableName="graduation_link" domainObjectName="GraduationLink"></table>
+        <table tableName="specialty" domainObjectName="Specialty"></table>
+        <table tableName="student" domainObjectName="Student"></table>
     </context>
 
 </generatorConfiguration>
