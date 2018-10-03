@@ -25,5 +25,14 @@ public class IndexController {
     }
 
 
+    @RequestMapping("/xx")
+    public String xx(){
+        return "../layuiAdmin/start/index.html";
+    }
+
+    @RequestMapping("/yy")
+    public String yy(){
+        return "../layuiAdmin/src/views/user/login.html";
+    }
 
 }
