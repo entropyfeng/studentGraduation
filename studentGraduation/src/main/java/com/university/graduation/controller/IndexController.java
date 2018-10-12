@@ -17,22 +17,9 @@ public class IndexController {
 
     model.addAttribute("sysUser",userName);
 
-    return "index";
-    }
-    @RequestMapping("/login")
-    public String login(){
-    return "login";
+    return "index0";
     }
 
 
-    @RequestMapping("/xx")
-    public String xx(){
-        return "../layuiAdmin/start/index.html";
-    }
-
-    @RequestMapping("/yy")
-    public String yy(){
-        return "../layuiAdmin/src/views/user/login.html";
-    }
 
 }

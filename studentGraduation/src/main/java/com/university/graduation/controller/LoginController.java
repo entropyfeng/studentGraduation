@@ -1,26 +1,42 @@
 package com.university.graduation.controller;
 
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.support.spring.FastJsonJsonView;
+import com.university.graduation.domain.SysUser;
+import com.university.graduation.serviceImpl.SysUserServiceImpl;
+import org.apache.logging.log4j.util.Strings;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.lang.invoke.MethodType;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 @Controller
 public class LoginController {
+
+    @Autowired
+    SysUserServiceImpl sysUserServiceImpl;
+
+    private Logger logger = LoggerFactory.getLogger(LoginController.class);
+
     @RequestMapping(value = "/ajaxLogin", method = RequestMethod.POST)
     @ResponseBody
     public Map<String, Object> submitLogin(@RequestParam("username") String username, @RequestParam("password") String password, @RequestParam("rememberMe") Boolean rememberMe) {
         Map<String, Object> resultMap = new LinkedHashMap<String, Object>();
+        logger.info("success ajaxLogin");
 
-        System.out.println("success ajaxLogin");
         try {
             UsernamePasswordToken token = new UsernamePasswordToken(username, password, rememberMe);
             SecurityUtils.getSubject().login(token);
@@ -39,14 +55,30 @@ public class LoginController {
         return resultMap;
     }
 
+    @RequestMapping(value = "ajaxLogin1", method = RequestMethod.POST)
+    @ResponseBody
+    public String ajaxLogin1(@RequestParam("username") String username, @RequestParam("password") String password, @RequestParam("vercode") String vercode, @Nullable @RequestParam("remember") String remember) {
+
+        logger.info(username + " " + password + " " + vercode + " " + remember);
+        SysUser sysUser = sysUserServiceImpl.findUserByUserName(username);
+
+
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("code", 0);
+        jsonObject.put("msg", "登录可能成功");
+
+        return jsonObject.toJSONString();
+    }
+
     @RequestMapping(value = "/fail")
-    public String fail(){
+    public String fail() {
         return "fail";
     }
 
-    @RequestMapping(value = "/main")
-    public String main(){
-        return "main";
+    @RequestMapping(value = {"/login", "login.html", "user/login", "user/login.html"})
+    public String Login() {
+        System.out.println("xx");
+        return "user/login";
     }
 
 

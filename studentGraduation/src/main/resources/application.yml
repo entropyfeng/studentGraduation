@@ -21,7 +21,14 @@ spring:
       password: vs2015
     session:
       store-type: none
+
+
+#end
+
+
+
 mybatis:
   mapper-locations: classpath:mapper/.*xml
 
+#end
 
