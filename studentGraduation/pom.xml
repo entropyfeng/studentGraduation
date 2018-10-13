@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+   http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.university</groupId>
     <artifactId>graduation</artifactId>
@@ -8,6 +11,17 @@
     <packaging>jar</packaging>
     <name>graduation</name>
     <description>Demo project for Spring Boot</description>
+
+    <repositories>
+        <repository>
+            <!-- id必须唯一 -->
+            <id>jboss-repository</id>
+            <!-- 见名知意即可 -->
+            <name>jboss repository</name>
+            <!-- 仓库的url地址 -->
+            <url>https://maven.atlassian.com/3rdparty</url>
+        </repository>
+    </repositories>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -159,19 +173,24 @@
             <version>16.0.1</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/com.octo.captcha/jcaptcha -->
+        <!-- https://mvnrepository.com/artifact/com.octo.captcha/jcaptcha-->
         <dependency>
             <groupId>com.octo.captcha</groupId>
             <artifactId>jcaptcha</artifactId>
             <version>1.0</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/com.jhlabs/imaging -->
+        <dependency>
+            <groupId>com.jhlabs</groupId>
+            <artifactId>imaging</artifactId>
+            <version>01012005</version>
+        </dependency>
+
     </dependencies>
 
 
     <build>
-
-
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -189,7 +208,4 @@
             </plugin>
         </plugins>
     </build>
-
-
-
 </project>
