@@ -1,23 +1,32 @@
 package com.university.graduation.shiro.service;
 
 import com.university.graduation.shiro.config.ShiroProperties;
+import com.university.graduation.shiro.model.StatelessLogined;
+import com.university.graduation.shiro.util.CryptoUtil;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
 import org.apache.shiro.crypto.hash.SimpleHash;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.xml.bind.DatatypeConverter;
 
 /**
  * 加密服务
  */
 @Service
 public class ShiroCryptoService {
-/*
     @Autowired
     ShiroProperties shiroProperties;
 
-    *//**
-     * 散列算法 生成数据的摘要信息，是一种不可逆的算法，一般适合存储密码之类的数据，
+
+
+    /**
+     * 散列算法 生成数据的摘要信息，是一种不可逆的算法，一般适合存储密码之类的数据
      * @param plaintext 明文
-     *//*
+     * @return 加密后的密码
+     */
     public String generatePassword(String plaintext) {
         return new SimpleHash(this.shiroProperties.getPasswordAlg()
                 ,plaintext
@@ -26,38 +35,37 @@ public class ShiroCryptoService {
         ).toHex();
     }
 
-    *//**
-     * 生成HMAC摘要
-     *
-     * @param plaintext 明文
-     *//*
+
     public String hmacDigest(String plaintext) {
         return hmacDigest(plaintext,this.shiroProperties.getHmacSecretKey());
     }
 
-    *//**
-     * 生成HMAC摘要
+    /**
      *
      * @param plaintext 明文
-     *//*
+     * @param appKey 秘钥
+     * @return 生成的Hmac摘要
+     */
     public String hmacDigest(String plaintext,String appKey) {
         return CryptoUtil.hmacDigest(plaintext,appKey,this.shiroProperties.getHmacAlg());
     }
 
-    *//**
-     * 验签JWT
-     *
-     * @param jwt json web token
-     *//*
+    /**
+     *默认解析Jwt 即使用全局的 jwtSecretKey
+     * @param jwt jwt 字符串
+     * @return
+     */
     public StatelessLogined parseJwt(String jwt) {
         return parseJwt(jwt,this.shiroProperties.getJwtSecretKey());
     }
 
-    *//**
-     * 验签JWT
-     *
-     * @param jwt json web token
-     *//*
+    /**
+     *使用单独的jwtSecretKey
+     * @param jwt json 字符串
+     * @param appKey 秘钥
+     * @return 无状态账号
+     */
+
     public StatelessLogined parseJwt(String jwt,String appKey) {
         Claims claims = Jwts.parser()
                 .setSigningKey(DatatypeConverter.parseBase64Binary(appKey))
@@ -72,6 +80,6 @@ public class ShiroCryptoService {
         statelessAccount.setRoles(claims.get("roles", String.class));// 访问主张-角色
         statelessAccount.setPerms(claims.get("perms", String.class));// 访问主张-权限
         return statelessAccount;
-    }*/
+    }
 
 }

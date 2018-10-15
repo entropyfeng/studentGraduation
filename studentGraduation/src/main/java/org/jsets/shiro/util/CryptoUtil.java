@@ -27,6 +27,8 @@ import io.jsonwebtoken.CompressionCodecs;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import jdk.internal.joptsimple.internal.Strings;
+
 /**
  * 安全加密相关工具类
  * 
@@ -66,7 +68,7 @@ public abstract class CryptoUtil {
 		// 用户名
 		jwt.setSubject(subject);
 		// 签发者
-		if(null!=issuer&&!"".equals(issuer)) jwt.setIssuer(issuer);
+		if(!Strings.isNullOrEmpty(issuer)) jwt.setIssuer(issuer);
 		// 签发时间
 		jwt.setIssuedAt(new Date(currentTimeMillis));
 		// 有效时间

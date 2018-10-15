@@ -110,10 +110,6 @@ public  class CryptoUtil {
         return hs.toString().toUpperCase();
     }
 
-    public static void main(String[] args) {
-        String test="我是一只鸡";
-        System.out.println(test.getBytes());
 
-    }
 
 }

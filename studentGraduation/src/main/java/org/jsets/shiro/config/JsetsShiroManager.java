@@ -17,6 +17,7 @@
  */
 package org.jsets.shiro.config;
 
+import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO;
 import org.apache.shiro.session.mgt.eis.SessionDAO;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
@@ -48,7 +49,6 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.cache.CacheManager;
-import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.codec.CodecSupport;
 import org.apache.shiro.mgt.DefaultSessionStorageEvaluator;
 import org.apache.shiro.mgt.DefaultSubjectDAO;

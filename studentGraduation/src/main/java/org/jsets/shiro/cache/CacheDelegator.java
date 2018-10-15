@@ -31,6 +31,7 @@ import org.jsets.shiro.util.Commons;
  * @author wangjie (https://github.com/wj596)
  * @date 2016年6月31日
  */
+@SuppressWarnings("all")
 public class CacheDelegator {
 
 	private CacheManager cacheManager;
