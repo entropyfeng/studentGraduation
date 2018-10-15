@@ -220,6 +220,7 @@
 
 
 
-
+### 目标
+使用SpringBoot2.x重构https://github.com/wj596/jsets-shiro-spring-boot-starter
 [参考开发文档](https://blog.csdn.net/Ya_da/article/details/52836287)
 
