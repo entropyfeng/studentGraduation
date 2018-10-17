@@ -193,6 +193,12 @@
             <version>01012005</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.jsets</groupId>
+            <artifactId>jsets-shiro-spring-boot-starter</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+
     </dependencies>
 
 

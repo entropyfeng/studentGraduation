@@ -1,10 +1,8 @@
 package com.university.graduation.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.support.spring.FastJsonJsonView;
 import com.university.graduation.domain.SysUser;
 import com.university.graduation.serviceImpl.SysUserServiceImpl;
-import org.apache.logging.log4j.util.Strings;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
@@ -34,6 +32,8 @@ public class LoginController {
     @RequestMapping(value = "/ajaxLogin", method = RequestMethod.POST)
     @ResponseBody
     public Map<String, Object> submitLogin(@RequestParam("username") String username, @RequestParam("password") String password, @RequestParam("rememberMe") Boolean rememberMe) {
+      logger.info(username);
+
         Map<String, Object> resultMap = new LinkedHashMap<String, Object>();
         logger.info("success ajaxLogin");
 
@@ -58,7 +58,7 @@ public class LoginController {
     @RequestMapping(value = "ajaxLogin1", method = RequestMethod.POST)
     @ResponseBody
     public String ajaxLogin1(@RequestParam("username") String username, @RequestParam("password") String password, @RequestParam("vercode") String vercode, @Nullable @RequestParam("remember") String remember) {
-
+        System.out.println("ssssssssssssssssssssss");
         logger.info(username + " " + password + " " + vercode + " " + remember);
         SysUser sysUser = sysUserServiceImpl.findUserByUserName(username);
 

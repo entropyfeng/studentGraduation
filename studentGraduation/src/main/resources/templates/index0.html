@@ -5,10 +5,13 @@
 <head>
 
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>INDEX0</title>
 </head>
 <body>
-<p shiro:guest="">Please<a href="/login">login</a></p>
-
+<div class="body">
+    欢迎您：${Session.shiro_current_user.account!}
+    <br>
+    退出：<a href="${ctx}/logout">退了</a>
+</div>
 </body>
 </html>
