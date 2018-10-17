@@ -220,8 +220,11 @@
 
 
 
-### 目标
-使用SpringBoot2.x重构https://github.com/wj596/jsets-shiro-spring-boot-starter
 
+### 参考资料
+* 一个开箱即用的框架https://github.com/wj596/jsets-shiro-spring-boot-starter
+* demo https://github.com/wj596/jsets-shiro-demo
 [参考开发文档](https://blog.csdn.net/Ya_da/article/details/52836287)
 
+### 目标
+使用SpringBoot2.x重构 jsets-shiro-spring-boot-starter
