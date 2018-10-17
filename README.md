@@ -228,3 +228,8 @@
 
 ### 目标
 使用SpringBoot2.x重构 jsets-shiro-spring-boot-starter
+
+### 可能存在的问题
+由于作者没有maven坐标需要手动安装jar
+* mvn install:install-file -Dfile=E:\jsets-shiro-spring-boot-starter.jar   -DgroupId=org.jsets  -DartifactId=jsets-shiro-spring-boot-starter -Dversion=0.0.1  -Dpackaging=jar
+
