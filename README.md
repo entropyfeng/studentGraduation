@@ -222,8 +222,8 @@
 
 
 ### 参考资料
-* 一个开箱即用的框架https://github.com/wj596/jsets-shiro-spring-boot-starter
-* demo https://github.com/wj596/jsets-shiro-demo
+* [一个开箱即用的框架](https://github.com/wj596/jsets-shiro-spring-boot-starter)
+* [demo](https://github.com/wj596/jsets-shiro-demo)
 [参考开发文档](https://blog.csdn.net/Ya_da/article/details/52836287)
 
 ### 目标
@@ -231,5 +231,8 @@
 
 ### 可能存在的问题
 由于作者没有maven坐标需要手动安装jar
-* mvn install:install-file -Dfile=E:\jsets-shiro-spring-boot-starter.jar   -DgroupId=org.jsets  -DartifactId=jsets-shiro-spring-boot-starter -Dversion=0.0.1  -Dpackaging=jar
+
+--- 
+mvn install:install-file -Dfile=E:\jsets-shiro-spring-boot-starter.jar   -DgroupId=org.jsets  -DartifactId=jsets-shiro-spring-boot-starter -Dversion=0.0.1  -Dpackaging=jar
+---
 
