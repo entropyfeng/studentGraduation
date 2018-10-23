@@ -132,11 +132,11 @@ gulp.task('release', function(){ //命令：gulp && gulp release
   //复制帮助文件
   gulp.src([
     './帮助/*'
-    ,'!./帮助/说明.txt'
+    ,'!./帮助/README.md'
   ]).pipe(gulp.dest(releaseDir + '/帮助'));
   
   gulp.src([
-    './帮助/说明.txt'
+    './帮助/README.md'
   ]).pipe(gulp.dest(releaseDir));
   
   
@@ -147,7 +147,7 @@ gulp.task('release', function(){ //命令：gulp && gulp release
   ]).pipe(gulp.dest(releaseDir));
   
   //说明
-  gulp.src('../pack/说明.txt')
+  gulp.src('../pack/README.md')
   .pipe(gulp.dest('../pack/layuiAdmin.pack'));
   
   //复制 layui
