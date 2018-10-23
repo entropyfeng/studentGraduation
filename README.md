@@ -1,5 +1,8 @@
 ## 高校毕业生离校系统
+
 ### 可行性分析
+<details>
+
 #### 1.引言
 ##### 1.1  报告撰写目的
  高校毕业生离校系统是针对高校相关部门以及毕业生的需求而设计，是可以便于高校管理毕业生离校信息，毕业生查询离校流程进度的系统。
@@ -57,8 +60,12 @@
 #### 3 可行性分析总结
  上述可行性分析，参考现有开发资料、文档等资源，高校毕业生离校系统的体系结构比较完善，开发要求相比于复杂的系统较低，具备进一步进行需求分析与后续开发的条件。
 
+</details>
 
-## 需求分析
+### 需求分析
+
+<details>
+
 ### 1 项目功能需求
 #### 1.1 基本需求分析
 
@@ -170,8 +177,12 @@
 | :-------- | --------:| :------: | :-------- | --------:| :------: |
 | 发放证书 |   × |×|√|√| 选取相应角色发放证书 |
 | 证书类型 |   × |×|√|√| 添加证书类型 |
+</details>
 
-### 2开发环境、硬件以及软件的需求
+### 开发环境、硬件以及软件的需求
+
+<details>
+
 #### 开发工具
 
 | 工具名称    |    版本 |   描述   |
@@ -207,32 +218,21 @@
 |Linux操作系统  |    |Ubutun16.04    |
 |docker  |    |  使用docker容器  |
 
+</details>
 
-### 系统的结构化功能建模、分层流程图
-#### 顶层数据流图
-![image](https://github.com/fushang000/studentGraduation/blob/master/graduation.doc/topdata.jpg)
+### 图示
+1. 顶层数据流图
+![image](https://github.com/fushang000/studentGraduation/blob/master/doc/topdata.jpg)
 
-### 系统数据建模、E-R模型图、关系模式表示
-![image](https://github.com/fushang000/studentGraduation/blob/master/graduation.doc/RBAC.png)
+2. 系统数据建模、E-R模型图、关系模式表示
+![image](https://github.com/fushang000/studentGraduation/blob/master/doc/RBAC.png)
 
-![image](https://github.com/fushang000/studentGraduation/blob/master/graduation.doc/databasedef.jpg)
-
-
-
+3. 数据库定义
+![image](https://github.com/fushang000/studentGraduation/blob/master/doc/databasedef.jpg)
 
 
 ### 参考资料
 * [一个开箱即用的框架](https://github.com/wj596/jsets-shiro-spring-boot-starter)
 * [demo](https://github.com/wj596/jsets-shiro-demo)
 [参考开发文档](https://blog.csdn.net/Ya_da/article/details/52836287)
-
-### 目标
-使用SpringBoot2.x重构 jsets-shiro-spring-boot-starter
-
-### 可能存在的问题
-由于作者没有maven坐标需要手动安装jar
-
---- 
-mvn install:install-file -Dfile=E:\jsets-shiro-spring-boot-starter.jar   -DgroupId=org.jsets  -DartifactId=jsets-shiro-spring-boot-starter -Dversion=0.0.1  -Dpackaging=jar
----
 
