@@ -14,11 +14,10 @@ import org.springframework.stereotype.Service;
  * @Description 
  * @Date 9:22 2018/2/13
  */
-@Service("AccountProvider")
+@Service
 public class AccountProviderImpl implements AccountProvider {
 
       @Autowired
-      @Qualifier("AccountService")
       private AccountService accountService;
 
     public Account loadAccount(String appId) {

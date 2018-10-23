@@ -43,6 +43,7 @@ public class PasswordFilter extends AccessControlFilter {
             return true;
         }
         //  拒绝，统一交给 onAccessDenied 处理
+
         return false;
     }
 
@@ -52,15 +53,18 @@ public class PasswordFilter extends AccessControlFilter {
         // 判断若为获取登录注册加密动态秘钥请求
         if (isPasswordTokenGet(request)) {
             //动态生成秘钥，redis存储秘钥供之后秘钥验证使用，设置有效期5秒用完即丢弃
+            System.out.println("是获取登录xxxxxx");
             String tokenKey = CommonUtil.getRandomString(16);
             String userKey = CommonUtil.getRandomString(6);
             try {
+                System.out.println(IpUtil.getIpFromRequest(WebUtils.toHttp(request)).toUpperCase());
                 redisTemplate.opsForValue().set("TOKEN_KEY_"+ IpUtil.getIpFromRequest(WebUtils.toHttp(request)).toUpperCase()+userKey.toUpperCase(),tokenKey,5, TimeUnit.SECONDS);
                 // 动态秘钥response返回给前端
                 Message message = new Message();
                 message.ok(1000,"issued tokenKey success")
                         .addData("tokenKey",tokenKey).addData("userKey", userKey.toUpperCase());
                 RequestResponseUtil.responseWrite(JSON.toJSONString(message),response);
+
 
             }catch (Exception e) {
                 LOGGER.warn("签发动态秘钥失败"+e.getMessage(),e);
@@ -118,7 +122,7 @@ public class PasswordFilter extends AccessControlFilter {
     private boolean isPasswordTokenGet(ServletRequest request) {
 
         String tokenKey = RequestResponseUtil.getParameter(request,"tokenKey");
-
+        System.out.println("------------");
         return (request instanceof HttpServletRequest)
                 && ((HttpServletRequest) request).getMethod().toUpperCase().equals("GET")
                 && null != tokenKey && "get".equals(tokenKey);

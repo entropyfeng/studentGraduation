@@ -1,9 +1,12 @@
 package com.university.graduation.dao;
 
 import com.university.graduation.domain.bo.AuthRoleResource;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.dao.DataAccessException;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
+@Mapper
 public interface AuthRoleResourceMapper {
 
     int deleteByPrimaryKey(Integer id) throws DataAccessException;

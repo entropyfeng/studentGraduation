@@ -2,10 +2,12 @@ package com.university.graduation.dao;
 
 
 import com.university.graduation.domain.bo.AuthUser;
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.dao.DataAccessException;
 
 import java.util.List;
 
+@Mapper
 public interface AuthUserMapper {
 
     int deleteByPrimaryKey(String uid) throws DataAccessException;

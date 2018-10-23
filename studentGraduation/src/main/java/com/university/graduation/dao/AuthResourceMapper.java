@@ -3,10 +3,11 @@ package com.university.graduation.dao;
 
 import com.university.graduation.domain.bo.AuthResource;
 import com.university.graduation.shiro.rule.RolePermRule;
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.dao.DataAccessException;
 
 import java.util.List;
-
+@Mapper
 public interface AuthResourceMapper {
     int deleteByPrimaryKey(Integer id) throws DataAccessException;
 

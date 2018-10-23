@@ -57,10 +57,9 @@ spring:
         # 连接池中的最小空闲连接
         min-idle: 2
     # 连接超时时间（毫秒）
-    timeout: 30000
+      timeout: 30000
   cache:
     type: redis
-
 
   # 设置使用哪个环境的配置
   # 默认的profile为dev，其他环境通过指定启动参数使用不同的profile，比如：
@@ -68,6 +67,8 @@ spring:
   #   生产环境：java -jar graduation.jar --spring.profiles.active=prod
   profiles:
     active: dev
+  session:
+    store-type: redis
 
 
 

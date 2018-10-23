@@ -1,5 +1,6 @@
 <script type="text/html" template>
     <link rel="stylesheet" href="{{ layui.setter.base }}style/login.css?v={{ layui.admin.v }}-1" media="all">
+
 </script>
 
 
@@ -78,44 +79,61 @@
             , admin = layui.admin
             , form = layui.form
             , router = layui.router()
-            ,true_url=layui.setter.true_url
+            , true_url = layui.setter.true_url
             , search = router.search;
 
         form.render();
         //提交
         form.on('submit(LAY-user-login-submit)', function (obj) {
             console.log(obj.field);
-            //请求登入接口
+
+
             admin.req({
-                url: true_url+'/login'
-                , data: obj.field
-                ,method:'post'
-                , success(res) {
-                    console.log('success')
-                }, error(res) {
-                    console.log('error')
+                url: true_url + '/account/login?tokenKey=get'
+                , method: 'get'
+                , done: function (res) {
+                    var tokenKey = res['data'].tokenKey;
+                    console.log(tokenKey);
+                    var appId = obj.field['username'];
+                    var username = obj.field['password'];
+                    var methodName = 'login';
+                    var timestamp = new Date().toUTCString();
+const CryptoJS=require('crypto-js');
+
+
+                    Cry
+                    console.log(appId);
+
                 }
-                /*,done: function(res){
-
-                  //请求成功后，写入 access_token
-                  layui.data(setter.tableName, {
-                    key: setter.request.tokenName
-                    ,value: res.data.access_token
-                  });
-
-                  //登入成功的提示与跳转
-                  layer.msg('登入成功', {
-                    offset: '15px'
-                    ,icon: 1
-                    ,time: 1000
-                  }, function(){
-                    location.hash = search.redirect ? decodeURIComponent(search.redirect) : '/';
-                  });
-                }
-                */
-
 
             });
+            //请求登入接口
+            /*          admin.req({
+                          url: true_url+'/login'
+                          , data: obj.field
+                          ,method:'post'
+                          , error(res) {
+                              console.log('error')
+                          }
+                          ,success(res){
+                            //请求成功后，写入 access_token
+                            layui.data(setter.tableName, {
+                              key: setter.request.tokenName
+                              ,value: res.data.access_token
+                            });
+
+                            //登入成功的提示与跳转
+                            layer.msg('登入成功', {
+                              offset: '15px'
+                              ,icon: 1
+                              ,time: 1000
+                            }, function(){
+                              location.hash = search.redirect ? decodeURIComponent(search.redirect) : '/';
+                            });
+                          }
+
+
+                      });*/
 
         });
 
