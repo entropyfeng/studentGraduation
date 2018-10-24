@@ -234,5 +234,6 @@
 ### 参考资料
 * [一个开箱即用的框架](https://github.com/wj596/jsets-shiro-spring-boot-starter)
 * [demo](https://github.com/wj596/jsets-shiro-demo)
-[参考开发文档](https://blog.csdn.net/Ya_da/article/details/52836287)
+* [基于springboot+shiro+jwt 的真正restful URL资源无状态认证权限管理](https://github.com/tomsun28/bootshiro) 
+* [参考开发文档](https://blog.csdn.net/Ya_da/article/details/52836287)
 
