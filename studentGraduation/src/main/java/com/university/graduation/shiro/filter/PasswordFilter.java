@@ -7,6 +7,7 @@ import com.university.graduation.domain.vo.Message;
 import com.university.graduation.shiro.token.PasswordToken;
 import com.university.graduation.util.CommonUtil;
 import com.university.graduation.util.IpUtil;
+import com.university.graduation.util.RSAUtil;
 import com.university.graduation.util.RequestResponseUtil;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -52,24 +53,27 @@ public class PasswordFilter extends AccessControlFilter {
 
         // 判断若为获取登录注册加密动态秘钥请求
         if (isPasswordTokenGet(request)) {
-            //动态生成秘钥，redis存储秘钥供之后秘钥验证使用，设置有效期5秒用完即丢弃
+            //动态生成秘钥，redis存储秘钥供之后秘钥验证使用，设置有效期60秒用完即丢弃
             System.out.println("是获取登录xxxxxx");
-            String tokenKey = CommonUtil.getRandomString(16);
-            String userKey = CommonUtil.getRandomString(6);
+            Map<String,String> map= RSAUtil.createKeys();
+            String publicKey = map.get("publicKey");
+            String privateKey = map.get("privateKey");
+            System.out.println("public "+publicKey);
+            System.out.println("private "+privateKey);
             try {
                 System.out.println(IpUtil.getIpFromRequest(WebUtils.toHttp(request)).toUpperCase());
-                redisTemplate.opsForValue().set("TOKEN_KEY_"+ IpUtil.getIpFromRequest(WebUtils.toHttp(request)).toUpperCase()+userKey.toUpperCase(),tokenKey,5, TimeUnit.SECONDS);
+                redisTemplate.opsForValue().set("PUBLIC_KEY_"+ IpUtil.getIpFromRequest(WebUtils.toHttp(request)).toUpperCase()+publicKey,privateKey,60, TimeUnit.DAYS);
                 // 动态秘钥response返回给前端
                 Message message = new Message();
-                message.ok(1000,"issued tokenKey success")
-                        .addData("tokenKey",tokenKey).addData("userKey", userKey.toUpperCase());
+                message.ok(1000,"issued publicKey success")
+                        .addData("publicKey",publicKey);
                 RequestResponseUtil.responseWrite(JSON.toJSONString(message),response);
 
 
             }catch (Exception e) {
                 LOGGER.warn("签发动态秘钥失败"+e.getMessage(),e);
                 Message message = new Message();
-                message.ok(1000,"issued tokenKey fail");
+                message.ok(1000,"issued publicKey fail");
                 RequestResponseUtil.responseWrite(JSON.toJSONString(message),response);
             }
             return false;
@@ -77,7 +81,7 @@ public class PasswordFilter extends AccessControlFilter {
 
         // 判断是否是登录请求
         if(isPasswordLoginPost(request)){
-
+            System.out.println("进入登录处理");
             AuthenticationToken authenticationToken = null;
             try {
                 authenticationToken = createPasswordToken(request);
@@ -121,16 +125,15 @@ public class PasswordFilter extends AccessControlFilter {
 
     private boolean isPasswordTokenGet(ServletRequest request) {
 
-        String tokenKey = RequestResponseUtil.getParameter(request,"tokenKey");
-        System.out.println("------------");
+        String publicKey = RequestResponseUtil.getParameter(request,"publicKey");
         return (request instanceof HttpServletRequest)
                 && ((HttpServletRequest) request).getMethod().toUpperCase().equals("GET")
-                && null != tokenKey && "get".equals(tokenKey);
+                && null != publicKey && "get".equals(publicKey);
     }
 
     private boolean isPasswordLoginPost(ServletRequest request) {
-
-        Map<String ,String> map = RequestResponseUtil.getRequestBodyMap(request);
+        System.out.println("进入");
+        Map<String ,String> map = RequestResponseUtil.getRequestParameters(request);
         String password = map.get("password");
         String timestamp = map.get("timestamp");
         String methodName = map.get("methodName");
@@ -167,9 +170,9 @@ public class PasswordFilter extends AccessControlFilter {
         String timestamp = map.get("timestamp");
         String password = map.get("password");
         String host = IpUtil.getIpFromRequest(WebUtils.toHttp(request));
-        String userKey = map.get("userKey");
-        String tokenKey = redisTemplate.opsForValue().get("TOKEN_KEY_"+host.toUpperCase()+userKey);
-        return new PasswordToken(appId,password,timestamp,host,tokenKey);
+        String publicKey = map.get("publicKey");
+        String privateKey = redisTemplate.opsForValue().get("PUBLIC_KEY_"+host.toUpperCase()+publicKey);
+        return new PasswordToken(appId,password,timestamp,host,privateKey);
     }
 
     public void setRedisTemplate(StringRedisTemplate redisTemplate) {

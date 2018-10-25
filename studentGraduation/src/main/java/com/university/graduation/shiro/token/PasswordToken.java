@@ -1,6 +1,7 @@
 package com.university.graduation.shiro.token;
 
 import com.university.graduation.util.AESUtil;
+import com.university.graduation.util.RSAUtil;
 import org.apache.shiro.authc.AuthenticationToken;
 
 /* *
@@ -15,14 +16,14 @@ public class PasswordToken implements AuthenticationToken{
     private String password;
     private String timestamp;
     private String host;
-    private String tokenKey;
+    private String privateKey;
 
-    public PasswordToken(String appId, String password, String timestamp, String host,String tokenKey) throws Exception {
+    public PasswordToken(String appId, String password, String timestamp, String host,String privateKey) throws Exception {
         this.appId = appId;
         this.timestamp = timestamp;
         this.host = host;
-        this.password = AESUtil.aesDecode(password,tokenKey);
-        this.tokenKey = tokenKey;
+        this.password = RSAUtil.RSADecode(password,privateKey);
+        this.privateKey = privateKey;
 
     }
     public void setPassword(String password) {
@@ -65,10 +66,10 @@ public class PasswordToken implements AuthenticationToken{
     }
 
     public String getTokenKey() {
-        return tokenKey;
+        return privateKey;
     }
 
-    public void setTokenKey(String tokenKey) {
-        this.tokenKey = tokenKey;
+    public void setTokenKey(String privateKey) {
+        this.privateKey = privateKey;
     }
 }

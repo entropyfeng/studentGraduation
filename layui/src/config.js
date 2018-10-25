@@ -26,7 +26,7 @@ layui.define(['laytpl', 'layer', 'element', 'util'], function (exports) {
 
         //自定义请求字段
         , request: {
-            tokenName: 'access_token' //自动携带 token 的字段名。可设置 false 不携带。
+            // tokenName: 'access_token' //自动携带 token 的字段名。可设置 false 不携带。
         }
 
         //自定义响应字段

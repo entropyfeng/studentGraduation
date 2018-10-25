@@ -1,7 +1,11 @@
 <script type="text/html" template>
     <link rel="stylesheet" href="{{ layui.setter.base }}style/login.css?v={{ layui.admin.v }}-1" media="all">
-
 </script>
+<!--
+import {JSEncrypt} from "../../controller/jsencrypt";//这里吗  这个页面源码不能看到？不就是这个
+-->
+
+<script src="https://github.com/openstack/xstatic-jsencrypt/edit/master/xstatic/pkg/jsencrypt/data/jsencrypt.js"></script>
 
 
 <div class="layadmin-user-login layadmin-user-display-show" id="LAY-user-login" style="display: none;">
@@ -56,22 +60,11 @@
 
     </div>
 
-    <!--<div class="ladmin-user-login-theme">
-      <script type="text/html" template>
-        <ul>
-          <li data-theme=""><img src="{{ layui.setter.base }}style/res/bg-none.jpg"></li>
-          <li data-theme="#03152A" style="background-color: #03152A;"></li>
-          <li data-theme="#2E241B" style="background-color: #2E241B;"></li>
-          <li data-theme="#50314F" style="background-color: #50314F;"></li>
-          <li data-theme="#344058" style="background-color: #344058;"></li>
-          <li data-theme="#20222A" style="background-color: #20222A;"></li>
-        </ul>
-      </script>
-    </div>-->
 
 </div>
 
 <script>
+
 
     layui.use(['admin', 'form', 'user'], function () {
         var $ = layui.$
@@ -89,20 +82,34 @@
 
 
             admin.req({
-                url: true_url + '/account/login?tokenKey=get'
+                url: true_url + '/account/login?publicKey=get'
                 , method: 'get'
                 , done: function (res) {
-                    var tokenKey = res['data'].tokenKey;
-                    console.log(tokenKey);
+                    var publicKey = res['data'].publicKey;
+                    console.log(publicKey);
                     var appId = obj.field['username'];
-                    var username = obj.field['password'];
+                    var password = obj.field['password'];
                     var methodName = 'login';
                     var timestamp = new Date().toUTCString();
-const CryptoJS=require('crypto-js');
 
 
-                    Cry
-                    console.log(appId);
+                    // encrypt.setPublicKey(publicKey);
+                    // password = encrypt.encrypt(password);
+
+                    admin.req({
+                        url: true_url + '/account/login'
+                        , dataType: 'json'
+                        , method: 'post'
+                        , data: {
+                            "appId": appId
+                            , "password": password
+                            , "methodName": methodName
+                            , "timestamp": timestamp
+                            , "publicKey": publicKey
+                        }
+
+                    });
+
 
                 }
 
