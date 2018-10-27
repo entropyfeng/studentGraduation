@@ -2,8 +2,7 @@
     <link rel="stylesheet" href="{{ layui.setter.base }}style/login.css?v={{ layui.admin.v }}-1" media="all">
 </script>
 
-<script type="text/javascript"
-        src="js/jsencrypt.js"></script>
+<script type="text/javascript" src="js/jsencrypt.js"></script>
 
 
 <div class="layadmin-user-login layadmin-user-display-show" id="LAY-user-login" style="display: none;">
@@ -26,22 +25,7 @@
                 <input type="password" name="password" id="LAY-user-login-password" lay-verify="required"
                        placeholder="密码" class="layui-input">
             </div>
-            <div class="layui-form-item">
-                <div class="layui-row">
-                    <div class="layui-col-xs7">
-                        <label class="layadmin-user-login-icon layui-icon layui-icon-vercode"
-                               for="LAY-user-login-vercode"></label>
-                        <input type="text" name="vercode" id="LAY-user-login-vercode" lay-verify="required"
-                               placeholder="图形验证码" class="layui-input">
-                    </div>
-                    <div class="layui-col-xs5">
-                        <div style="margin-left: 10px;">
-                            <img src="https://www.oschina.net/action/user/captcha" class="layadmin-user-login-codeimg"
-                                 id="LAY-user-get-vercode">
-                        </div>
-                    </div>
-                </div>
-            </div>
+
             <div class="layui-form-item" style="margin-bottom: 20px;">
                 <input type="checkbox" name="remember" lay-skin="primary" title="记住密码">
                 <a lay-href="/user/forget" class="layadmin-user-jump-change layadmin-link" style="margin-top: 7px;">忘记密码？</a>
@@ -49,6 +33,9 @@
             <div class="layui-form-item">
                 <button class="layui-btn layui-btn-fluid" lay-submit lay-filter="LAY-user-login-submit">登 入</button>
             </div>
+        </div>
+        <div class="layui-trans layui-form-item layadmin-user-login-other">
+            <a lay-href="/user/reg" class="layadmin-user-jump-change layadmin-link">注册帐号</a>
         </div>
     </div>
 
@@ -76,27 +63,6 @@
         form.render();
         //提交
         form.on('submit(LAY-user-login-submit)', function (obj) {
-            //公钥
-            var PUBLIC_KEY1='MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC5Jn6LTqRn32FsiKg4gfny6O4cPTEFYb8qAQSFUYcXgCG0uOcoxG9VUDC8YkBryBnIa3r6GqAmEioApwNtoyK8AvyqWBW93VP-0EHCE36sLJHKtrB0JVTPoipQFe1wPXQJ9b2LtaRCp_88psSiUzXpSYj5PRFNCED0Ll9_nvrskQIDAQAB';
-            var PUBLIC_KEY = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC8HMr2CBpoZPm3t9tCVlrKtTmI4jNJc7/HhxjIEiDjC8czP4PV+44LjXvLYcSV0fwi6nE4LH2c5PBPEnPfqp0g8TZeX+bYGvd70cXee9d8wHgBqi4k0J0X33c0ZnW7JruftPyvJo9OelYSofBXQTcwI+3uIl/YvrgQRv6A5mW01QIDAQAB';
-            var PRIVATE_KEY1='MIICdQIBADANBgkqhkiG9w0BAQEFAASCAl8wggJbAgEAAoGBALkmfotOpGffYWyIqDiB-fLo7hw9MQVhvyoBBIVRhxeAIbS45yjEb1VQMLxiQGvIGchrevoaoCYSKgCnA22jIrwC_KpYFb3dU_7QQcITfqwskcq2sHQlVM-iKlAV7XA9dAn1vYu1pEKn_zymxKJTNelJiPk9EU0IQPQuX3-e-uyRAgMBAAECgYBIjshaqYgOWOEiGm_qLS2ZvyTJFkXmuQakXF-8K1YIpKMQ4sFcHZcP1Ow0d0CNvI42F8DK0LJgGRAyz0Ctr5fFcTYq3nf3aRZ-_yeaxrTUEdUNq9Z8UjCIbP4l2wApjgwX5dfnNK9jQUsjwCbWxArcgHqrZB9z7DqVcOIwrshP7QJBAOsQKeuiTyobN4CRYaNzIXbyR793FBoASYyfzq5XmFRTWsDV6vTSH7pQGjLbGINffe_Zm_8uCRaxPXF1kjvsQ5cCQQDJpDwyzzdPIyC-rFIPqVo4VosKZn9OX8-e1xQoR8frn4OE2PwkGl9yB_THKA5z-BrMT8kQcldQYP-jDSMxWTYXAkBigJCAjLCN3X_hoYp_2vQQCzEju7uxtaMcia8rgct0ssVZ_4qI8zCWe5Cu9P8Ntkto4hCr21e1qaoszG7uK3CbAkACS5ZL1cQBaJr00K1WdE0Mmx-WDLiiQcDxQ-18z-RcsEIk_vtPxeUUPTbyFWiktUxIyxe00jhgN9pxFrMx2pwdAkAZaMq4cU7JSiayugOjy1PM8qWRAq_66akkW7m6XKDbm-S6_M7y1v8GSInb3Emgpa5uuYjAXXXopVTLyNTXXKrY';
-            //私钥
-            var PRIVATE_KEY = 'MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBALwcyvYIGmhk+be320JWWsq1OYjiM0lzv8eHGMgSIOMLxzM/g9X7jguNe8thxJXR/CLqcTgsfZzk8E8Sc9+qnSDxNl5f5tga93vRxd5713zAeAGqLiTQnRffdzRmdbsmu5+0/K8mj056VhKh8FdBNzAj7e4iX9i+uBBG/oDmZbTVAgMBAAECgYEAmgNU5NTDkj9B+Pnt6UU8doSjw3+3j+bV2K2yS3QUOvAUus/Ax7x6ktjWxzCXvDY9IfUil2RNv9vtKEAqYLCWjc+lf8PV/yH1b7NEgyeAPBXtAJRoOnmYL2bdPW92kP9KgxJruF6Dz/C5AmMOncsvq8ABD+9Darn4p8dwj2ZC4O0CQQDf/AHmZsQokEItfCy4mHS9UbxbfIhEUv1ApPh/+Sr7NkJkHWYCtBQo+8jKO6zurAZQgWBPD1XX2UE4R+VIiZazAkEA1wAqtMvGhccyRZr+6kpkpDIa8+9jOE+nGUzqTDvgCID6as8AzOONFVVK6m/UUqkhcJ8Qu1pF36BGojy5BX2KVwJBAJSFpbji0hXXupowqfLp3RcgmNbNWAp+QUJZYhJx5cdYbmO2fssyH+AhPT6knYJR/YnqkDM8hv6vKCkqu2YDHjMCQAOA8TE5EOclM+CGghj3VWSHnIDVKdzFD4gOBNNxNlltIKeU8AJmwunSFgJ0CBXAw9a+ANvMwM7AIeaK7sj0HskCQAvxfDCq7gaNx+pfu0FHG8Gix08A/A6foggBl1fVu+L9sr9ZuOQ3HbXnl28F9ewuB9xdjnLUDjp7W7U0pB+vKoQ=';
-            //使用公钥加密
-            var encrypt = new JSEncrypt();
-            //encrypt.setPrivateKey('-----BEGIN RSA PRIVATE KEY-----'+PRIVATE_KEY+'-----END RSA PRIVATE KEY-----');
-           // encrypt.setPublicKey('-----BEGIN PUBLIC KEY-----' + PUBLIC_KEY + '-----END PUBLIC KEY-----');
-            encrypt.setPublicKey(PUBLIC_KEY1);
-            var encrypted = encrypt.encrypt('我是775sd');
-            console.log('加密后数据:%o', encrypted);
-            //使用私钥解密
-            var decrypt = new JSEncrypt();
-            //decrypt.setPublicKey('-----BEGIN PUBLIC KEY-----' + PUBLIC_KEY + '-----END PUBLIC KEY-----');
-            //decrypt.setPrivateKey('-----BEGIN RSA PRIVATE KEY-----'+PRIVATE_KEY+'-----END RSA PRIVATE KEY-----');
-            decrypt.setPrivateKey(PRIVATE_KEY1);
-            var uncrypted = decrypt.decrypt(encrypted);
-            console.log('解密后数据:%o', uncrypted);
-
 
 
             console.log(obj.field);
@@ -116,7 +82,6 @@
                     console.log("before encrypt:"+password);
                     encrypt.setPublicKey(publicKey);
                     password = encrypt.encrypt(password);
-                    console.log(encrypt);
                     console.log("encrypt :"+password);
                     admin.req({
                         url: true_url + '/account/login'
@@ -128,6 +93,10 @@
                             , "methodName": methodName
                             , "timestamp": timestamp
                             , "publicKey": publicKey
+                        }
+                        ,success(res){
+                            console.log(res);
+
                         }
 
                     });

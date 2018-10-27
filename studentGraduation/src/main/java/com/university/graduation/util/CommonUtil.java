@@ -1,6 +1,7 @@
 package com.university.graduation.util;
 
 import java.util.Random;
+import java.util.UUID;
 
 /* *
  * @Author tomsun28
@@ -23,5 +24,10 @@ public class CommonUtil {
             sb.append(base.charAt(number));
         }
         return sb.toString();
+    }
+
+    public static String getUUID(){
+        return UUID.randomUUID().toString().replace("-","").toUpperCase();
+
     }
 }

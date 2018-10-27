@@ -52,17 +52,16 @@ public class PasswordFilter extends AccessControlFilter {
     protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception {
 
         // 判断若为获取登录注册加密动态秘钥请求
-        if (isPasswordTokenGet(request)) {
+        if (isPublicKeyGet(request)) {
             //动态生成秘钥，redis存储秘钥供之后秘钥验证使用，设置有效期60秒用完即丢弃
-            System.out.println("是获取登录xxxxxx");
+            System.out.println("尝试获取publicKey");
             Map<String,String> map= RSAUtil.createKeys();
             String publicKey = map.get("publicKey");
             String privateKey = map.get("privateKey");
             System.out.println("public "+publicKey);
             System.out.println("private "+privateKey);
             try {
-                System.out.println(IpUtil.getIpFromRequest(WebUtils.toHttp(request)).toUpperCase());
-                redisTemplate.opsForValue().set("PUBLIC_KEY_"+ IpUtil.getIpFromRequest(WebUtils.toHttp(request)).toUpperCase()+publicKey,privateKey,60, TimeUnit.DAYS);
+                redisTemplate.opsForValue().set("PUBLIC_KEY_"+ IpUtil.getIpFromRequest(WebUtils.toHttp(request)).toUpperCase()+publicKey,privateKey,600, TimeUnit.SECONDS);
                 // 动态秘钥response返回给前端
                 Message message = new Message();
                 message.ok(1000,"issued publicKey success")
@@ -123,7 +122,7 @@ public class PasswordFilter extends AccessControlFilter {
         return false;
     }
 
-    private boolean isPasswordTokenGet(ServletRequest request) {
+    private boolean isPublicKeyGet(ServletRequest request) {
 
         String publicKey = RequestResponseUtil.getParameter(request,"publicKey");
         return (request instanceof HttpServletRequest)
@@ -131,8 +130,9 @@ public class PasswordFilter extends AccessControlFilter {
                 && null != publicKey && "get".equals(publicKey);
     }
 
+
     private boolean isPasswordLoginPost(ServletRequest request) {
-        System.out.println("进入");
+
         Map<String ,String> map = RequestResponseUtil.getRequestParameters(request);
         String password = map.get("password");
         String timestamp = map.get("timestamp");
@@ -150,16 +150,16 @@ public class PasswordFilter extends AccessControlFilter {
     private boolean isAccountRegisterPost(ServletRequest request) {
 
         Map<String ,String> map = RequestResponseUtil.getRequestParameters(request);
-        String uid = map.get("uid");
         String username = map.get("username");
         String methodName = map.get("methodName");
         String password = map.get("password");
+        String timestamp = map.get("timestamp");
         return (request instanceof HttpServletRequest)
                 && ((HttpServletRequest) request).getMethod().toUpperCase().equals("POST")
                 && null != username
                 && null != password
                 && null != methodName
-                && null != uid
+                && null != timestamp
                 && methodName.equals("register");
     }
 

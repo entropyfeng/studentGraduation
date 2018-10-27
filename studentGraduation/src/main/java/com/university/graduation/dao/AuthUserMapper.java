@@ -12,11 +12,18 @@ public interface AuthUserMapper {
 
     int deleteByPrimaryKey(String uid) throws DataAccessException;
 
+    int deleteByUsername(String username) throws DataAccessException;
     int insert(AuthUser record) throws DataAccessException;
 
     int insertSelective(AuthUser record) throws DataAccessException;
 
     AuthUser selectByPrimaryKey(String uid) throws DataAccessException;
+
+    AuthUser selectByUsername(String username)throws DataAccessException;
+
+    AuthUser selectByPhoneNumber(String phoneNumber)throws DataAccessException;
+
+    AuthUser selectByEmail(String email)throws DataAccessException;
 
     int updateByPrimaryKeySelective(AuthUser record) throws DataAccessException;
 

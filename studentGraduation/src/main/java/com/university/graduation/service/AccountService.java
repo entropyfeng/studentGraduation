@@ -13,6 +13,9 @@ public interface AccountService {
 
     Account loadAccount(String appId);
     boolean isAccountExistByUid(String uid);
+    boolean isAccountExistByUsername(String username);
+    boolean isAccountExistByPhoneNumber(String phone);
+    boolean isAccountExistByEmail(String email);
     boolean registerAccount(AuthUser account);
     String loadAccountRole(String appId);
 }

@@ -39,8 +39,8 @@ public class RSAUtil {
         Key privateKey = keyPair.getPrivate();
 
         System.out.println(Base64.encodeBase64String(publicKey.getEncoded()));
-        String publicKeyStr = Base64.encodeBase64URLSafeString(publicKey.getEncoded());
-        String privateKeyStr = Base64.encodeBase64URLSafeString(privateKey.getEncoded());
+        String publicKeyStr = Base64.encodeBase64String(publicKey.getEncoded());
+        String privateKeyStr = Base64.encodeBase64String(privateKey.getEncoded());
 
         Map<String, String> map = new HashMap<>();
         map.put("publicKey", publicKeyStr);
@@ -99,9 +99,9 @@ public class RSAUtil {
         System.out.println("public: " + publicKey);
         System.out.println("private: " + privateKey);
         String plainData = "我随手一打就是标准的十五字";
-        String secretData = RSAUtil.RSAEncode(plainData, PUBLIC_KEY);
+        String secretData = RSAUtil.RSAEncode(plainData, publicKey);
 
-        String result = RSADecode(secretData, PRIVATE_KEY);
+        String result = RSADecode(secretData, privateKey);
         System.out.println(result);
 
     }

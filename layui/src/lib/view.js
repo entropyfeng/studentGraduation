@@ -89,7 +89,7 @@ layui.define(['laytpl', 'layer'], function(exports){
       ,success: function(res){
             //只有 response 的 code 一切正常才执行 done
         var statusCode = response.statusCode;
-        if(res[response.statusName] == statusCode.ok||res['meta'].success==true){
+        if(res['meta'].success==true){
             typeof options.done === 'function' && options.done(res);
         }
 
@@ -101,8 +101,9 @@ layui.define(['laytpl', 'layer'], function(exports){
         
         //其它异常
         else {
+          var meta=res['meta'];
           var error = [
-            '<cite>Error：</cite> ' + (res[response.msgName] || '返回状态码异常')
+            '<cite>Error：</cite> ' + (meta['msg']||res[response.msgName] || '返回状态码异常')
             ,debug()
           ].join('');
           view.error(error);

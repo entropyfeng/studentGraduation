@@ -55,7 +55,8 @@ public class AccountController extends BasicAction {
     @ApiOperation(value = "用户登录", notes = "POST用户登录签发JWT")
     @PostMapping("/login")
     public Message accountLogin(HttpServletRequest request, HttpServletResponse response) {
-        Map<String, String> params = RequestResponseUtil.getRequestBodyMap(request);
+        System.out.println("登录-------------------");
+        Map<String, String> params = RequestResponseUtil.getRequestParameters(request);
         String appId = params.get("appId");
         // 根据appId获取其对应所拥有的角色(这里设计为角色对应资源，没有权限对应资源)
         String roles = accountService.loadAccountRole(appId);
@@ -70,7 +71,7 @@ public class AccountController extends BasicAction {
         authUser.setSalt(null);
 
         LogExeManager.getInstance().executeLogTask(LogTaskFactory.loginLog(appId, IpUtil.getIpFromRequest(WebUtils.toHttp(request)), (short) 1, "登录成功"));
-
+        System.out.println("登录成功");
         return new Message().ok(1003, "issue jwt success").addData("jwt", jwt).addData("user", authUser);
     }
 
@@ -83,25 +84,28 @@ public class AccountController extends BasicAction {
     @PostMapping("/register")
     public Message accountRegister(HttpServletRequest request, HttpServletResponse response) {
         System.out.println("进入注册界面");
-        Map<String, String> params = RequestResponseUtil.getRequestBodyMap(request);
+        Map<String, String> params = RequestResponseUtil.getRequestParameters(request);
         AuthUser authUser = new AuthUser();
-        String uid = params.get("uid");
+        String uid=CommonUtil.getUUID();
+        String username=params.get("username");
         String password = params.get("password");
-        String userKey = params.get("userKey");
-        if (StringUtils.isEmpty(uid) || StringUtils.isEmpty(password)) {
+        String publicKey = params.get("publicKey");
+        String phone=params.get("phone");
+        if (StringUtils.isEmpty(username) || StringUtils.isEmpty(password)) {
             // 必须信息缺一不可,返回注册账号信息缺失
             return new Message().error(1111, "账户信息缺失");
         }
-        if (accountService.isAccountExistByUid(uid)) {
+        if (accountService.isAccountExistByUsername(username)||accountService.isAccountExistByPhoneNumber(phone)) {
             // 账户已存在
             return new Message().error(1111, "账户已存在");
         }
 
         authUser.setUid(uid);
 
-        // 从Redis取出密码传输加密解密秘钥
-        String tokenKey = redisTemplate.opsForValue().get("TOKEN_KEY_" + IpUtil.getIpFromRequest(WebUtils.toHttp(request)).toUpperCase()+userKey);
-        String realPassword = AESUtil.aesDecode(password, tokenKey);
+        // 从Redis取出privateKey传输加密解密秘钥
+        String privateKey = redisTemplate.opsForValue().get("PUBLIC_KEY_" + IpUtil.getIpFromRequest(WebUtils.toHttp(request)).toUpperCase()+publicKey);
+        String realPassword = RSAUtil.RSADecode(password,privateKey);
+        System.out.println("real password："+realPassword);
         String salt = CommonUtil.getRandomString(6);
         // 存储到数据库的密码为 MD5(原密码+盐值)
         authUser.setPassword(MD5Util.md5(realPassword + salt));

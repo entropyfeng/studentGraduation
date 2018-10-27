@@ -37,6 +37,25 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
+    public boolean isAccountExistByUsername(String username) {
+        AuthUser user=userMapper.selectByUsername(username);
+        return user != null ? Boolean.TRUE : Boolean.FALSE;
+
+    }
+
+    @Override
+    public boolean isAccountExistByPhoneNumber(String phone) {
+        AuthUser user=userMapper.selectByPhoneNumber(phone);
+        return user != null ? Boolean.TRUE : Boolean.FALSE;
+    }
+
+    @Override
+    public boolean isAccountExistByEmail(String email) {
+        AuthUser user=userMapper.selectByEmail(email);
+        return user != null ? Boolean.TRUE : Boolean.FALSE;
+    }
+
+    @Override
     public boolean registerAccount(AuthUser account) throws DataAccessException {
 
         // 给新用户授权访客角色
