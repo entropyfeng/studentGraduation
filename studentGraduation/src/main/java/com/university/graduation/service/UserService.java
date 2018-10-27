@@ -14,6 +14,7 @@ public interface UserService {
 
     String loadAccountRole(String appId);
 
+    boolean addUser(AuthUser authUser);
     List<AuthUser> getUserList();
 
     List<AuthUser> getUserListByRoleId(Integer roleId);

@@ -57,10 +57,9 @@ public class RequestResponseUtil {
         } else {
             try {
 
-               String str= request.getInputStream().toString();
 
                 Map<String,String> maps = JSON.parseObject(request.getInputStream(),Map.class);
-               // Map<String,String>maps=JSON.parseObject(str,Map.class);
+
                 dataMap.putAll(maps);
                 request.setAttribute("body",dataMap);
             }catch (IOException e) {

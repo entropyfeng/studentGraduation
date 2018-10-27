@@ -82,7 +82,7 @@ public class AccountController extends BasicAction {
     @ApiOperation(value = "用户注册", notes = "POST用户注册")
     @PostMapping("/register")
     public Message accountRegister(HttpServletRequest request, HttpServletResponse response) {
-
+        System.out.println("进入注册界面");
         Map<String, String> params = RequestResponseUtil.getRequestBodyMap(request);
         AuthUser authUser = new AuthUser();
         String uid = params.get("uid");

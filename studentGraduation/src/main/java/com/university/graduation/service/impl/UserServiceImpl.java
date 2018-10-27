@@ -34,6 +34,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public boolean addUser(AuthUser authUser) {
+        return false;
+    }
+
+    @Override
     public List<AuthUser> getUserList() throws DataAccessException {
         return userMapper.selectUserList();
     }
