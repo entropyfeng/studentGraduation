@@ -52,7 +52,7 @@
 
 
     layui.use(['admin', 'form', 'user'], function () {
-        var $ = layui.$
+        var $ = $
             , setter = layui.setter
             , admin = layui.admin
             , form = layui.form
@@ -71,18 +71,17 @@
             admin.req({
                 url: true_url + '/account/login?publicKey=get'
                 , method: 'get'
-                , done: function (res) {
+                , success: function (res) {
                     var publicKey = res['data'].publicKey;
-                    console.log(publicKey);
                     var appId = obj.field['username'];
                     var password = obj.field['password'];
                     var methodName = 'login';
                     var timestamp = new Date().toUTCString();
                     var encrypt = new JSEncrypt();
-                    console.log("before encrypt:"+password);
+
                     encrypt.setPublicKey(publicKey);
                     password = encrypt.encrypt(password);
-                    console.log("encrypt :"+password);
+
                     admin.req({
                         url: true_url + '/account/login'
                         , dataType: 'json'
@@ -94,8 +93,30 @@
                             , "timestamp": timestamp
                             , "publicKey": publicKey
                         }
-                        ,success(res){
-                            console.log(res);
+                        , success(res) {
+
+                            var meta = res['meta'];
+                            var data = res['data'];
+                            if (meta['code'] == 1003) {
+
+
+                                layer.msg(meta['msg'], {
+                                    offset: '15px'
+                                    , icon: 1
+                                    , time: 1000
+                                }, function () {
+                                    location.hash = search.redirect ? decodeURIComponent(search.redirect) : '/';
+                                });
+                            } else {
+                                layer.msg(meta['msg']);
+                            }
+
+                            //请求成功后，写入 access_token
+                            layui.data(setter.tableName, {
+                                key: setter.request.tokenName
+                                , value: data['jwt']
+                            });
+                            console.log(data['jwt']);
 
                         }
 

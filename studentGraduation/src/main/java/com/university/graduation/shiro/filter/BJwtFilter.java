@@ -53,6 +53,7 @@ public class BJwtFilter extends BPathMatchingFilter {
             AuthenticationToken token = createJwtToken(servletRequest);
             try {
                 subject.login(token);
+
                 return this.checkRoles(subject,mappedValue);
             }catch (AuthenticationException e) {
 
@@ -126,17 +127,15 @@ public class BJwtFilter extends BPathMatchingFilter {
     }
 
     private boolean isJwtSubmission(ServletRequest request) {
-
-        String jwt = RequestResponseUtil.getHeader(request,"authorization");
-        String appId = RequestResponseUtil.getHeader(request,"appId");
+        System.out.println("is jwt submission");
+        String jwt = RequestResponseUtil.getParameter(request,"jwt");
         return (request instanceof HttpServletRequest)
-                && !StringUtils.isEmpty(jwt)
-                && !StringUtils.isEmpty(appId);
+                && !StringUtils.isEmpty(jwt);
     }
 
     private AuthenticationToken createJwtToken(ServletRequest request) {
 
-        Map<String,String> maps = RequestResponseUtil.getRequestHeaders(request);
+        Map<String,String> maps = RequestResponseUtil.getRequestParameters(request);
         String appId = maps.get("appId");
         String ipHost = request.getRemoteAddr();
         String jwt = maps.get("authorization");

@@ -89,7 +89,8 @@ layui.define(['laytpl', 'layer'], function(exports){
       ,success: function(res){
             //只有 response 的 code 一切正常才执行 done
         var statusCode = response.statusCode;
-        if(res['meta'].success==true){
+        var meta=res['meta'];
+        if(meta['success']==true){
             typeof options.done === 'function' && options.done(res);
         }
 

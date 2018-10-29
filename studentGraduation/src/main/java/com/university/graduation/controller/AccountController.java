@@ -2,6 +2,7 @@ package com.university.graduation.controller;
 
 
 import com.university.graduation.domain.bo.AuthUser;
+import com.university.graduation.domain.vo.Account;
 import com.university.graduation.domain.vo.Message;
 import com.university.graduation.service.AccountService;
 import com.university.graduation.service.UserService;
@@ -16,9 +17,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -141,6 +140,13 @@ public class AccountController extends BasicAction {
             LogExeManager.getInstance().executeLogTask(LogTaskFactory.registerLog(uid, IpUtil.getIpFromRequest(WebUtils.toHttp(request)), (short) 0, "注册失败"));
             return new Message().ok(1111, "注册失败");
         }
+    }
+    @GetMapping("/info/{appId}")
+    Message getUser(@PathVariable("appId")String appId){
+     Account account= accountService.loadAccount(appId);
+     Message message= new Message().ok(6666,"成功获取 ："+appId);
+     message.addData("account",account);
+        return message;
     }
 
 }

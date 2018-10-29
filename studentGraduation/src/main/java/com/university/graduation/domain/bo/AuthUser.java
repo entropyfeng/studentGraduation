@@ -12,7 +12,7 @@ public class AuthUser {
     private String salt;
 
     private String realName;
-
+//用户照片
     private String avatar;
 
     private String phone;
