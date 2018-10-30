@@ -20,12 +20,17 @@
     uid, username, password, salt, real_name, avatar, phone, email, sex, status, CREATE_TIME, 
     UPDATE_TIME, CREATE_WHERE
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from auth_user
-    where uid = #{uid,jdbcType=VARCHAR}
+
+  <select id="selectAppIdByUsername" parameterType="string" resultType="string">
+    select uid from auth_user WHERE username=#{username,jdbcType=VARCHAR}
   </select>
+  <select id="selectAppIdByEmail" parameterType="string" resultType="string">
+    select uid from auth_user WHERE email=#{email,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAppIdByPhoneNumber" parameterType="string" resultType="string">
+    select uid from auth_user WHERE email=#{email,jdbcType=VARCHAR}
+  </select>
+
   <select id="selectByUsername" parameterType="java.lang.String" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List"/>
@@ -46,9 +51,9 @@
     WHERE email=#{email,jdbcType=VARCHAR}
   </select>
 
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+  <delete id="deleteByAppId" parameterType="java.lang.String">
     delete from auth_user
-    where uid = #{uid,jdbcType=VARCHAR}
+    where uid = #{appId,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByUsername" parameterType="java.lang.String">
     delete from auth_user
@@ -193,7 +198,7 @@
     </set>
     where uid = #{uid,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.university.graduation.domain.bo.AuthUser">
+  <update id="updateByAppId" parameterType="com.university.graduation.domain.bo.AuthUser">
     update auth_user
     set username = #{username,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
@@ -218,11 +223,11 @@
     WHERE usr.uid = #{uid,jdbcType=VARCHAR}
   </select>
 
-  <select id="selectByUniqueKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectByAppId" parameterType="java.lang.String" resultMap="BaseResultMap">
     SELECT uid, username, password, salt, real_name, avatar, phone, email, sex, status, CREATE_TIME,
     UPDATE_TIME, CREATE_WHERE
     FROM auth_user user
-    WHERE user.username = #{appId,jdbcType=VARCHAR} or user.phone = #{appId,jdbcType=VARCHAR} or user.email = #{appId,jdbcType=VARCHAR}
+    WHERE user.uid = #{appId,jdbcType=VARCHAR}
   </select>
 
   <select id="selectUserList" resultMap="BaseResultMap">

@@ -10,6 +10,7 @@ import com.university.graduation.domain.vo.Account;
  */
 public interface AccountProvider {
 
-    Account loadAccount(String appId);
+    Account loadAccountByAppId(String appId);
 
+    Account loadAccountByUsername(String username);
 }

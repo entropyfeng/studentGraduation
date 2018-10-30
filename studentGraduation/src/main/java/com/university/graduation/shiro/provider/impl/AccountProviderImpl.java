@@ -20,7 +20,10 @@ public class AccountProviderImpl implements AccountProvider {
       @Autowired
       private AccountService accountService;
 
-    public Account loadAccount(String appId) {
-        return accountService.loadAccount(appId);
+    public Account loadAccountByAppId(String appId) {
+        return accountService.loadAccountByAppId(appId);
+    }
+    public Account loadAccountByUsername(String username){
+        return accountService.loadAccountByUsername(username);
     }
 }

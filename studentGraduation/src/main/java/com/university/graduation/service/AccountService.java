@@ -11,8 +11,9 @@ import com.university.graduation.domain.vo.Account;
  */
 public interface AccountService {
 
-    Account loadAccount(String appId);
-    boolean isAccountExistByUid(String uid);
+    Account loadAccountByUsername(String username);
+    Account loadAccountByAppId(String appId);
+    boolean isAccountExistByAppId(String uid);
     boolean isAccountExistByUsername(String username);
     boolean isAccountExistByPhoneNumber(String phone);
     boolean isAccountExistByEmail(String email);

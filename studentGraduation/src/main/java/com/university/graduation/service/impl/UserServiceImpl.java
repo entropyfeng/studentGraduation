@@ -28,6 +28,23 @@ public class UserServiceImpl implements UserService {
     private AuthUserRoleMapper authUserRoleMapper;
 
     @Override
+    public String getAppIdByUsername(String username) {
+
+        return userMapper.selectAppIdByUsername(username);
+
+    }
+
+    @Override
+    public String getAppIdByEmail(String email) {
+        return userMapper.selectAppIdByEmail(email);
+    }
+
+    @Override
+    public String getAppIdByPhoneNumber(String phoneNumber) {
+        return userMapper.selectAppIdByPhoneNumber(phoneNumber);
+    }
+
+    @Override
     public String loadAccountRole(String appId) throws DataAccessException {
 
         return userMapper.selectUserRoles(appId);
@@ -49,19 +66,19 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean authorityUserRole(String uid, int roleId) throws DataAccessException {
+    public boolean authorityUserRole(String appId, int roleId) throws DataAccessException {
         AuthUserRole authUserRole = new AuthUserRole();
         authUserRole.setRoleId(roleId);
-        authUserRole.setUserId(uid);
+        authUserRole.setUserId(appId);
         authUserRole.setCreateTime(new Date());
         authUserRole.setUpdateTime(new Date());
         return authUserRoleMapper.insert(authUserRole) == 1? Boolean.TRUE :Boolean.FALSE;
     }
 
     @Override
-    public boolean deleteAuthorityUserRole(String uid, int roleId) throws DataAccessException {
+    public boolean deleteAuthorityUserRole(String appId, int roleId) throws DataAccessException {
         AuthUserRole authUserRole = new AuthUserRole();
-        authUserRole.setUserId(uid);
+        authUserRole.setUserId(appId);
         authUserRole.setRoleId(roleId);
         return authUserRoleMapper.deleteByUniqueKey(authUserRole) == 1? Boolean.TRUE : Boolean.FALSE;
     }
@@ -69,7 +86,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public AuthUser getUserByAppId(String appId) throws DataAccessException {
 
-        return userMapper.selectByUniqueKey(appId);
+        return userMapper.selectByAppId(appId);
     }
 
     @Override

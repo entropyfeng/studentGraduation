@@ -56,11 +56,12 @@ public class AccountController extends BasicAction {
     public Message accountLogin(HttpServletRequest request, HttpServletResponse response) {
         System.out.println("登录-------------------");
         Map<String, String> params = RequestResponseUtil.getRequestParameters(request);
-        String appId = params.get("appId");
+        String username = params.get("username");
         // 根据appId获取其对应所拥有的角色(这里设计为角色对应资源，没有权限对应资源)
+        String appId=userService.getAppIdByUsername(username);
         String roles = accountService.loadAccountRole(appId);
         // 时间以秒计算,token有效刷新时间是token有效过期时间的2倍
-        long refreshPeriodTime = 36000L;
+        long refreshPeriodTime = 360000L;
         String jwt = JsonWebTokenUtil.issueJWT(UUID.randomUUID().toString(), appId,
                 "token-server", refreshPeriodTime >> 1, roles, null, SignatureAlgorithm.HS512);
         // 将签发的JWT存储到Redis： {JWT-SESSION-{appID} , jwt}
@@ -71,7 +72,7 @@ public class AccountController extends BasicAction {
 
         LogExeManager.getInstance().executeLogTask(LogTaskFactory.loginLog(appId, IpUtil.getIpFromRequest(WebUtils.toHttp(request)), (short) 1, "登录成功"));
         System.out.println("登录成功");
-        return new Message().ok(1003, "issue jwt success").addData("jwt", jwt).addData("user", authUser);
+        return new Message().ok(1003, "issue jwt success").addData("jwt", jwt).addData("appId",appId);
     }
 
     /* *
@@ -141,10 +142,11 @@ public class AccountController extends BasicAction {
             return new Message().ok(1111, "注册失败");
         }
     }
-    @GetMapping("/info/{appId}")
-    Message getUser(@PathVariable("appId")String appId){
-     Account account= accountService.loadAccount(appId);
-     Message message= new Message().ok(6666,"成功获取 ："+appId);
+    @GetMapping("/info/{username}")
+    Message getUser(@PathVariable("username")String username){
+        System.out.println("进入account info");
+     Account account= accountService.loadAccountByAppId(username);
+     Message message= new Message().ok(6666,"成功获取 ："+username);
      message.addData("account",account);
         return message;
     }

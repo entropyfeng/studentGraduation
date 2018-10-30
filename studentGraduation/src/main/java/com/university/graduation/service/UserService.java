@@ -12,9 +12,20 @@ import java.util.List;
  */
 public interface UserService {
 
+    /**
+     * 根据username获得appId
+     * @return
+     */
+    String  getAppIdByUsername(String username);
+
+    String getAppIdByEmail(String email);
+
+    String getAppIdByPhoneNumber(String phoneNumber);
+
     String loadAccountRole(String appId);
 
     boolean addUser(AuthUser authUser);
+
     List<AuthUser> getUserList();
 
     List<AuthUser> getUserListByRoleId(Integer roleId);

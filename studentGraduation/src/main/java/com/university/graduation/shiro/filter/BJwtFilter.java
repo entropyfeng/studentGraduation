@@ -43,7 +43,7 @@ public class BJwtFilter extends BPathMatchingFilter {
 
     protected boolean isAccessAllowed(ServletRequest servletRequest, ServletResponse servletResponse, Object mappedValue) throws Exception {
         Subject subject = getSubject(servletRequest,servletResponse);
-
+        System.out.println("进入 BJWTFilter is accessAllowed");
         //记录调用api日志到数据库
         LogExeManager.getInstance().executeLogTask(LogTaskFactory.bussinssLog(WebUtils.toHttp(servletRequest).getHeader("appId"),
                 WebUtils.toHttp(servletRequest).getRequestURI(),WebUtils.toHttp(servletRequest).getMethod(),(short)1,null));
@@ -65,7 +65,7 @@ public class BJwtFilter extends BPathMatchingFilter {
 
                     // 当存储在redis的JWT没有过期，即refresh time 没有过期
                     String appId = WebUtils.toHttp(servletRequest).getHeader("appId");
-                    String jwt = WebUtils.toHttp(servletRequest).getHeader("authorization");
+                    String jwt = WebUtils.toHttp(servletRequest).getHeader("jwt");
                     String refreshJwt = redisTemplate.opsForValue().get("JWT-SESSION-"+appId);
                     if (null != refreshJwt && refreshJwt.equals(jwt)) {
                         // 重新申请新的JWT
@@ -128,20 +128,19 @@ public class BJwtFilter extends BPathMatchingFilter {
 
     private boolean isJwtSubmission(ServletRequest request) {
         System.out.println("is jwt submission");
-        String jwt = RequestResponseUtil.getParameter(request,"jwt");
+        String jwt = RequestResponseUtil.getHeader(request,"jwt");
         return (request instanceof HttpServletRequest)
                 && !StringUtils.isEmpty(jwt);
     }
 
     private AuthenticationToken createJwtToken(ServletRequest request) {
 
-        Map<String,String> maps = RequestResponseUtil.getRequestParameters(request);
+        Map<String,String> maps = RequestResponseUtil.getRequestHeaders(request);
         String appId = maps.get("appId");
         String ipHost = request.getRemoteAddr();
-        String jwt = maps.get("authorization");
-        String deviceInfo = maps.get("deviceInfo");
+        String jwt = maps.get("jwt");
 
-        return new JwtToken(ipHost,deviceInfo,jwt,appId);
+        return new JwtToken(ipHost,jwt,appId);
     }
 
     // 验证当前用户是否属于mappedValue任意一个角色

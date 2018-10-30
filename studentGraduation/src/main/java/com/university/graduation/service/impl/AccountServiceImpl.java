@@ -25,14 +25,20 @@ public class AccountServiceImpl implements AccountService {
     private UserService userService;
 
     @Override
-    public Account loadAccount(String appId) throws DataAccessException {
-        AuthUser user = userMapper.selectByUniqueKey(appId);
+    public Account loadAccountByUsername(String username) {
+        AuthUser user=userMapper.selectByUsername(username);
         return user != null ? new Account(user.getUsername(),user.getPassword(),user.getSalt()) : null;
     }
 
     @Override
-    public boolean isAccountExistByUid(String uid) {
-        AuthUser user = userMapper.selectByPrimaryKey(uid);
+    public Account loadAccountByAppId(String appId) throws DataAccessException {
+        AuthUser user = userMapper.selectByAppId(appId);
+        return user != null ? new Account(user.getUsername(),user.getPassword(),user.getSalt()) : null;
+    }
+
+    @Override
+    public boolean isAccountExistByAppId(String appId) {
+        AuthUser user = userMapper.selectByAppId(appId);
         return user != null ? Boolean.TRUE : Boolean.FALSE;
     }
 

@@ -10,14 +10,17 @@ import java.util.List;
 @Mapper
 public interface AuthUserMapper {
 
-    int deleteByPrimaryKey(String uid) throws DataAccessException;
+    int deleteByAppId(String appId) throws DataAccessException;
 
     int deleteByUsername(String username) throws DataAccessException;
     int insert(AuthUser record) throws DataAccessException;
 
     int insertSelective(AuthUser record) throws DataAccessException;
 
-    AuthUser selectByPrimaryKey(String uid) throws DataAccessException;
+    String selectAppIdByUsername(String username)throws DataAccessException;
+    String selectAppIdByEmail(String email)throws DataAccessException;
+    String selectAppIdByPhoneNumber(String phoneNumber)throws DataAccessException;
+
 
     AuthUser selectByUsername(String username)throws DataAccessException;
 
@@ -27,11 +30,11 @@ public interface AuthUserMapper {
 
     int updateByPrimaryKeySelective(AuthUser record) throws DataAccessException;
 
-    int updateByPrimaryKey(AuthUser record) throws DataAccessException;
+    int updateByAppId(AuthUser record) throws DataAccessException;
 
     String selectUserRoles(String appId) throws DataAccessException;
 
-    AuthUser selectByUniqueKey(String appId) throws DataAccessException;
+    AuthUser selectByAppId(String appId) throws DataAccessException;
 
     List<AuthUser> selectUserList() throws DataAccessException;
 

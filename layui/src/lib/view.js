@@ -79,7 +79,14 @@ layui.define(['laytpl', 'layer'], function(exports){
         ?  options.headers[request.tokenName]
       : (layui.data(setter.tableName)[request.tokenName] || '');
     }
-    
+
+    if(request.appId){
+      //自动给request header传入 appId
+        options.headers[request.appId] = request.appId in options.headers
+            ?  options.headers[request.appId]
+            : (layui.data(setter.tableName)[request.appId] || '');
+
+    }
     delete options.success;
     delete options.error;
 

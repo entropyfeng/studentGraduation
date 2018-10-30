@@ -70,7 +70,7 @@ public class PasswordFilter extends AccessControlFilter {
 
 
             }catch (Exception e) {
-                LOGGER.warn("签发动态秘钥失败"+e.getMessage(),e);
+                LOGGER.warn("签发PublicKey失败"+e.getMessage(),e);
                 Message message = new Message();
                 message.ok(1000,"issued publicKey fail");
                 RequestResponseUtil.responseWrite(JSON.toJSONString(message),response);
@@ -117,6 +117,7 @@ public class PasswordFilter extends AccessControlFilter {
         // 之后添加对账户的找回等
 
         // response 告知无效请求
+        System.out.println("是这个request????");
         Message message = new Message().error(1111,"error request");
         RequestResponseUtil.responseWrite(JSON.toJSONString(message),response);
         return false;
@@ -137,13 +138,13 @@ public class PasswordFilter extends AccessControlFilter {
         String password = map.get("password");
         String timestamp = map.get("timestamp");
         String methodName = map.get("methodName");
-        String appId = map.get("appId");
+        String username = map.get("username");
         return (request instanceof HttpServletRequest)
                 && ((HttpServletRequest) request).getMethod().toUpperCase().equals("POST")
                 && null != password
                 && null != timestamp
                 && null != methodName
-                && null != appId
+                && null != username
                 && methodName.equals("login");
     }
 
@@ -166,13 +167,13 @@ public class PasswordFilter extends AccessControlFilter {
     private AuthenticationToken createPasswordToken(ServletRequest request) throws Exception {
 
         Map<String ,String> map = RequestResponseUtil.getRequestParameters(request);
-        String appId = map.get("appId");
+        String username = map.get("username");
         String timestamp = map.get("timestamp");
         String password = map.get("password");
         String host = IpUtil.getIpFromRequest(WebUtils.toHttp(request));
         String publicKey = map.get("publicKey");
         String privateKey = redisTemplate.opsForValue().get("PUBLIC_KEY_"+host.toUpperCase()+publicKey);
-        return new PasswordToken(appId,password,timestamp,host,privateKey);
+        return new PasswordToken(username,password,timestamp,host,privateKey);
     }
 
     public void setRedisTemplate(StringRedisTemplate redisTemplate) {

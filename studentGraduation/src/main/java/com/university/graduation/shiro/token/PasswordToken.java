@@ -12,14 +12,14 @@ import org.apache.shiro.authc.AuthenticationToken;
 public class PasswordToken implements AuthenticationToken{
 
     private static final long serialVersionUID = 1L;
-    private String appId;
+    private String username;
     private String password;
     private String timestamp;
     private String host;
     private String privateKey;
 
-    public PasswordToken(String appId, String password, String timestamp, String host,String privateKey) throws Exception {
-        this.appId = appId;
+    public PasswordToken(String username, String password, String timestamp, String host,String privateKey) throws Exception {
+        this.username = username;
         this.timestamp = timestamp;
         this.host = host;
         this.password = RSAUtil.RSADecode(password,privateKey);
@@ -34,7 +34,7 @@ public class PasswordToken implements AuthenticationToken{
     }
 
     public Object getPrincipal() {
-        return this.appId;
+        return this.username;
     }
 
     public Object getCredentials() {
@@ -42,11 +42,11 @@ public class PasswordToken implements AuthenticationToken{
     }
 
     public String getAppId() {
-        return appId;
+        return username;
     }
 
     public void setAppId(String appId) {
-        this.appId = appId;
+        this.username = appId;
     }
 
     public String getTimestamp() {

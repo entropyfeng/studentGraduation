@@ -73,7 +73,7 @@
                 , method: 'get'
                 , success: function (res) {
                     var publicKey = res['data'].publicKey;
-                    var appId = obj.field['username'];
+                    var username = obj.field['username'];
                     var password = obj.field['password'];
                     var methodName = 'login';
                     var timestamp = new Date().toUTCString();
@@ -87,7 +87,7 @@
                         , dataType: 'json'
                         , method: 'post'
                         , data: {
-                            "appId": appId
+                            "username": username
                             , "password": password
                             , "methodName": methodName
                             , "timestamp": timestamp
@@ -111,12 +111,20 @@
                                 layer.msg(meta['msg']);
                             }
 
-                            //请求成功后，写入 access_token
+                            //请求成功后，写入 jwt
                             layui.data(setter.tableName, {
                                 key: setter.request.tokenName
                                 , value: data['jwt']
                             });
+                            //写入 appId
+                            layui.data(setter.tableName, {
+                                key: setter.request.appId
+                                , value: data['appId']
+                            });
+
+
                             console.log(data['jwt']);
+                            console.log(data['appId']);
 
                         }
 
