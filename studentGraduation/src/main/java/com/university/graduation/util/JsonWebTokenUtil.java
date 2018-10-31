@@ -73,7 +73,9 @@ public class JsonWebTokenUtil {
         // 加密设置
         jwtBuilder.signWith(algorithm,secreKeyBytes);
 
-        return jwtBuilder.compact();
+        String jwt=jwtBuilder.compact();
+        System.out.println(jwt);
+        return jwt;
     }
 
     /**
@@ -147,6 +149,7 @@ public class JsonWebTokenUtil {
                 .setSigningKey(DatatypeConverter.parseBase64Binary(appKey))
                 .parseClaimsJws(jwt)
                 .getBody();
+   Date date= claims.getExpiration();
         JwtAccount jwtAccount = new JwtAccount();
         jwtAccount.setTokenId(claims.getId());// 令牌ID
         jwtAccount.setAppId(claims.getSubject());// 客户标识
@@ -184,6 +187,13 @@ public class JsonWebTokenUtil {
             return set;
         set.addAll(CollectionUtils.arrayToList(str.split(",")));
         return set;
+    }
+
+    public static void main(String[] args) {
+        String jwt="eyJhbGciOiJIUzUxMiIsInppcCI6IkRFRiJ9.eNpEy8sKwjAQheF3mXUDTTOTzHRXL30NaXCUqrSSpCKI7267cnXg5zsfuJURWogabSQejPcuGqRwMYxDbc5ENqDEWtBBBXmJK_b9sUexDR12guJ9h9y5veMmMHLgboVjziss810nkzW9NG1xKNBawlrYs5MK9P38BwoVpPmh23Hb03XRXOD7AwAA__8.Q0XatcKNgX696AGr7WhRGJAhQ_P4tS-bQ2CTrXRTyk03dXHZWQCzvzU_8HuKO01vRYYX0hj-hgtSVkdjau5DGw";
+
+        parseJwt(jwt,SECRET_KEY);
+
     }
 
 }

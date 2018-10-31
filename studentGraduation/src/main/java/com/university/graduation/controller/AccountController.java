@@ -61,7 +61,7 @@ public class AccountController extends BasicAction {
         String appId=userService.getAppIdByUsername(username);
         String roles = accountService.loadAccountRole(appId);
         // 时间以秒计算,token有效刷新时间是token有效过期时间的2倍
-        long refreshPeriodTime = 360000L;
+        long refreshPeriodTime = 36L;
         String jwt = JsonWebTokenUtil.issueJWT(UUID.randomUUID().toString(), appId,
                 "token-server", refreshPeriodTime >> 1, roles, null, SignatureAlgorithm.HS512);
         // 将签发的JWT存储到Redis： {JWT-SESSION-{appID} , jwt}
@@ -150,6 +150,8 @@ public class AccountController extends BasicAction {
      message.addData("account",account);
         return message;
     }
+
+
 
 
 }
