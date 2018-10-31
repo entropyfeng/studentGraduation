@@ -56,6 +56,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public boolean updatePasswordByAppId(String appId, String password) {
+
+
+        return 1==userMapper.setPasswordByAppId(appId,password);
+    }
+
+    @Override
     public List<AuthUser> getUserList() throws DataAccessException {
         return userMapper.selectUserList();
     }

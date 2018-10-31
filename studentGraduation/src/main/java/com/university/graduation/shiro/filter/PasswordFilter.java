@@ -54,14 +54,13 @@ public class PasswordFilter extends AccessControlFilter {
         // 判断若为获取登录注册加密动态秘钥请求
         if (isPublicKeyGet(request)) {
             //动态生成秘钥，redis存储秘钥供之后秘钥验证使用，设置有效期60秒用完即丢弃
-            System.out.println("尝试获取publicKey");
             Map<String,String> map= RSAUtil.createKeys();
             String publicKey = map.get("publicKey");
             String privateKey = map.get("privateKey");
             System.out.println("public "+publicKey);
             System.out.println("private "+privateKey);
             try {
-                redisTemplate.opsForValue().set("PUBLIC_KEY_"+ IpUtil.getIpFromRequest(WebUtils.toHttp(request)).toUpperCase()+publicKey,privateKey,600, TimeUnit.SECONDS);
+                redisTemplate.opsForValue().set("PUBLIC_KEY_"+ IpUtil.getIpFromRequest(WebUtils.toHttp(request)).toUpperCase()+publicKey,privateKey,10, TimeUnit.SECONDS);
                 // 动态秘钥response返回给前端
                 Message message = new Message();
                 message.ok(1000,"issued publicKey success")
@@ -80,7 +79,7 @@ public class PasswordFilter extends AccessControlFilter {
 
         // 判断是否是登录请求
         if(isPasswordLoginPost(request)){
-            System.out.println("进入登录处理");
+
             AuthenticationToken authenticationToken = null;
             try {
                 authenticationToken = createPasswordToken(request);
@@ -117,7 +116,6 @@ public class PasswordFilter extends AccessControlFilter {
         // 之后添加对账户的找回等
 
         // response 告知无效请求
-        System.out.println("是这个request????");
         Message message = new Message().error(1111,"error request");
         RequestResponseUtil.responseWrite(JSON.toJSONString(message),response);
         return false;

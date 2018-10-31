@@ -129,16 +129,18 @@ public class BJwtFilter extends BPathMatchingFilter {
     private boolean isJwtSubmission(ServletRequest request) {
         System.out.println("is jwt submission");
         String jwt = RequestResponseUtil.getHeader(request,"jwt");
+        String appId=RequestResponseUtil.getHeader(request,"appId");
         return (request instanceof HttpServletRequest)
-                && !StringUtils.isEmpty(jwt);
+                && !StringUtils.isEmpty(jwt)
+               &&!StringUtils.isEmpty(appId);
     }
 
     private AuthenticationToken createJwtToken(ServletRequest request) {
 
-        Map<String,String> maps = RequestResponseUtil.getRequestHeaders(request);
-        String appId = maps.get("appId");
+
         String ipHost = request.getRemoteAddr();
-        String jwt = maps.get("jwt");
+        String jwt = RequestResponseUtil.getHeader(request,"jwt");
+        String appId=RequestResponseUtil.getHeader(request,"appId");
 
         return new JwtToken(ipHost,jwt,appId);
     }

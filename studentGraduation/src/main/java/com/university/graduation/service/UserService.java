@@ -2,6 +2,7 @@ package com.university.graduation.service;
 
 
 import com.university.graduation.domain.bo.AuthUser;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -25,6 +26,8 @@ public interface UserService {
     String loadAccountRole(String appId);
 
     boolean addUser(AuthUser authUser);
+
+    boolean updatePasswordByAppId(String appId, String password);
 
     List<AuthUser> getUserList();
 

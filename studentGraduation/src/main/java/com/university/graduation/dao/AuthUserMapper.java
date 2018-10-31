@@ -3,6 +3,7 @@ package com.university.graduation.dao;
 
 import com.university.graduation.domain.bo.AuthUser;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.dao.DataAccessException;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public interface AuthUserMapper {
     String selectAppIdByEmail(String email)throws DataAccessException;
     String selectAppIdByPhoneNumber(String phoneNumber)throws DataAccessException;
 
-
+   int setPasswordByAppId(@Param("appId") String appId, @Param("password") String password )throws  DataAccessException;
     AuthUser selectByUsername(String username)throws DataAccessException;
 
     AuthUser selectByPhoneNumber(String phoneNumber)throws DataAccessException;

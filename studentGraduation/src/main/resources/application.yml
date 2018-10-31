@@ -104,7 +104,7 @@ jasypt:
 spring:
     profiles: dev
     datasource:
-      url: jdbc:mysql://127.0.0.1:3306/graduation?useUnicode=true&characterEncoding=utf-8&useSSL=false
+      url: jdbc:mysql://127.0.0.1:3306/graduation?useUnicode=true&characterEncoding=utf-8&useSSL=false&useAffectedRows=true
       username: root
       password: root
     redis:
@@ -121,7 +121,7 @@ spring:
 spring:
     profiles: test
     datasource:
-      url: jdbc:mysql://127.0.0.1:3306/graduation?useUnicode=true&characterEncoding=utf-8&useSSL=false
+      url: jdbc:mysql://127.0.0.1:3306/graduation?useUnicode=true&characterEncoding=utf-8&useSSL=false&useAffectedRows=true
       username: root
       password: root
     redis:
@@ -138,7 +138,7 @@ spring:
 spring:
     profiles: prod
     datasource:
-     url: jdbc:mysql://127.0.0.1:3306/graduation?useUnicode=true&characterEncoding=utf-8&useSSL=false
+     url: jdbc:mysql://127.0.0.1:3306/graduation?useUnicode=true&characterEncoding=utf-8&useSSL=false&useAffectedRows=true
      username: root
      password: root
     redis:

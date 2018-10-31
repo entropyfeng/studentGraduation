@@ -16,6 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.http.HttpRequest;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -54,7 +55,6 @@ public class AccountController extends BasicAction {
     @ApiOperation(value = "用户登录", notes = "POST用户登录签发JWT")
     @PostMapping("/login")
     public Message accountLogin(HttpServletRequest request, HttpServletResponse response) {
-        System.out.println("登录-------------------");
         Map<String, String> params = RequestResponseUtil.getRequestParameters(request);
         String username = params.get("username");
         // 根据appId获取其对应所拥有的角色(这里设计为角色对应资源，没有权限对应资源)
@@ -150,5 +150,6 @@ public class AccountController extends BasicAction {
      message.addData("account",account);
         return message;
     }
+
 
 }

@@ -250,5 +250,8 @@
   	   where b.uid = c.user_id and c.role_id = #{roleId,jdbcType=INTEGER}
 	)
   </select>
+  <update id="setPasswordByAppId" >
+    update auth_user set password = #{password,jdbcType=VARCHAR} WHERE uid=#{appId}
+  </update>
 
 </mapper>
