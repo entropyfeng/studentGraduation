@@ -43,7 +43,6 @@ public class BJwtFilter extends BPathMatchingFilter {
 
     protected boolean isAccessAllowed(ServletRequest servletRequest, ServletResponse servletResponse, Object mappedValue) throws Exception {
         Subject subject = getSubject(servletRequest,servletResponse);
-        System.out.println("进入 BJWTFilter is accessAllowed");
         //记录调用api日志到数据库
         LogExeManager.getInstance().executeLogTask(LogTaskFactory.bussinssLog(WebUtils.toHttp(servletRequest).getHeader("appId"),
                 WebUtils.toHttp(servletRequest).getRequestURI(),WebUtils.toHttp(servletRequest).getMethod(),(short)1,null));
@@ -127,7 +126,7 @@ public class BJwtFilter extends BPathMatchingFilter {
     }
 
     private boolean isJwtSubmission(ServletRequest request) {
-        System.out.println("is jwt submission");
+
         String jwt = RequestResponseUtil.getHeader(request,"jwt");
         String appId=RequestResponseUtil.getHeader(request,"appId");
         return (request instanceof HttpServletRequest)

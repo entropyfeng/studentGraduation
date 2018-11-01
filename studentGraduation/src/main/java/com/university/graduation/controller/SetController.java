@@ -22,6 +22,7 @@ public class SetController {
     @ApiOperation(value = "密码修改", notes = "PUT密码修改")
     @PutMapping("/set/password")
     Message modifyPassword(HttpServletRequest request){
+        System.out.println("进入setControl");
         Map<String,String> params=  RequestResponseUtil.getRequestParameters(request);
 
         String appId=RequestResponseUtil.getHeader(request,"appId");

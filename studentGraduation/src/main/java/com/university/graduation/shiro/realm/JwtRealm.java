@@ -1,9 +1,15 @@
 package com.university.graduation.shiro.realm;
 
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.university.graduation.domain.vo.JwtAccount;
 import com.university.graduation.shiro.token.JwtToken;
 import com.university.graduation.util.JsonWebTokenUtil;
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.MalformedJwtException;
+import io.jsonwebtoken.SignatureException;
+import io.jsonwebtoken.UnsupportedJwtException;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -13,14 +19,11 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-/* *
- * @Author tomsun28
- * @Description 
- * @Date 18:07 2018/3/3
- */
+
 public class JwtRealm extends AuthorizingRealm {
 
     public Class<?> getAuthenticationTokenClass() {
@@ -30,45 +33,53 @@ public class JwtRealm extends AuthorizingRealm {
 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
+        String strJwtAccount= (String)principalCollection.getPrimaryPrincipal();
+        System.out.println(strJwtAccount);
+       Map<String,String> maps=(Map<String,String>)JSONObject.parseObject(strJwtAccount,Map.class);
 
-        String payload = (String) principalCollection.getPrimaryPrincipal();
-        // likely to be json, parse it:
-        if (payload.startsWith("jwt:") && payload.charAt(4) == '{'
-                && payload.charAt(payload.length() - 1) == '}') {
-
-            Map<String, Object> payloadMap = JsonWebTokenUtil.readValue(payload.substring(4));
-            Set<String> roles = JsonWebTokenUtil.split((String)payloadMap.get("roles"));
-            Set<String> permissions = JsonWebTokenUtil.split((String)payloadMap.get("perms"));
-            SimpleAuthorizationInfo info =  new SimpleAuthorizationInfo();
-            if(null!=roles&&!roles.isEmpty())
-                info.setRoles(roles);
-            if(null!=permissions&&!permissions.isEmpty())
-                info.setStringPermissions(permissions);
-            return info;
-        }
-        return null;
+        Set<String> roles = JsonWebTokenUtil.split(maps.get("roles"));
+        Set<String> permissions = JsonWebTokenUtil.split(maps.get("perms"));
+        SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+        if (null != roles && !roles.isEmpty()) info.setRoles(roles);
+        if (null != permissions && !permissions.isEmpty()) info.setStringPermissions(permissions);
+        return info;
     }
 
+    /**
+     * @param authenticationToken 用户传递给后台的参数
+     * @return 一般来说是从数据库查询出来的参数 返回后交给JwtMatcher进行匹配
+     * @throws AuthenticationException
+     */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
+
         if (!(authenticationToken instanceof JwtToken)) {
             return null;
         }
-        JwtToken jwtToken = (JwtToken)authenticationToken;
-        String jwt = (String)jwtToken.getCredentials();
-        String payload = null;
-        try{
-            // 预先解析Payload
-            // 没有做任何的签名校验
-            payload = JsonWebTokenUtil.parseJwtPayload(jwt);
-        } catch(MalformedJwtException e){
-            throw new AuthenticationException("errJwt");     //令牌格式错误
-        } catch(Exception e){
-            throw new AuthenticationException("errsJwt");    //令牌无效
+        JwtToken jwtToken = (JwtToken) authenticationToken;
+        String jwt = (String) jwtToken.getCredentials();
+        JwtAccount jwtAccount = null;
+        try {
+            jwtAccount = JsonWebTokenUtil.parseJwt(jwt, JsonWebTokenUtil.SECRET_KEY);
+        } catch (SignatureException | UnsupportedJwtException | MalformedJwtException | IllegalArgumentException e) {
+            throw new AuthenticationException("errJwt"); // 令牌错误
+        } catch (ExpiredJwtException e) {
+
+            throw new AuthenticationException("expiredJwt"); // 令牌过期
+        } catch (Exception e) {
+            throw new AuthenticationException("errJwt");
         }
-        if(null == payload){
-            throw new AuthenticationException("errJwt");    //令牌无效
+        if (null == jwtAccount) {
+            throw new AuthenticationException("errJwt");
         }
-        return new SimpleAuthenticationInfo("jwt:"+payload,jwt,this.getName());
+
+
+      String roles=jwtAccount.getRoles();
+      String perms=jwtAccount.getPerms();
+      Map<String,String> stringMap=new HashMap<>() ;
+      stringMap.put("roles",roles);
+      stringMap.put("perms",perms);
+        String strJwtAccount= JSONObject.toJSONString(stringMap);
+      return new SimpleAuthenticationInfo(strJwtAccount,strJwtAccount ,this.getName());
     }
 }
