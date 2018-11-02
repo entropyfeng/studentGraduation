@@ -114,52 +114,62 @@ public class StudentExample {
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdEqualTo(Integer value) {
+        public Criteria andStudentIdEqualTo(String value) {
             addCriterion("student_id =", value, "studentId");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdNotEqualTo(Integer value) {
+        public Criteria andStudentIdNotEqualTo(String value) {
             addCriterion("student_id <>", value, "studentId");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdGreaterThan(Integer value) {
+        public Criteria andStudentIdGreaterThan(String value) {
             addCriterion("student_id >", value, "studentId");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdGreaterThanOrEqualTo(Integer value) {
+        public Criteria andStudentIdGreaterThanOrEqualTo(String value) {
             addCriterion("student_id >=", value, "studentId");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdLessThan(Integer value) {
+        public Criteria andStudentIdLessThan(String value) {
             addCriterion("student_id <", value, "studentId");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdLessThanOrEqualTo(Integer value) {
+        public Criteria andStudentIdLessThanOrEqualTo(String value) {
             addCriterion("student_id <=", value, "studentId");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdIn(List<Integer> values) {
+        public Criteria andStudentIdLike(String value) {
+            addCriterion("student_id like", value, "studentId");
+            return (Criteria) this;
+        }
+
+        public Criteria andStudentIdNotLike(String value) {
+            addCriterion("student_id not like", value, "studentId");
+            return (Criteria) this;
+        }
+
+        public Criteria andStudentIdIn(List<String> values) {
             addCriterion("student_id in", values, "studentId");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdNotIn(List<Integer> values) {
+        public Criteria andStudentIdNotIn(List<String> values) {
             addCriterion("student_id not in", values, "studentId");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdBetween(Integer value1, Integer value2) {
+        public Criteria andStudentIdBetween(String value1, String value2) {
             addCriterion("student_id between", value1, value2, "studentId");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdNotBetween(Integer value1, Integer value2) {
+        public Criteria andStudentIdNotBetween(String value1, String value2) {
             addCriterion("student_id not between", value1, value2, "studentId");
             return (Criteria) this;
         }
@@ -414,73 +424,63 @@ public class StudentExample {
             return (Criteria) this;
         }
 
-        public Criteria andPoliticsStatusIsNull() {
-            addCriterion("politics_status is null");
+        public Criteria andClassIdIsNull() {
+            addCriterion("class_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andPoliticsStatusIsNotNull() {
-            addCriterion("politics_status is not null");
+        public Criteria andClassIdIsNotNull() {
+            addCriterion("class_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andPoliticsStatusEqualTo(String value) {
-            addCriterion("politics_status =", value, "politicsStatus");
+        public Criteria andClassIdEqualTo(Integer value) {
+            addCriterion("class_id =", value, "classId");
             return (Criteria) this;
         }
 
-        public Criteria andPoliticsStatusNotEqualTo(String value) {
-            addCriterion("politics_status <>", value, "politicsStatus");
+        public Criteria andClassIdNotEqualTo(Integer value) {
+            addCriterion("class_id <>", value, "classId");
             return (Criteria) this;
         }
 
-        public Criteria andPoliticsStatusGreaterThan(String value) {
-            addCriterion("politics_status >", value, "politicsStatus");
+        public Criteria andClassIdGreaterThan(Integer value) {
+            addCriterion("class_id >", value, "classId");
             return (Criteria) this;
         }
 
-        public Criteria andPoliticsStatusGreaterThanOrEqualTo(String value) {
-            addCriterion("politics_status >=", value, "politicsStatus");
+        public Criteria andClassIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("class_id >=", value, "classId");
             return (Criteria) this;
         }
 
-        public Criteria andPoliticsStatusLessThan(String value) {
-            addCriterion("politics_status <", value, "politicsStatus");
+        public Criteria andClassIdLessThan(Integer value) {
+            addCriterion("class_id <", value, "classId");
             return (Criteria) this;
         }
 
-        public Criteria andPoliticsStatusLessThanOrEqualTo(String value) {
-            addCriterion("politics_status <=", value, "politicsStatus");
+        public Criteria andClassIdLessThanOrEqualTo(Integer value) {
+            addCriterion("class_id <=", value, "classId");
             return (Criteria) this;
         }
 
-        public Criteria andPoliticsStatusLike(String value) {
-            addCriterion("politics_status like", value, "politicsStatus");
+        public Criteria andClassIdIn(List<Integer> values) {
+            addCriterion("class_id in", values, "classId");
             return (Criteria) this;
         }
 
-        public Criteria andPoliticsStatusNotLike(String value) {
-            addCriterion("politics_status not like", value, "politicsStatus");
+        public Criteria andClassIdNotIn(List<Integer> values) {
+            addCriterion("class_id not in", values, "classId");
             return (Criteria) this;
         }
 
-        public Criteria andPoliticsStatusIn(List<String> values) {
-            addCriterion("politics_status in", values, "politicsStatus");
+        public Criteria andClassIdBetween(Integer value1, Integer value2) {
+            addCriterion("class_id between", value1, value2, "classId");
             return (Criteria) this;
         }
 
-        public Criteria andPoliticsStatusNotIn(List<String> values) {
-            addCriterion("politics_status not in", values, "politicsStatus");
-            return (Criteria) this;
-        }
-
-        public Criteria andPoliticsStatusBetween(String value1, String value2) {
-            addCriterion("politics_status between", value1, value2, "politicsStatus");
-            return (Criteria) this;
-        }
-
-        public Criteria andPoliticsStatusNotBetween(String value1, String value2) {
-            addCriterion("politics_status not between", value1, value2, "politicsStatus");
+        public Criteria andClassIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("class_id not between", value1, value2, "classId");
             return (Criteria) this;
         }
 
@@ -494,52 +494,52 @@ public class StudentExample {
             return (Criteria) this;
         }
 
-        public Criteria andStudentSexEqualTo(Integer value) {
+        public Criteria andStudentSexEqualTo(Boolean value) {
             addCriterion("student_sex =", value, "studentSex");
             return (Criteria) this;
         }
 
-        public Criteria andStudentSexNotEqualTo(Integer value) {
+        public Criteria andStudentSexNotEqualTo(Boolean value) {
             addCriterion("student_sex <>", value, "studentSex");
             return (Criteria) this;
         }
 
-        public Criteria andStudentSexGreaterThan(Integer value) {
+        public Criteria andStudentSexGreaterThan(Boolean value) {
             addCriterion("student_sex >", value, "studentSex");
             return (Criteria) this;
         }
 
-        public Criteria andStudentSexGreaterThanOrEqualTo(Integer value) {
+        public Criteria andStudentSexGreaterThanOrEqualTo(Boolean value) {
             addCriterion("student_sex >=", value, "studentSex");
             return (Criteria) this;
         }
 
-        public Criteria andStudentSexLessThan(Integer value) {
+        public Criteria andStudentSexLessThan(Boolean value) {
             addCriterion("student_sex <", value, "studentSex");
             return (Criteria) this;
         }
 
-        public Criteria andStudentSexLessThanOrEqualTo(Integer value) {
+        public Criteria andStudentSexLessThanOrEqualTo(Boolean value) {
             addCriterion("student_sex <=", value, "studentSex");
             return (Criteria) this;
         }
 
-        public Criteria andStudentSexIn(List<Integer> values) {
+        public Criteria andStudentSexIn(List<Boolean> values) {
             addCriterion("student_sex in", values, "studentSex");
             return (Criteria) this;
         }
 
-        public Criteria andStudentSexNotIn(List<Integer> values) {
+        public Criteria andStudentSexNotIn(List<Boolean> values) {
             addCriterion("student_sex not in", values, "studentSex");
             return (Criteria) this;
         }
 
-        public Criteria andStudentSexBetween(Integer value1, Integer value2) {
+        public Criteria andStudentSexBetween(Boolean value1, Boolean value2) {
             addCriterion("student_sex between", value1, value2, "studentSex");
             return (Criteria) this;
         }
 
-        public Criteria andStudentSexNotBetween(Integer value1, Integer value2) {
+        public Criteria andStudentSexNotBetween(Boolean value1, Boolean value2) {
             addCriterion("student_sex not between", value1, value2, "studentSex");
             return (Criteria) this;
         }
@@ -614,63 +614,73 @@ public class StudentExample {
             return (Criteria) this;
         }
 
-        public Criteria andClassIdIsNull() {
-            addCriterion("class_id is null");
+        public Criteria andPoliticsStatusIsNull() {
+            addCriterion("politics_status is null");
             return (Criteria) this;
         }
 
-        public Criteria andClassIdIsNotNull() {
-            addCriterion("class_id is not null");
+        public Criteria andPoliticsStatusIsNotNull() {
+            addCriterion("politics_status is not null");
             return (Criteria) this;
         }
 
-        public Criteria andClassIdEqualTo(Integer value) {
-            addCriterion("class_id =", value, "classId");
+        public Criteria andPoliticsStatusEqualTo(String value) {
+            addCriterion("politics_status =", value, "politicsStatus");
             return (Criteria) this;
         }
 
-        public Criteria andClassIdNotEqualTo(Integer value) {
-            addCriterion("class_id <>", value, "classId");
+        public Criteria andPoliticsStatusNotEqualTo(String value) {
+            addCriterion("politics_status <>", value, "politicsStatus");
             return (Criteria) this;
         }
 
-        public Criteria andClassIdGreaterThan(Integer value) {
-            addCriterion("class_id >", value, "classId");
+        public Criteria andPoliticsStatusGreaterThan(String value) {
+            addCriterion("politics_status >", value, "politicsStatus");
             return (Criteria) this;
         }
 
-        public Criteria andClassIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("class_id >=", value, "classId");
+        public Criteria andPoliticsStatusGreaterThanOrEqualTo(String value) {
+            addCriterion("politics_status >=", value, "politicsStatus");
             return (Criteria) this;
         }
 
-        public Criteria andClassIdLessThan(Integer value) {
-            addCriterion("class_id <", value, "classId");
+        public Criteria andPoliticsStatusLessThan(String value) {
+            addCriterion("politics_status <", value, "politicsStatus");
             return (Criteria) this;
         }
 
-        public Criteria andClassIdLessThanOrEqualTo(Integer value) {
-            addCriterion("class_id <=", value, "classId");
+        public Criteria andPoliticsStatusLessThanOrEqualTo(String value) {
+            addCriterion("politics_status <=", value, "politicsStatus");
             return (Criteria) this;
         }
 
-        public Criteria andClassIdIn(List<Integer> values) {
-            addCriterion("class_id in", values, "classId");
+        public Criteria andPoliticsStatusLike(String value) {
+            addCriterion("politics_status like", value, "politicsStatus");
             return (Criteria) this;
         }
 
-        public Criteria andClassIdNotIn(List<Integer> values) {
-            addCriterion("class_id not in", values, "classId");
+        public Criteria andPoliticsStatusNotLike(String value) {
+            addCriterion("politics_status not like", value, "politicsStatus");
             return (Criteria) this;
         }
 
-        public Criteria andClassIdBetween(Integer value1, Integer value2) {
-            addCriterion("class_id between", value1, value2, "classId");
+        public Criteria andPoliticsStatusIn(List<String> values) {
+            addCriterion("politics_status in", values, "politicsStatus");
             return (Criteria) this;
         }
 
-        public Criteria andClassIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("class_id not between", value1, value2, "classId");
+        public Criteria andPoliticsStatusNotIn(List<String> values) {
+            addCriterion("politics_status not in", values, "politicsStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoliticsStatusBetween(String value1, String value2) {
+            addCriterion("politics_status between", value1, value2, "politicsStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoliticsStatusNotBetween(String value1, String value2) {
+            addCriterion("politics_status not between", value1, value2, "politicsStatus");
             return (Criteria) this;
         }
     }

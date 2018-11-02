@@ -1,6 +1,5 @@
 package com.university.graduation.domain.bo;
 
-
 import java.util.ArrayList;
 import java.util.List;
 

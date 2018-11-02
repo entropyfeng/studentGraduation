@@ -1,18 +1,18 @@
 package com.university.graduation.dao;
 
-
-import java.util.List;
-
 import com.university.graduation.domain.bo.Student;
 import com.university.graduation.domain.bo.StudentExample;
-import org.apache.ibatis.annotations.Param;
+import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+@Mapper
 public interface StudentMapper {
     int countByExample(StudentExample example);
 
     int deleteByExample(StudentExample example);
 
-    int deleteByPrimaryKey(Integer studentId);
+    int deleteByPrimaryKey(String studentId);
 
     int insert(Student record);
 
@@ -22,7 +22,8 @@ public interface StudentMapper {
 
     List<Student> selectByExample(StudentExample example);
 
-    Student selectByPrimaryKey(Integer studentId);
+List<Student> selectAll();
+    Student selectByPrimaryKey(String studentId);
 
     int updateByExampleSelective(@Param("record") Student record, @Param("example") StudentExample example);
 

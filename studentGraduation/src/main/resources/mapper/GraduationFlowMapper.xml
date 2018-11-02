@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.university.graduation.dao.GraduationFlowMapper" >
-  <resultMap id="BaseResultMap" type="domain/bo.GraduationFlow" >
+  <resultMap id="BaseResultMap" type="com.university.graduation.domain.bo.GraduationFlow" >
     <constructor >
       <idArg column="graduation_flow_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="graduation_flow_name" jdbcType="VARCHAR" javaType="java.lang.String" />
@@ -76,7 +76,7 @@
     graduation_flow_begin_time, graduation_flow_end_time, graduation_flow_student_num, 
     graduation_flow_set_status
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="domain/bo.GraduationFlowExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.university.graduation.domain.bo.GraduationFlowExample" >
     select
     <if test="distinct" >
       distinct
@@ -100,13 +100,13 @@
     delete from graduation_flow
     where graduation_flow_id = #{graduationFlowId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="domain/bo.GraduationFlowExample" >
+  <delete id="deleteByExample" parameterType="com.university.graduation.domain.bo.GraduationFlowExample" >
     delete from graduation_flow
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="domain/bo.GraduationFlow" >
+  <insert id="insert" parameterType="com.university.graduation.domain.bo.GraduationFlow" >
     insert into graduation_flow (graduation_flow_id, graduation_flow_name, 
       graduation_flow_enable_status, graduation_flow_year, 
       graduation_flow_begin_time, graduation_flow_end_time, 
@@ -118,7 +118,7 @@
       #{graduationFlowStudentNum,jdbcType=INTEGER}, #{graduationFlowSetStatus,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="domain/bo.GraduationFlow" >
+  <insert id="insertSelective" parameterType="com.university.graduation.domain.bo.GraduationFlow" >
     insert into graduation_flow
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="graduationFlowId != null" >
@@ -173,7 +173,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="domain/bo.GraduationFlowExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.university.graduation.domain.bo.GraduationFlowExample" resultType="java.lang.Integer" >
     select count(*) from graduation_flow
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -225,7 +225,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="domain/bo.GraduationFlow" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.university.graduation.domain.bo.GraduationFlow" >
     update graduation_flow
     <set >
       <if test="graduationFlowName != null" >
@@ -252,7 +252,7 @@
     </set>
     where graduation_flow_id = #{graduationFlowId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="domain/bo.GraduationFlow" >
+  <update id="updateByPrimaryKey" parameterType="com.university.graduation.domain.bo.GraduationFlow" >
     update graduation_flow
     set graduation_flow_name = #{graduationFlowName,jdbcType=VARCHAR},
       graduation_flow_enable_status = #{graduationFlowEnableStatus,jdbcType=INTEGER},

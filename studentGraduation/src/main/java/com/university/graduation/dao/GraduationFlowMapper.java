@@ -1,12 +1,12 @@
 package com.university.graduation.dao;
 
-
-import java.util.List;
-
 import com.university.graduation.domain.bo.GraduationFlow;
 import com.university.graduation.domain.bo.GraduationFlowExample;
-import org.apache.ibatis.annotations.Param;
+import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+@Mapper
 public interface GraduationFlowMapper {
     int countByExample(GraduationFlowExample example);
 

@@ -1,12 +1,12 @@
 package com.university.graduation.dao;
 
-
-import java.util.List;
-
 import com.university.graduation.domain.bo.College;
 import com.university.graduation.domain.bo.CollegeExample;
-import org.apache.ibatis.annotations.Param;
+import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+@Mapper
 public interface CollegeMapper {
     int countByExample(CollegeExample example);
 

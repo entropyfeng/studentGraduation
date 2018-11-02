@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.university.graduation.dao.GraduationLinkMapper" >
-  <resultMap id="BaseResultMap" type="domain/bo.GraduationLink" >
+  <resultMap id="BaseResultMap" type="com.university.graduation.domain.bo.GraduationLink" >
     <constructor >
       <idArg column="graduation_link_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="graduation_link_name" jdbcType="VARCHAR" javaType="java.lang.String" />
@@ -69,7 +69,7 @@
   <sql id="Base_Column_List" >
     graduation_link_id, graduation_link_name, graduation_link_announcement
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="domain/bo.GraduationLinkExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.university.graduation.domain.bo.GraduationLinkExample" >
     select
     <if test="distinct" >
       distinct
@@ -93,19 +93,19 @@
     delete from graduation_link
     where graduation_link_id = #{graduationLinkId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="domain/bo.GraduationLinkExample" >
+  <delete id="deleteByExample" parameterType="com.university.graduation.domain.bo.GraduationLinkExample" >
     delete from graduation_link
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="domain/bo.GraduationLink" >
+  <insert id="insert" parameterType="com.university.graduation.domain.bo.GraduationLink" >
     insert into graduation_link (graduation_link_id, graduation_link_name, 
       graduation_link_announcement)
     values (#{graduationLinkId,jdbcType=INTEGER}, #{graduationLinkName,jdbcType=VARCHAR}, 
       #{graduationLinkAnnouncement,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="domain/bo.GraduationLink" >
+  <insert id="insertSelective" parameterType="com.university.graduation.domain.bo.GraduationLink" >
     insert into graduation_link
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="graduationLinkId != null" >
@@ -130,7 +130,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="domain/bo.GraduationLinkExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.university.graduation.domain.bo.GraduationLinkExample" resultType="java.lang.Integer" >
     select count(*) from graduation_link
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -162,7 +162,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="domain/bo.GraduationLink" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.university.graduation.domain.bo.GraduationLink" >
     update graduation_link
     <set >
       <if test="graduationLinkName != null" >
@@ -174,7 +174,7 @@
     </set>
     where graduation_link_id = #{graduationLinkId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="domain/bo.GraduationLink" >
+  <update id="updateByPrimaryKey" parameterType="com.university.graduation.domain.bo.GraduationLink" >
     update graduation_link
     set graduation_link_name = #{graduationLinkName,jdbcType=VARCHAR},
       graduation_link_announcement = #{graduationLinkAnnouncement,jdbcType=VARCHAR}

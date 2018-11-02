@@ -102,7 +102,6 @@ public class AccountController extends BasicAction {
         // 从Redis取出privateKey传输加密解密秘钥
         String privateKey = redisTemplate.opsForValue().get("PUBLIC_KEY_" + IpUtil.getIpFromRequest(WebUtils.toHttp(request)).toUpperCase()+publicKey);
         String realPassword = RSAUtil.RSADecode(password,privateKey);
-        System.out.println("real password："+realPassword);
         String salt = CommonUtil.getRandomString(6);
         // 存储到数据库的密码为 MD5(原密码+盐值)
         authUser.setPassword(MD5Util.md5(realPassword + salt));

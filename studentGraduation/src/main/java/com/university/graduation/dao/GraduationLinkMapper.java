@@ -1,12 +1,12 @@
 package com.university.graduation.dao;
 
-
-import java.util.List;
-
 import com.university.graduation.domain.bo.GraduationLink;
 import com.university.graduation.domain.bo.GraduationLinkExample;
-import org.apache.ibatis.annotations.Param;
+import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+@Mapper
 public interface GraduationLinkMapper {
     int countByExample(GraduationLinkExample example);
 

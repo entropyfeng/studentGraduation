@@ -27,7 +27,7 @@
             targetPackage     指定生成的model生成所在的包名
             targetProject     指定在该项目下所在的路径
         -->
-        <javaModelGenerator targetPackage="domain/bo" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="domain.bo" targetProject="src/main/java">
             <!-- 是否对model添加 构造函数 -->
             <property name="constructorBased" value="true"/>
             <!-- 是否允许子包，即targetPackage.schemaName.tableName -->
@@ -55,11 +55,11 @@
 
 
         <table tableName="student" domainObjectName="Student"/>
-        <table tableName="specialty" domainObjectName="Specialty"/>
-        <table tableName="department" domainObjectName="Department"/>
-        <table tableName="college" domainObjectName="College"/>
-        <table tableName="graduation_link" domainObjectName="GraduationLink"/>
         <table tableName="graduation_flow" domainObjectName="GraduationFlow"/>
+        <table tableName="graduation_link" domainObjectName="GraduationLink"/>
+        <table tableName="college" domainObjectName="College"/>
+        <table tableName="department" domainObjectName="Department"/>
+        <table tableName="specialty" domainObjectName="Specialty"/>
 
 
 

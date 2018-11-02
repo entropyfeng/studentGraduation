@@ -1,7 +1,7 @@
 package com.university.graduation.domain.bo;
 
 public class Student {
-    private Integer studentId;
+    private String studentId;
 
     private String studentName;
 
@@ -11,26 +11,27 @@ public class Student {
 
     private Integer specialtyId;
 
-    private String politicsStatus;
+    private Integer classId;
 
-    private Integer studentSex;
+    private Boolean studentSex;
 
     private String idCardNum;
 
-    private Integer classId;
+    private String politicsStatus;
 
     private byte[] studentPhoto;
 
-    public Student(Integer studentId, String studentName, Integer graduationYear, Integer collegeId, Integer specialtyId, String politicsStatus, Integer studentSex, String idCardNum, Integer classId, byte[] studentPhoto) {
+
+    public Student(String studentId, String studentName, Integer graduationYear, Integer collegeId, Integer specialtyId, Integer classId, Boolean studentSex, String idCardNum, String politicsStatus, byte[] studentPhoto) {
         this.studentId = studentId;
         this.studentName = studentName;
         this.graduationYear = graduationYear;
         this.collegeId = collegeId;
         this.specialtyId = specialtyId;
-        this.politicsStatus = politicsStatus;
+        this.classId = classId;
         this.studentSex = studentSex;
         this.idCardNum = idCardNum;
-        this.classId = classId;
+        this.politicsStatus = politicsStatus;
         this.studentPhoto = studentPhoto;
     }
 
@@ -38,12 +39,12 @@ public class Student {
         super();
     }
 
-    public Integer getStudentId() {
+    public String getStudentId() {
         return studentId;
     }
 
-    public void setStudentId(Integer studentId) {
-        this.studentId = studentId;
+    public void setStudentId(String studentId) {
+        this.studentId = studentId == null ? null : studentId.trim();
     }
 
     public String getStudentName() {
@@ -78,19 +79,19 @@ public class Student {
         this.specialtyId = specialtyId;
     }
 
-    public String getPoliticsStatus() {
-        return politicsStatus;
+    public Integer getClassId() {
+        return classId;
     }
 
-    public void setPoliticsStatus(String politicsStatus) {
-        this.politicsStatus = politicsStatus == null ? null : politicsStatus.trim();
+    public void setClassId(Integer classId) {
+        this.classId = classId;
     }
 
-    public Integer getStudentSex() {
+    public Boolean getStudentSex() {
         return studentSex;
     }
 
-    public void setStudentSex(Integer studentSex) {
+    public void setStudentSex(Boolean studentSex) {
         this.studentSex = studentSex;
     }
 
@@ -102,12 +103,12 @@ public class Student {
         this.idCardNum = idCardNum == null ? null : idCardNum.trim();
     }
 
-    public Integer getClassId() {
-        return classId;
+    public String getPoliticsStatus() {
+        return politicsStatus;
     }
 
-    public void setClassId(Integer classId) {
-        this.classId = classId;
+    public void setPoliticsStatus(String politicsStatus) {
+        this.politicsStatus = politicsStatus == null ? null : politicsStatus.trim();
     }
 
     public byte[] getStudentPhoto() {

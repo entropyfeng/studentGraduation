@@ -1,18 +1,17 @@
-
-
-<title>网站用户</title>
+<title>学生信息</title>
 
 <div class="layui-card layadmin-header">
     <div class="layui-breadcrumb" lay-filter="breadcrumb">
         <a lay-href="">主页</a>
-        <a><cite>用户</cite></a>
-        <a><cite>网站用户</cite></a>
+        <a><cite>学生管理</cite></a>
+        <a><cite>学生信息</cite></a>
     </div>
 </div>
 
 <div class="layui-fluid">
     <div class="layui-card">
-        <div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="layadmin-userfront-formlist">
+        <div class="layui-form layui-card-header layuiadmin-card-header-auto"
+             lay-filter="graduation-studentInformation-formlist">
             <div class="layui-form-item">
                 <div class="layui-inline">
                     <label class="layui-form-label">ID</label>
@@ -58,28 +57,53 @@
 
             <table id="LAY-user-manage" lay-filter="LAY-user-manage"></table>
             <script type="text/html" id="imgTpl">
-                <img style="display: inline-block; width: 50%; height: 100%;" src= {{ d.avatar }}>
+                <img style="display: inline-block; width: 50%; height: 100%;" src={{ d.avatar }}>
             </script>
             <script type="text/html" id="table-useradmin-webuser">
-                <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</a>
-                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>
+                <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"><i
+                        class="layui-icon layui-icon-edit"></i>编辑</a>
+                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i
+                        class="layui-icon layui-icon-delete"></i>删除</a>
             </script>
         </div>
     </div>
 </div>
 
 <script>
-    layui.use('useradmin', layui.factory('useradmin')).use(['admin', 'useradmin', 'table'], function(){
+    layui.use('useradmin', layui.factory('useradmin')).use(['admin', 'useradmin', 'table'], function () {
         var $ = layui.$
-            ,admin = layui.admin
-            ,view = layui.view
-            ,table = layui.table
-            ,form = layui.form;
+            , admin = layui.admin
+            , view = layui.view
+            , table = layui.table
+            , form = layui.form;
 
-        form.render(null, 'layadmin-userfront-formlist');
+        //form.render(null, 'graduation-studentInformation-formlist');
 
+        table.render({
+            elem: '#graduation-studentInformation-formlist'
+            , url: '{{layui.setter.true_url}}/getStudentInformation/all"'
+            , parseData: function (res) {
+                var meta = res['meta'];
+                console.log(meta);
+                var data = res['data'];
+                return {
+                    "code": meta['code']
+                    , "msg": meta['msg']
+                    , "data": data['students']
+                    , "count": 200
+                };
+
+            }
+            , method: 'get'
+            , cols: [[
+                {field: 'studentId', title: '学号', width: 80, fixed: 'left'}
+                , {field: 'studentName', title: '姓名', width: 80}
+                , {field: 'graduationYear', title: '毕业时间', width: 80}
+                , {field: 'idCardNum', title: '身份证号', width: 80}
+            ]]
+        });
         //监听搜索
-        form.on('submit(LAY-user-front-search)', function(data){
+        form.on('submit(LAY-user-front-search)', function (data) {
             var field = data.field;
 
             //执行重载
@@ -90,45 +114,45 @@
 
         //事件
         var active = {
-            batchdel: function(){
+            batchdel: function () {
                 var checkStatus = table.checkStatus('LAY-user-manage')
-                    ,checkData = checkStatus.data; //得到选中的数据
+                    , checkData = checkStatus.data; //得到选中的数据
 
-                if(checkData.length === 0){
+                if (checkData.length === 0) {
                     return layer.msg('请选择数据');
                 }
 
                 layer.prompt({
                     formType: 1
-                    ,title: '敏感操作，请验证口令'
-                }, function(value, index){
+                    , title: '敏感操作，请验证口令'
+                }, function (value, index) {
                     layer.close(index);
 
-                    layer.confirm('确定删除吗？', function(index) {
+                    layer.confirm('确定删除吗？', function (index) {
 
                         //执行 Ajax 后重载
-                        /*
+                        /!*
                         admin.req({
-                          url: 'xxx'
-                          //,……
+                            url: 'xxx'
+                            //,……
                         });
-                        */
+                    *!/
                         table.reload('LAY-user-manage');
                         layer.msg('已删除');
                     });
                 });
             }
-            ,add: function(){
+            , add: function () {
                 admin.popup({
                     title: '添加用户'
-                    ,area: ['500px', '450px']
-                    ,id: 'LAY-popup-user-add'
-                    ,success: function(layero, index){
-                        view(this.id).render('user/user/userform').done(function(){
+                    , area: ['500px', '450px']
+                    , id: 'LAY-popup-user-add'
+                    , success: function (layero, index) {
+                        view(this.id).render('user/user/userform').done(function () {
                             form.render(null, 'layuiadmin-form-useradmin');
 
                             //监听提交
-                            form.on('submit(LAY-user-front-submit)', function(data){
+                            form.on('submit(LAY-user-front-submit)', function (data) {
                                 var field = data.field; //获取提交的字段
 
                                 //提交 Ajax 成功后，关闭当前弹层并重载表格
@@ -142,9 +166,9 @@
             }
         };
 
-        $('.layui-btn.layuiadmin-btn-useradmin').on('click', function(){
+        $('.layui-btn.layuiadmin-btn-useradmin').on('click', function () {
             var type = $(this).data('type');
             active[type] ? active[type].call(this) : '';
-        });
+        })
     });
 </script>
