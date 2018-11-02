@@ -1,7 +1,6 @@
 package com.university.graduation.shiro.realm;
 
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.university.graduation.domain.vo.JwtAccount;
 import com.university.graduation.shiro.token.JwtToken;

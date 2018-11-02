@@ -5,6 +5,16 @@
   ,"code": 0
   ,"msg": ""
   ,"data": [{
+    "name":"students"
+    ,"title":"学生管理"
+    ,"icon":"layui-icon-friends"
+    ,"list":[{
+      "name":"information"
+        ,"title":"学生信息"
+,"jump":"students/information"
+    }]
+}
+      ,{
     "name": "user"
     ,"title": "用户"
     ,"icon": "layui-icon-user"

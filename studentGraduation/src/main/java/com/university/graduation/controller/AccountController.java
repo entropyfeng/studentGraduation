@@ -142,16 +142,5 @@ public class AccountController extends BasicAction {
             return new Message().ok(1111, "注册失败");
         }
     }
-    @GetMapping("/info/{username}")
-    Message getUser(@PathVariable("username")String username){
-        System.out.println("进入account info");
-     Account account= accountService.loadAccountByAppId(username);
-     Message message= new Message().ok(6666,"成功获取 ："+username);
-     message.addData("account",account);
-        return message;
-    }
-
-
-
 
 }
