@@ -66,9 +66,9 @@ public class SetAndGetAccountInfoController {
       message.addData("username",authUser.getUsername());
       message.addData("phone",authUser.getPhone());
       message.addData("email",authUser.getEmail());
-      message.addData("sex",authUser.getSex().equals("0")?"男":"女");
         return message;
     }
+
 
 
 

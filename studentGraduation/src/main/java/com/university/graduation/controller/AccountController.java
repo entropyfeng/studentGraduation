@@ -16,7 +16,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.http.HttpRequest;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,9 +27,7 @@ import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 /* *
- * @Author tomsun28
  * @Description post新增,get读取,put完整更新,patch部分更新,delete删除
- * @Date 14:40 2018/3/8
  */
 @RestController
 @RequestMapping("/account")
@@ -114,21 +111,14 @@ public class AccountController extends BasicAction {
         if (!StringUtils.isEmpty(params.get("username"))) {
             authUser.setUsername(params.get("username"));
         }
-        if (!StringUtils.isEmpty(params.get("realName"))) {
-            authUser.setRealName(params.get("realName"));
-        }
-        if (!StringUtils.isEmpty(params.get("avatar"))) {
-            authUser.setAvatar(params.get("avatar"));
-        }
+
         if (!StringUtils.isEmpty(params.get("phone"))) {
             authUser.setPhone(params.get("phone"));
         }
         if (!StringUtils.isEmpty(params.get("email"))) {
             authUser.setEmail(params.get("email"));
         }
-        if (!StringUtils.isEmpty(params.get("sex"))) {
-            authUser.setSex(Byte.valueOf(params.get("sex")));
-        }
+
         if (!StringUtils.isEmpty(params.get("createWhere"))) {
             authUser.setCreateWhere(Byte.valueOf(params.get("createWhere")));
         }

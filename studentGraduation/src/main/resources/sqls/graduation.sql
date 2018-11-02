@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50717
 File Encoding         : 65001
 
-Date: 2018-10-27 18:39:07
+Date: 2018-11-02 11:38:18
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -28,7 +28,7 @@ CREATE TABLE `auth_account_log` (
   `MESSAGE` varchar(255) DEFAULT NULL COMMENT '具体消息',
   `IP` varchar(255) DEFAULT NULL COMMENT '登录ip',
   PRIMARY KEY (`ID`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='登录注册登出记录';
+) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='登录注册登出记录';
 
 -- ----------------------------
 -- Records of auth_account_log
@@ -37,6 +37,50 @@ INSERT INTO `auth_account_log` VALUES ('23', '用户注册日志', 'C5B03231832F
 INSERT INTO `auth_account_log` VALUES ('24', '用户注册日志', '70D682A5256D4BB885EC1EEE3AD48914', '2018-10-27 18:04:06', '1', '注册成功', '0:0:0:0:0:0:0:1');
 INSERT INTO `auth_account_log` VALUES ('25', '用户注册日志', '6FEF49125DB94966A48A3C382784878A', '2018-10-27 18:14:11', '1', '注册成功', '0:0:0:0:0:0:0:1');
 INSERT INTO `auth_account_log` VALUES ('26', '用户登录日志', 'yangyi', '2018-10-27 18:36:06', '1', '登录成功', '0:0:0:0:0:0:0:1');
+INSERT INTO `auth_account_log` VALUES ('27', '用户登录日志', 'yangyi', '2018-10-28 19:21:46', '1', '登录成功', '0:0:0:0:0:0:0:1');
+INSERT INTO `auth_account_log` VALUES ('28', '用户登录日志', 'yangyi', '2018-10-28 19:26:32', '1', '登录成功', '0:0:0:0:0:0:0:1');
+INSERT INTO `auth_account_log` VALUES ('29', '用户登录日志', 'yangyi', '2018-10-28 19:30:17', '1', '登录成功', '0:0:0:0:0:0:0:1');
+INSERT INTO `auth_account_log` VALUES ('30', '用户登录日志', 'yangyi', '2018-10-29 19:39:09', '1', '登录成功', '0:0:0:0:0:0:0:1');
+INSERT INTO `auth_account_log` VALUES ('31', '用户登录日志', 'yangyi', '2018-10-29 19:43:09', '1', '登录成功', '0:0:0:0:0:0:0:1');
+INSERT INTO `auth_account_log` VALUES ('32', '用户登录日志', 'yangyi', '2018-10-29 19:43:37', '1', '登录成功', '0:0:0:0:0:0:0:1');
+INSERT INTO `auth_account_log` VALUES ('33', '用户登录日志', 'yangyi', '2018-10-29 19:44:23', '1', '登录成功', '0:0:0:0:0:0:0:1');
+INSERT INTO `auth_account_log` VALUES ('34', '用户登录日志', 'yangyi', '2018-10-29 19:46:22', '1', '登录成功', '0:0:0:0:0:0:0:1');
+INSERT INTO `auth_account_log` VALUES ('35', '用户登录日志', 'yangyi', '2018-10-29 19:49:58', '1', '登录成功', '0:0:0:0:0:0:0:1');
+INSERT INTO `auth_account_log` VALUES ('36', '用户登录日志', 'yangyi', '2018-10-29 19:51:56', '1', '登录成功', '0:0:0:0:0:0:0:1');
+INSERT INTO `auth_account_log` VALUES ('37', '用户登录日志', 'yangyi', '2018-10-29 19:53:23', '1', '登录成功', '0:0:0:0:0:0:0:1');
+INSERT INTO `auth_account_log` VALUES ('38', '用户登录日志', 'yangyi', '2018-10-29 20:42:04', '1', '登录成功', '0:0:0:0:0:0:0:1');
+INSERT INTO `auth_account_log` VALUES ('39', '用户登录日志', 'yangyi', '2018-10-29 20:52:59', '1', '登录成功', '0:0:0:0:0:0:0:1');
+INSERT INTO `auth_account_log` VALUES ('40', '用户登录日志', 'yangyi', '2018-10-29 21:14:12', '1', '登录成功', '0:0:0:0:0:0:0:1');
+INSERT INTO `auth_account_log` VALUES ('41', '用户登录日志', 'yangyi', '2018-10-29 21:15:03', '1', '登录成功', '0:0:0:0:0:0:0:1');
+INSERT INTO `auth_account_log` VALUES ('42', '用户登录日志', 'yangyi', '2018-10-29 21:47:55', '1', '登录成功', '0:0:0:0:0:0:0:1');
+INSERT INTO `auth_account_log` VALUES ('43', '用户登录日志', 'yangyi', '2018-10-29 22:12:55', '1', '登录成功', '0:0:0:0:0:0:0:1');
+INSERT INTO `auth_account_log` VALUES ('44', '用户登录日志', 'yangyi', '2018-10-30 11:23:05', '1', '登录成功', '0:0:0:0:0:0:0:1');
+INSERT INTO `auth_account_log` VALUES ('45', '用户登录日志', '6FEF49125DB94966A48A3C382784878A', '2018-10-30 18:11:57', '1', '登录成功', '0:0:0:0:0:0:0:1');
+INSERT INTO `auth_account_log` VALUES ('46', '用户登录日志', '6FEF49125DB94966A48A3C382784878A', '2018-10-30 18:20:26', '1', '登录成功', '0:0:0:0:0:0:0:1');
+INSERT INTO `auth_account_log` VALUES ('47', '用户登录日志', '6FEF49125DB94966A48A3C382784878A', '2018-10-30 18:21:40', '1', '登录成功', '0:0:0:0:0:0:0:1');
+INSERT INTO `auth_account_log` VALUES ('48', '用户登录日志', '6FEF49125DB94966A48A3C382784878A', '2018-10-30 21:49:28', '1', '登录成功', '0:0:0:0:0:0:0:1');
+INSERT INTO `auth_account_log` VALUES ('49', '用户登录日志', '6FEF49125DB94966A48A3C382784878A', '2018-10-30 22:19:57', '1', '登录成功', '0:0:0:0:0:0:0:1');
+INSERT INTO `auth_account_log` VALUES ('50', '用户登录日志', '6FEF49125DB94966A48A3C382784878A', '2018-10-31 14:32:16', '1', '登录成功', '0:0:0:0:0:0:0:1');
+INSERT INTO `auth_account_log` VALUES ('51', '用户登录日志', '6FEF49125DB94966A48A3C382784878A', '2018-10-31 14:33:07', '1', '登录成功', '0:0:0:0:0:0:0:1');
+INSERT INTO `auth_account_log` VALUES ('52', '用户登录日志', '6FEF49125DB94966A48A3C382784878A', '2018-10-31 15:06:41', '1', '登录成功', '0:0:0:0:0:0:0:1');
+INSERT INTO `auth_account_log` VALUES ('53', '用户登录日志', '6FEF49125DB94966A48A3C382784878A', '2018-10-31 15:15:33', '1', '登录成功', '0:0:0:0:0:0:0:1');
+INSERT INTO `auth_account_log` VALUES ('54', '用户登录日志', '6FEF49125DB94966A48A3C382784878A', '2018-10-31 15:22:22', '1', '登录成功', '0:0:0:0:0:0:0:1');
+INSERT INTO `auth_account_log` VALUES ('55', '用户登录日志', '6FEF49125DB94966A48A3C382784878A', '2018-10-31 15:53:47', '1', '登录成功', '0:0:0:0:0:0:0:1');
+INSERT INTO `auth_account_log` VALUES ('56', '用户登录日志', '6FEF49125DB94966A48A3C382784878A', '2018-10-31 15:54:03', '1', '登录成功', '0:0:0:0:0:0:0:1');
+INSERT INTO `auth_account_log` VALUES ('57', '用户登录日志', '6FEF49125DB94966A48A3C382784878A', '2018-10-31 19:28:10', '1', '登录成功', '0:0:0:0:0:0:0:1');
+INSERT INTO `auth_account_log` VALUES ('58', '用户登录日志', '6FEF49125DB94966A48A3C382784878A', '2018-10-31 19:34:53', '1', '登录成功', '0:0:0:0:0:0:0:1');
+INSERT INTO `auth_account_log` VALUES ('59', '用户登录日志', '6FEF49125DB94966A48A3C382784878A', '2018-10-31 19:54:00', '1', '登录成功', '0:0:0:0:0:0:0:1');
+INSERT INTO `auth_account_log` VALUES ('60', '用户登录日志', '6FEF49125DB94966A48A3C382784878A', '2018-11-01 09:45:38', '1', '登录成功', '0:0:0:0:0:0:0:1');
+INSERT INTO `auth_account_log` VALUES ('61', '用户登录日志', '6FEF49125DB94966A48A3C382784878A', '2018-11-01 09:47:20', '1', '登录成功', '0:0:0:0:0:0:0:1');
+INSERT INTO `auth_account_log` VALUES ('62', '用户登录日志', '6FEF49125DB94966A48A3C382784878A', '2018-11-01 09:51:38', '1', '登录成功', '0:0:0:0:0:0:0:1');
+INSERT INTO `auth_account_log` VALUES ('63', '用户登录日志', '6FEF49125DB94966A48A3C382784878A', '2018-11-01 10:09:37', '1', '登录成功', '0:0:0:0:0:0:0:1');
+INSERT INTO `auth_account_log` VALUES ('64', '用户登录日志', '6FEF49125DB94966A48A3C382784878A', '2018-11-01 10:12:31', '1', '登录成功', '0:0:0:0:0:0:0:1');
+INSERT INTO `auth_account_log` VALUES ('65', '用户登录日志', '6FEF49125DB94966A48A3C382784878A', '2018-11-01 18:46:56', '1', '登录成功', '0:0:0:0:0:0:0:1');
+INSERT INTO `auth_account_log` VALUES ('66', '用户登录日志', '6FEF49125DB94966A48A3C382784878A', '2018-11-01 19:06:03', '1', '登录成功', '0:0:0:0:0:0:0:1');
+INSERT INTO `auth_account_log` VALUES ('67', '用户登录日志', '6FEF49125DB94966A48A3C382784878A', '2018-11-01 19:17:14', '1', '登录成功', '0:0:0:0:0:0:0:1');
+INSERT INTO `auth_account_log` VALUES ('68', '用户登录日志', '6FEF49125DB94966A48A3C382784878A', '2018-11-01 21:13:26', '1', '登录成功', '0:0:0:0:0:0:0:1');
+INSERT INTO `auth_account_log` VALUES ('69', '用户注册日志', '3A00E3002B204D598D1561B977E89996', '2018-11-02 10:43:54', '1', '注册成功', '0:0:0:0:0:0:0:1');
+INSERT INTO `auth_account_log` VALUES ('70', '用户登录日志', '3A00E3002B204D598D1561B977E89996', '2018-11-02 10:44:02', '1', '登录成功', '0:0:0:0:0:0:0:1');
 
 -- ----------------------------
 -- Table structure for auth_operation_log
@@ -52,11 +96,91 @@ CREATE TABLE `auth_operation_log` (
   `SUCCEED` tinyint(4) DEFAULT NULL COMMENT '是否执行成功(0失败1成功)',
   `MESSAGE` varchar(255) DEFAULT NULL COMMENT '具体消息备注',
   PRIMARY KEY (`ID`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='操作日志';
+) ENGINE=InnoDB AUTO_INCREMENT=81 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='操作日志';
 
 -- ----------------------------
 -- Records of auth_operation_log
 -- ----------------------------
+INSERT INTO `auth_operation_log` VALUES ('1', '业务操作日志', null, '/account/info/yangyi', 'GET', '2018-10-30 11:16:36', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('2', '业务操作日志', null, '/account/info/yangyi', 'GET', '2018-10-30 11:23:42', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('3', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/account/info/yangyi', 'GET', '2018-10-30 18:22:25', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('4', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/account/info/yangyi', 'GET', '2018-10-30 21:59:10', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('5', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/account/info/yangyi', 'GET', '2018-10-30 22:08:48', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('6', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '//set/password', 'PUT', '2018-10-30 22:10:50', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('7', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '//set/password', 'PUT', '2018-10-30 22:11:48', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('8', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '//set/password', 'PUT', '2018-10-30 22:14:58', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('9', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '//set/password', 'PUT', '2018-10-30 22:16:47', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('10', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '//set/password', 'PUT', '2018-10-30 22:18:15', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('11', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/set/password', 'PUT', '2018-10-31 15:05:59', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('12', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '//set/password', 'PUT', '2018-10-31 15:08:34', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('13', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '//set/password', 'PUT', '2018-10-31 15:08:40', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('14', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '//set/password', 'PUT', '2018-10-31 15:08:41', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('15', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '//set/password', 'PUT', '2018-10-31 15:14:13', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('16', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '//set/password', 'PUT', '2018-10-31 15:14:15', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('17', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '//set/password', 'PUT', '2018-10-31 15:14:16', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('18', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/set/password', 'PUT', '2018-10-31 15:14:22', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('19', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/set/password', 'PUT', '2018-10-31 15:14:23', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('20', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/set/password', 'PUT', '2018-10-31 15:14:24', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('21', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/set/password', 'PUT', '2018-10-31 15:14:24', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('22', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/set/password', 'PUT', '2018-10-31 15:14:25', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('23', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/set/password', 'PUT', '2018-10-31 15:23:22', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('24', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/set/password', 'PUT', '2018-10-31 15:23:24', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('25', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/set/password', 'PUT', '2018-10-31 15:23:24', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('26', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/set/password', 'PUT', '2018-10-31 15:23:25', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('27', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/set/password', 'PUT', '2018-10-31 15:26:20', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('28', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/set/password', 'PUT', '2018-10-31 15:29:21', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('29', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/set/password', 'PUT', '2018-10-31 15:29:22', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('30', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/set/password', 'PUT', '2018-10-31 15:30:32', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('31', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/set/password', 'PUT', '2018-10-31 15:32:40', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('32', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/set/password', 'PUT', '2018-10-31 15:36:08', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('33', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/set/password', 'PUT', '2018-10-31 15:40:45', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('34', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/set/password', 'PUT', '2018-10-31 15:57:16', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('35', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/set/password', 'PUT', '2018-10-31 18:35:14', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('36', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/set/password', 'PUT', '2018-11-01 09:47:36', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('37', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/set/password', 'PUT', '2018-11-01 09:51:51', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('38', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/set/password', 'PUT', '2018-11-01 09:56:24', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('39', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/set/password', 'PUT', '2018-11-01 09:59:03', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('40', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/set/password', 'PUT', '2018-11-01 10:01:05', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('41', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/set/password', 'PUT', '2018-11-01 10:05:03', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('42', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/set/password', 'PUT', '2018-11-01 10:06:13', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('43', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/set/password', 'PUT', '2018-11-01 10:08:02', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('44', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/set/password', 'PUT', '2018-11-01 10:10:07', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('45', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/set/password', 'PUT', '2018-11-01 10:10:23', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('46', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/set/password', 'PUT', '2018-11-01 10:10:32', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('47', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/set/password', 'PUT', '2018-11-01 10:10:33', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('48', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/set/password', 'PUT', '2018-11-01 10:10:33', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('49', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/set/password', 'PUT', '2018-11-01 10:10:34', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('50', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/set/password', 'PUT', '2018-11-01 10:10:34', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('51', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/set/password', 'PUT', '2018-11-01 10:10:37', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('52', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/set/password', 'PUT', '2018-11-01 10:10:37', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('53', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/set/password', 'PUT', '2018-11-01 10:10:38', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('54', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/set/password', 'PUT', '2018-11-01 10:10:38', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('55', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/set/password', 'PUT', '2018-11-01 10:10:39', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('56', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/set/password', 'PUT', '2018-11-01 10:13:03', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('57', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/set/password', 'PUT', '2018-11-01 10:22:42', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('58', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/set/password', 'PUT', '2018-11-01 10:33:59', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('59', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/set/password', 'PUT', '2018-11-01 10:42:50', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('60', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/set/password', 'PUT', '2018-11-01 18:47:13', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('61', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/set/password', 'PUT', '2018-11-01 19:06:15', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('62', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/set/password', 'PUT', '2018-11-01 19:07:55', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('63', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/set/password', 'PUT', '2018-11-01 19:10:23', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('64', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/set/password', 'PUT', '2018-11-01 19:12:28', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('65', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/set/password', 'PUT', '2018-11-01 19:15:16', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('66', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/set/password', 'PUT', '2018-11-01 19:16:38', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('67', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/set/password', 'PUT', '2018-11-01 20:22:50', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('68', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/getAccount/username', 'GET', '2018-11-01 21:13:03', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('69', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/getAccount/info', 'GET', '2018-11-01 21:13:28', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('70', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/getAccount/username', 'GET', '2018-11-01 21:14:03', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('71', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/getAccount/username', 'GET', '2018-11-01 21:15:17', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('72', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/getAccount/username', 'GET', '2018-11-01 21:31:10', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('73', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/getAccount/username', 'GET', '2018-11-01 21:31:23', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('74', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/getAccount/username', 'GET', '2018-11-01 22:01:49', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('75', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/getAccount/username', 'GET', '2018-11-01 22:16:01', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('76', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/getAccount/username', 'GET', '2018-11-01 22:16:32', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('77', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/getAccount/username', 'GET', '2018-11-01 22:18:19', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('78', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/getAccount/username', 'GET', '2018-11-01 22:22:36', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('79', '业务操作日志', '6FEF49125DB94966A48A3C382784878A', '/getAccount/username', 'GET', '2018-11-02 10:43:26', '1', null);
+INSERT INTO `auth_operation_log` VALUES ('80', '业务操作日志', '3A00E3002B204D598D1561B977E89996', '/getAccount/username', 'GET', '2018-11-02 10:44:03', '1', null);
 
 -- ----------------------------
 -- Table structure for auth_resource
@@ -75,7 +199,7 @@ CREATE TABLE `auth_resource` (
   `CREATE_TIME` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `UPDATE_TIME` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`ID`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=146 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='资源信息表(菜单,资源)';
+) ENGINE=InnoDB AUTO_INCREMENT=149 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='资源信息表(菜单,资源)';
 
 -- ----------------------------
 -- Records of auth_resource
@@ -118,6 +242,9 @@ INSERT INTO `auth_resource` VALUES ('142', 'ROLE', '添加角色', '132', '/role
 INSERT INTO `auth_resource` VALUES ('143', 'USER', '更新角色', '132', '/role', '2', 'PUT', null, '1', '2018-04-12 06:34:27', '2018-04-12 06:34:27');
 INSERT INTO `auth_resource` VALUES ('144', 'ROLE', '删除角色', '132', '/role', '2', 'DELETE', null, '1', '2018-04-12 06:35:15', '2018-04-12 06:35:15');
 INSERT INTO `auth_resource` VALUES ('145', 'LOG_WATCH', '日志记录', '104', '/index/log', '1', null, 'fa fa-rss-square', '1', '2018-04-22 08:12:24', '2018-04-22 08:12:24');
+INSERT INTO `auth_resource` VALUES ('146', 'ACCOUNT_SET_PASSWORD', '用户修改密码', '103', '/setAccount/password', '2', 'PUT', null, '1', '2018-10-30 21:10:29', '2018-10-30 21:10:29');
+INSERT INTO `auth_resource` VALUES ('147', 'ACCOUNT_GET_USERNAME', '用户获取用户名', '103', '/getAccount/username', '2', 'GET', null, '1', '2018-11-01 20:44:29', '2018-11-01 20:44:29');
+INSERT INTO `auth_resource` VALUES ('148', 'ACCOUNT_GET_INFO', '用户获取用户信息', '103', '/getAccount/info', '2', 'GET', null, '1', '2018-11-01 20:44:29', '2018-11-01 20:44:29');
 
 -- ----------------------------
 -- Table structure for auth_role
@@ -153,7 +280,7 @@ CREATE TABLE `auth_role_resource` (
   `UPDATE_TIME` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`ID`) USING BTREE,
   UNIQUE KEY `ROLE_ID` (`ROLE_ID`,`RESOURCE_ID`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=110 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='资源角色关联表';
+) ENGINE=InnoDB AUTO_INCREMENT=115 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='资源角色关联表';
 
 -- ----------------------------
 -- Records of auth_role_resource
@@ -222,6 +349,11 @@ INSERT INTO `auth_role_resource` VALUES ('106', '102', '141', '2018-05-09 10:12:
 INSERT INTO `auth_role_resource` VALUES ('107', '102', '142', '2018-05-09 10:12:13', '2018-05-09 10:12:13');
 INSERT INTO `auth_role_resource` VALUES ('108', '102', '143', '2018-05-09 10:12:17', '2018-05-09 10:12:17');
 INSERT INTO `auth_role_resource` VALUES ('109', '102', '144', '2018-05-09 10:12:21', '2018-05-09 10:12:21');
+INSERT INTO `auth_role_resource` VALUES ('110', '103', '146', '2018-10-30 21:57:42', '2018-10-30 21:57:42');
+INSERT INTO `auth_role_resource` VALUES ('111', '102', '146', '2018-10-30 21:57:42', '2018-10-30 21:57:42');
+INSERT INTO `auth_role_resource` VALUES ('112', '101', '146', '2018-10-30 21:57:42', '2018-10-30 21:57:42');
+INSERT INTO `auth_role_resource` VALUES ('113', '103', '147', '2018-11-01 20:47:40', '2018-11-01 20:47:40');
+INSERT INTO `auth_role_resource` VALUES ('114', '103', '148', '2018-11-01 20:47:40', '2018-11-01 20:47:40');
 
 -- ----------------------------
 -- Table structure for auth_user
@@ -232,11 +364,8 @@ CREATE TABLE `auth_user` (
   `username` varchar(30) NOT NULL COMMENT '用户名(nick_name)',
   `password` varchar(50) NOT NULL COMMENT '密码(MD5(密码+盐))',
   `salt` varchar(20) DEFAULT NULL COMMENT '盐',
-  `real_name` varchar(30) DEFAULT NULL COMMENT '用户真名',
-  `avatar` varchar(100) DEFAULT NULL COMMENT '头像',
   `phone` varchar(20) DEFAULT NULL COMMENT '电话号码(唯一)',
   `email` varchar(50) DEFAULT NULL COMMENT '邮件地址(唯一)',
-  `sex` tinyint(4) DEFAULT NULL COMMENT '性别(1.男 2.女)',
   `status` tinyint(4) DEFAULT NULL COMMENT '账户状态(1.正常 2.锁定 3.删除 4.非法)',
   `CREATE_TIME` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `UPDATE_TIME` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
@@ -250,9 +379,10 @@ CREATE TABLE `auth_user` (
 -- ----------------------------
 -- Records of auth_user
 -- ----------------------------
-INSERT INTO `auth_user` VALUES ('6FEF49125DB94966A48A3C382784878A', 'yangyi', '4ABAC7F391DF42B541B599E4B12CC322', 'jsm7da', null, null, '13211111111', null, null, '1', '2018-10-27 18:14:11', '2018-10-27 18:14:11', null);
-INSERT INTO `auth_user` VALUES ('70D682A5256D4BB885EC1EEE3AD48914', 'ADMIN', '09172E59649D196F4E6F67D7370D4FF8', 'rur8kr', null, null, '15855555546', null, null, '1', '2018-10-27 18:04:06', '2018-10-27 18:04:05', null);
-INSERT INTO `auth_user` VALUES ('C5B03231832F41E6AD4E3975E1F08068', 'root', 'C7724EB93D6D9404CAC7484AFEB02047', 'cum0kp', null, null, '15800000000', null, null, '1', '2018-10-27 17:36:05', '2018-10-27 17:36:04', null);
+INSERT INTO `auth_user` VALUES ('3A00E3002B204D598D1561B977E89996', 'yige', 'B46A36A5A86262BA7BB2113518512A73', 'e9k512', '15877777777', null, '1', '2018-11-02 10:43:54', '2018-11-02 10:43:53', null);
+INSERT INTO `auth_user` VALUES ('6FEF49125DB94966A48A3C382784878A', 'yangyi', '4ABAC7F391DF42B541B599E4B12CC322', 'jsm7da', '13211111111', null, '1', '2018-10-27 18:14:11', '2018-10-27 18:14:11', null);
+INSERT INTO `auth_user` VALUES ('70D682A5256D4BB885EC1EEE3AD48914', 'ADMIN', '09172E59649D196F4E6F67D7370D4FF8', 'rur8kr', '15855555546', null, '1', '2018-10-27 18:04:06', '2018-10-27 18:04:05', null);
+INSERT INTO `auth_user` VALUES ('C5B03231832F41E6AD4E3975E1F08068', 'root', 'C7724EB93D6D9404CAC7484AFEB02047', 'cum0kp', '15800000000', null, '1', '2018-10-27 17:36:05', '2018-10-27 17:36:04', null);
 
 -- ----------------------------
 -- Table structure for auth_user_role
@@ -266,7 +396,7 @@ CREATE TABLE `auth_user_role` (
   `UPDATE_TIME` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`ID`) USING BTREE,
   UNIQUE KEY `USER_ID` (`USER_ID`,`ROLE_ID`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='用户角色关联表';
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='用户角色关联表';
 
 -- ----------------------------
 -- Records of auth_user_role
@@ -275,3 +405,121 @@ INSERT INTO `auth_user_role` VALUES ('24', 'C5B03231832F41E6AD4E3975E1F08068', '
 INSERT INTO `auth_user_role` VALUES ('25', 'F23F8BD1A37542CE9E9A8BF422E6413D', '103', '2018-10-27 17:36:26', '2018-10-27 17:36:26');
 INSERT INTO `auth_user_role` VALUES ('26', '70D682A5256D4BB885EC1EEE3AD48914', '103', '2018-10-27 18:04:06', '2018-10-27 18:04:06');
 INSERT INTO `auth_user_role` VALUES ('27', '6FEF49125DB94966A48A3C382784878A', '103', '2018-10-27 18:14:11', '2018-10-27 18:14:11');
+INSERT INTO `auth_user_role` VALUES ('28', '3A00E3002B204D598D1561B977E89996', '103', '2018-11-02 10:43:54', '2018-11-02 10:43:54');
+
+-- ----------------------------
+-- Table structure for class
+-- ----------------------------
+DROP TABLE IF EXISTS `class`;
+CREATE TABLE `class` (
+  `class_id` int(11) NOT NULL,
+  `class_name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `extra_information` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`class_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of class
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for college
+-- ----------------------------
+DROP TABLE IF EXISTS `college`;
+CREATE TABLE `college` (
+  `college_id` int(11) NOT NULL,
+  `college_name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `extra_information` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`college_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of college
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for department
+-- ----------------------------
+DROP TABLE IF EXISTS `department`;
+CREATE TABLE `department` (
+  `department_id` int(11) NOT NULL,
+  `department_name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `department_description` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`department_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of department
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for graduation_flow
+-- ----------------------------
+DROP TABLE IF EXISTS `graduation_flow`;
+CREATE TABLE `graduation_flow` (
+  `graduation_flow_id` int(11) NOT NULL AUTO_INCREMENT,
+  `graduation_flow_name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `graduation_flow_enable_status` int(11) DEFAULT NULL,
+  `graduation_flow_year` int(11) DEFAULT NULL,
+  `graduation_flow_begin_time` datetime DEFAULT NULL,
+  `graduation_flow_end_time` datetime DEFAULT NULL,
+  `graduation_flow_student_num` int(11) DEFAULT NULL,
+  `graduation_flow_set_status` int(11) DEFAULT NULL,
+  PRIMARY KEY (`graduation_flow_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of graduation_flow
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for graduation_link
+-- ----------------------------
+DROP TABLE IF EXISTS `graduation_link`;
+CREATE TABLE `graduation_link` (
+  `graduation_link_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '离校环节id',
+  `graduation_link_name` varchar(255) COLLATE utf8_bin DEFAULT NULL COMMENT '离校环节名称',
+  `graduation_link_announcement` varchar(255) COLLATE utf8_bin DEFAULT NULL COMMENT '离校环节公告',
+  PRIMARY KEY (`graduation_link_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of graduation_link
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for specialty
+-- ----------------------------
+DROP TABLE IF EXISTS `specialty`;
+CREATE TABLE `specialty` (
+  `specialty_id` int(11) NOT NULL,
+  `specialty_name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `extra_information` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`specialty_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of specialty
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for student
+-- ----------------------------
+DROP TABLE IF EXISTS `student`;
+CREATE TABLE `student` (
+  `student_id` int(11) NOT NULL,
+  `student_name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `student_photo` mediumblob,
+  `graduation_year` int(11) DEFAULT NULL,
+  `college_id` int(11) DEFAULT NULL,
+  `specialty_id` int(11) DEFAULT NULL,
+  `politics_status` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `student_sex` int(11) DEFAULT NULL,
+  `id_card_num` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `class_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`student_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of student
+-- ----------------------------

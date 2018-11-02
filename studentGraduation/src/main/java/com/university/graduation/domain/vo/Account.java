@@ -3,7 +3,6 @@ package com.university.graduation.domain.vo;
 import java.io.Serializable;
 
 /* *
- * @Author tomsun28
  * @Description 账户
  * @Date 16:25 2018/2/27
  */

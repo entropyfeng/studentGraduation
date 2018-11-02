@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.university.graduation.dao.SpecialtyMapper" >
+  <resultMap id="BaseResultMap" type="domain/bo.Specialty" >
+    <constructor >
+      <idArg column="specialty_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="specialty_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="extra_information" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    specialty_id, specialty_name, extra_information
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="domain/bo.SpecialtyExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from specialty
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from specialty
+    where specialty_id = #{specialtyId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from specialty
+    where specialty_id = #{specialtyId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="domain/bo.SpecialtyExample" >
+    delete from specialty
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="domain/bo.Specialty" >
+    insert into specialty (specialty_id, specialty_name, extra_information
+      )
+    values (#{specialtyId,jdbcType=INTEGER}, #{specialtyName,jdbcType=VARCHAR}, #{extraInformation,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="domain/bo.Specialty" >
+    insert into specialty
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="specialtyId != null" >
+        specialty_id,
+      </if>
+      <if test="specialtyName != null" >
+        specialty_name,
+      </if>
+      <if test="extraInformation != null" >
+        extra_information,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="specialtyId != null" >
+        #{specialtyId,jdbcType=INTEGER},
+      </if>
+      <if test="specialtyName != null" >
+        #{specialtyName,jdbcType=VARCHAR},
+      </if>
+      <if test="extraInformation != null" >
+        #{extraInformation,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="domain/bo.SpecialtyExample" resultType="java.lang.Integer" >
+    select count(*) from specialty
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update specialty
+    <set >
+      <if test="record.specialtyId != null" >
+        specialty_id = #{record.specialtyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.specialtyName != null" >
+        specialty_name = #{record.specialtyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extraInformation != null" >
+        extra_information = #{record.extraInformation,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update specialty
+    set specialty_id = #{record.specialtyId,jdbcType=INTEGER},
+      specialty_name = #{record.specialtyName,jdbcType=VARCHAR},
+      extra_information = #{record.extraInformation,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="domain/bo.Specialty" >
+    update specialty
+    <set >
+      <if test="specialtyName != null" >
+        specialty_name = #{specialtyName,jdbcType=VARCHAR},
+      </if>
+      <if test="extraInformation != null" >
+        extra_information = #{extraInformation,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where specialty_id = #{specialtyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="domain/bo.Specialty" >
+    update specialty
+    set specialty_name = #{specialtyName,jdbcType=VARCHAR},
+      extra_information = #{extraInformation,jdbcType=VARCHAR}
+    where specialty_id = #{specialtyId,jdbcType=INTEGER}
+  </update>
+</mapper>

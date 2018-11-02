@@ -11,15 +11,9 @@ public class AuthUser {
 
     private String salt;
 
-    private String realName;
-//用户照片
-    private String avatar;
-
     private String phone;
 
     private String email;
-
-    private Byte sex;
 
     private Byte status;
 
@@ -61,22 +55,6 @@ public class AuthUser {
         this.salt = salt;
     }
 
-    public String getRealName() {
-        return realName;
-    }
-
-    public void setRealName(String realName) {
-        this.realName = realName;
-    }
-
-    public String getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
-
     public String getPhone() {
         return phone;
     }
@@ -93,13 +71,6 @@ public class AuthUser {
         this.email = email;
     }
 
-    public Byte getSex() {
-        return sex;
-    }
-
-    public void setSex(Byte sex) {
-        this.sex = sex;
-    }
 
     public Byte getStatus() {
         return status;

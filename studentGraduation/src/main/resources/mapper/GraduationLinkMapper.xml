@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.university.graduation.dao.GraduationLinkMapper" >
+  <resultMap id="BaseResultMap" type="domain/bo.GraduationLink" >
+    <constructor >
+      <idArg column="graduation_link_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="graduation_link_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="graduation_link_announcement" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    graduation_link_id, graduation_link_name, graduation_link_announcement
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="domain/bo.GraduationLinkExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from graduation_link
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from graduation_link
+    where graduation_link_id = #{graduationLinkId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from graduation_link
+    where graduation_link_id = #{graduationLinkId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="domain/bo.GraduationLinkExample" >
+    delete from graduation_link
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="domain/bo.GraduationLink" >
+    insert into graduation_link (graduation_link_id, graduation_link_name, 
+      graduation_link_announcement)
+    values (#{graduationLinkId,jdbcType=INTEGER}, #{graduationLinkName,jdbcType=VARCHAR}, 
+      #{graduationLinkAnnouncement,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="domain/bo.GraduationLink" >
+    insert into graduation_link
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="graduationLinkId != null" >
+        graduation_link_id,
+      </if>
+      <if test="graduationLinkName != null" >
+        graduation_link_name,
+      </if>
+      <if test="graduationLinkAnnouncement != null" >
+        graduation_link_announcement,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="graduationLinkId != null" >
+        #{graduationLinkId,jdbcType=INTEGER},
+      </if>
+      <if test="graduationLinkName != null" >
+        #{graduationLinkName,jdbcType=VARCHAR},
+      </if>
+      <if test="graduationLinkAnnouncement != null" >
+        #{graduationLinkAnnouncement,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="domain/bo.GraduationLinkExample" resultType="java.lang.Integer" >
+    select count(*) from graduation_link
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update graduation_link
+    <set >
+      <if test="record.graduationLinkId != null" >
+        graduation_link_id = #{record.graduationLinkId,jdbcType=INTEGER},
+      </if>
+      <if test="record.graduationLinkName != null" >
+        graduation_link_name = #{record.graduationLinkName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.graduationLinkAnnouncement != null" >
+        graduation_link_announcement = #{record.graduationLinkAnnouncement,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update graduation_link
+    set graduation_link_id = #{record.graduationLinkId,jdbcType=INTEGER},
+      graduation_link_name = #{record.graduationLinkName,jdbcType=VARCHAR},
+      graduation_link_announcement = #{record.graduationLinkAnnouncement,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="domain/bo.GraduationLink" >
+    update graduation_link
+    <set >
+      <if test="graduationLinkName != null" >
+        graduation_link_name = #{graduationLinkName,jdbcType=VARCHAR},
+      </if>
+      <if test="graduationLinkAnnouncement != null" >
+        graduation_link_announcement = #{graduationLinkAnnouncement,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where graduation_link_id = #{graduationLinkId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="domain/bo.GraduationLink" >
+    update graduation_link
+    set graduation_link_name = #{graduationLinkName,jdbcType=VARCHAR},
+      graduation_link_announcement = #{graduationLinkAnnouncement,jdbcType=VARCHAR}
+    where graduation_link_id = #{graduationLinkId,jdbcType=INTEGER}
+  </update>
+</mapper>
