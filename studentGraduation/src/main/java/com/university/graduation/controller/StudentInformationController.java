@@ -26,6 +26,7 @@ public class StudentInformationController {
         } else {
             message = new Message().ok(6666, "获取成功");
             message.addData("students", students);
+            message.addData("count",students.size());
 
         }
         return message;
