@@ -13,6 +13,15 @@
         ,"title":"学生信息"
 ,"jump":"students/information"
     }]
+},{
+    "name":"departments"
+    ,"title":"部门管理"
+    ,"icon":"layui-icon-friends"
+    ,"list":[{
+        "name":"information"
+        ,"title":"部门信息"
+        ,"jump":"departments/information"
+    }]
 }
       ,{
     "name": "user"

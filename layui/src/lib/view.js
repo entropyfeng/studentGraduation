@@ -96,6 +96,7 @@ layui.define(['laytpl', 'layer'], function(exports){
       ,success: function(res){
             //只有 response 的 code 一切正常才执行 done
         var statusCode = response.statusCode;
+
         var meta=res['meta'];
         if(meta['success']==true){
             typeof options.done === 'function' && options.done(res);
@@ -103,7 +104,7 @@ layui.define(['laytpl', 'layer'], function(exports){
 
 
         //登录状态失效，清除本地 access_token，并强制跳转到登入页
-        else if(res[response.statusName] == statusCode.logout){
+        else if(meta['statusCode']==1111){
           view.exit();
         }
         

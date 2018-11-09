@@ -27,7 +27,6 @@ layui.define(['laytpl', 'layer', 'element', 'util'], function (exports) {
         //自定义请求字段
         , request: {
              tokenName: 'jwt' //自动携带 token 的字段名。可设置 false 不携带。
-            ,appId:"appId"
         }
 
         //自定义响应字段
@@ -41,7 +40,7 @@ layui.define(['laytpl', 'layer', 'element', 'util'], function (exports) {
            ,statusName: 'code' //数据状态的字段名称
             , statusCode: {
                 ok: 6666 //数据状态一切正常的状态码
-                , logout: 1001 //登录状态失效的状态码
+                , logout: 1111 //登录状态失效的状态码
             }
             , msgName: 'msg' //状态信息的字段名称
             , dataName: 'data' //数据详情的字段名称

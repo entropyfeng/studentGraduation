@@ -1,10 +1,12 @@
 package com.university.graduation.shiro.realm;
 
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.university.graduation.domain.vo.JwtAccount;
 import com.university.graduation.shiro.token.JwtToken;
 import com.university.graduation.util.JsonWebTokenUtil;
+import com.university.graduation.util.RequestResponseUtil;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureException;
@@ -47,38 +49,21 @@ public class JwtRealm extends AuthorizingRealm {
     /**
      * @param authenticationToken 用户传递给后台的参数
      * @return 一般来说是从数据库查询出来的参数 返回后交给JwtMatcher进行匹配
-     * @throws AuthenticationException
      */
     @Override
-    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
+    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken)  {
 
         if (!(authenticationToken instanceof JwtToken)) {
             return null;
         }
         JwtToken jwtToken = (JwtToken) authenticationToken;
-        String jwt = (String) jwtToken.getCredentials();
-        JwtAccount jwtAccount = null;
-        try {
-            jwtAccount = JsonWebTokenUtil.parseJwt(jwt, JsonWebTokenUtil.SECRET_KEY);
-        } catch (SignatureException | UnsupportedJwtException | MalformedJwtException | IllegalArgumentException e) {
-            throw new AuthenticationException("errJwt"); // 令牌错误
-        } catch (ExpiredJwtException e) {
 
-            throw new AuthenticationException("expiredJwt"); // 令牌过期
-        } catch (Exception e) {
-            throw new AuthenticationException("errJwt");
-        }
-        if (null == jwtAccount) {
-            throw new AuthenticationException("errJwt");
-        }
-
-
-      String roles=jwtAccount.getRoles();
-      String perms=jwtAccount.getPerms();
-      Map<String,String> stringMap=new HashMap<>() ;
-      stringMap.put("roles",roles);
-      stringMap.put("perms",perms);
-        String strJwtAccount= JSONObject.toJSONString(stringMap);
-      return new SimpleAuthenticationInfo(strJwtAccount,strJwtAccount ,this.getName());
+        String perms=jwtToken.getPerms();
+        String roles=jwtToken.getRoles();
+        Map<String,String> maps= new HashMap<String,String>();
+        maps.put("perms",perms);
+        maps.put("roles",roles);
+      String str=JSON.toJSONString(maps);
+      return new SimpleAuthenticationInfo(str,str ,this.getName());
     }
 }

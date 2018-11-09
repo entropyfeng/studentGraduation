@@ -5,6 +5,8 @@ public class Student {
 
     private String studentName;
 
+    private String studentPhoto;
+
     private Integer graduationYear;
 
     private Integer collegeId;
@@ -19,12 +21,14 @@ public class Student {
 
     private String politicsStatus;
 
-    private byte[] studentPhoto;
+    private String phone;
 
+    private String email;
 
-    public Student(String studentId, String studentName, Integer graduationYear, Integer collegeId, Integer specialtyId, Integer classId, Boolean studentSex, String idCardNum, String politicsStatus, byte[] studentPhoto) {
+    public Student(String studentId, String studentName, String studentPhoto, Integer graduationYear, Integer collegeId, Integer specialtyId, Integer classId, Boolean studentSex, String idCardNum, String politicsStatus, String phone, String email) {
         this.studentId = studentId;
         this.studentName = studentName;
+        this.studentPhoto = studentPhoto;
         this.graduationYear = graduationYear;
         this.collegeId = collegeId;
         this.specialtyId = specialtyId;
@@ -32,7 +36,8 @@ public class Student {
         this.studentSex = studentSex;
         this.idCardNum = idCardNum;
         this.politicsStatus = politicsStatus;
-        this.studentPhoto = studentPhoto;
+        this.phone = phone;
+        this.email = email;
     }
 
     public Student() {
@@ -53,6 +58,14 @@ public class Student {
 
     public void setStudentName(String studentName) {
         this.studentName = studentName == null ? null : studentName.trim();
+    }
+
+    public String getStudentPhoto() {
+        return studentPhoto;
+    }
+
+    public void setStudentPhoto(String studentPhoto) {
+        this.studentPhoto = studentPhoto == null ? null : studentPhoto.trim();
     }
 
     public Integer getGraduationYear() {
@@ -111,11 +124,19 @@ public class Student {
         this.politicsStatus = politicsStatus == null ? null : politicsStatus.trim();
     }
 
-    public byte[] getStudentPhoto() {
-        return studentPhoto;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setStudentPhoto(byte[] studentPhoto) {
-        this.studentPhoto = studentPhoto;
+    public void setPhone(String phone) {
+        this.phone = phone == null ? null : phone.trim();
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email == null ? null : email.trim();
     }
 }

@@ -85,6 +85,13 @@ public class RequestResponseUtil {
     public static String getHeader(ServletRequest request, String key) {
         return RequestResponseUtil.getRequest(request).getHeader(key);
     }
+    public static void setAppId(ServletRequest request,String appId){
+        RequestResponseUtil.getRequest(request).setAttribute("appId",appId);
+
+    }
+    public static String getAppId(ServletRequest request){
+        return  (String) request.getAttribute("appId");
+    }
 
     /* *
      * @Description 取request头中的已经被防止XSS，SQL注入过滤过的 key value数据封装到map 返回
@@ -106,6 +113,7 @@ public class RequestResponseUtil {
 
     public static HttpServletRequest getRequest(ServletRequest request) {
         return new XssSqlHttpServletRequestWrapper((HttpServletRequest) request);
+
     }
 
     /* *

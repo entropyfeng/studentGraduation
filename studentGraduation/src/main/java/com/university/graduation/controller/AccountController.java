@@ -61,11 +61,6 @@ public class AccountController extends BasicAction {
         long refreshPeriodTime = 36000L;
         String jwt = JsonWebTokenUtil.issueJWT(UUID.randomUUID().toString(), appId,
                 "token-server", refreshPeriodTime >> 1, roles, null, SignatureAlgorithm.HS512);
-        // 将签发的JWT存储到Redis： {JWT-SESSION-{appID} , jwt}
-        redisTemplate.opsForValue().set("JWT-SESSION-" + appId, jwt, refreshPeriodTime, TimeUnit.SECONDS);
-        AuthUser authUser = userService.getUserByAppId(appId);
-        authUser.setPassword(null);
-        authUser.setSalt(null);
 
         LogExeManager.getInstance().executeLogTask(LogTaskFactory.loginLog(appId, IpUtil.getIpFromRequest(WebUtils.toHttp(request)), (short) 1, "登录成功"));
         System.out.println("登录成功");

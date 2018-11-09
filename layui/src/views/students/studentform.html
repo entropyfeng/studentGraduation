@@ -1,0 +1,138 @@
+
+
+<div class="layui-form"  lay-filter="student-info-form" style="padding: 20px 0 0 0;">
+  <div class="layui-form-item">
+    <label class="layui-form-label">学号</label>
+    <div class="layui-input-inline">
+      <script type="text/html" template>
+        <input type="text" name="studentId" value="{{ d.params.studentId|| '' }}" readonly  class="layui-input">
+      </script>
+    </div>
+  </div>
+
+  <div class="layui-form-item">
+    <label class="layui-form-label">用户名</label>
+    <div class="layui-input-inline">
+      <script type="text/html" template>
+        <input type="text" name="studentName" value="{{ d.params.studentName|| '' }}" readonly  class="layui-input">
+      </script>
+    </div>
+  </div>
+
+  <div class="layui-form-item">
+    <label class="layui-form-label">性别</label>
+    <div class="layui-input-inline">
+      <script type="text/html" template>
+        <input type="text" name="studentSex" value="{{ d.params.studentSex==0?'男':'女' || '' }}" readonly  class="layui-input">
+      </script>
+    </div>
+  </div>
+
+  <div class="layui-form-item">
+    <label class="layui-form-label">毕业时间</label>
+    <div class="layui-input-inline">
+      <script type="text/html" template>
+        <input type="text" name="graduationYear" value="{{ d.params.graduationYear|| '' }}" readonly  class="layui-input">
+      </script>
+    </div>
+  </div>
+
+  <div class="layui-form-item">
+    <label class="layui-form-label">学院</label>
+    <div class="layui-input-inline">
+      <script type="text/html" template>
+        <input type="text" name="collegeName" value="{{ d.params.collegeName|| '' }}" readonly  class="layui-input">
+      </script>
+    </div>
+  </div>
+
+  <div class="layui-form-item">
+    <label class="layui-form-label">专业</label>
+    <div class="layui-input-inline">
+      <script type="text/html" template>
+        <input type="text" name="specialtyName" value="{{ d.params.specialtyName|| '' }}" readonly  class="layui-input">
+      </script>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">班级</label>
+    <div class="layui-input-inline">
+      <script type="text/html" template>
+        <input type="text" name="className" value="{{ d.params.className|| '' }}" readonly  class="layui-input">
+      </script>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">身份证号</label>
+    <div class="layui-input-inline">
+      <script type="text/html" template>
+        <input type="text" name="idCardNum" value="{{ d.params.idCardNum|| '' }}" readonly  class="layui-input">
+      </script>
+    </div>
+  </div>
+
+  <div class="layui-form-item">
+    <label class="layui-form-label">政治面貌</label>
+    <div class="layui-input-inline">
+      <script type="text/html" template>
+        <input type="text" name="politicsStatus" value="{{ d.params.politicsStatus|| '' }}" readonly  class="layui-input">
+      </script>
+    </div>
+  </div>
+
+
+  <div class="layui-form-item">
+    <label class="layui-form-label">手机号码</label>
+    <div class="layui-input-inline">
+      <script type="text/html" template>
+        <input type="text" name="phoneNumber" value="{{ d.params.phoneNumber || '' }}" lay-verify="phone" placeholder="请输入号码" autocomplete="off" class="layui-input">
+      </script>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">邮箱</label>
+    <div class="layui-input-inline">
+      <script type="text/html" template>
+        <input type="text" name="email" value="{{ d.params.email || '' }}" lay-verify="email" placeholder="请输入邮箱" autocomplete="off" class="layui-input">
+      </script>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">头像</label>
+    <div class="layui-input-inline">
+      <script type="text/html" template>
+        <input type="text" name="avatar" value="{{ d.params.avatar || '' }}" lay-verify="required" placeholder="请上传图片" autocomplete="off" class="layui-input" >
+      </script>
+    </div>
+    <button style="float: left;" type="button" class="layui-btn" id="layuiadmin-upload-useradmin">上传图片</button> 
+  </div>
+
+  <div class="layui-form-item">
+    <label class="layui-form-label"></label>
+    <div class="layui-input-inline">
+      <input type="button" lay-submit lay-filter="LAY-user-front-submit" value="确认" class="layui-btn">
+    </div>
+  </div>
+</div>
+
+<script>
+layui.use(['admin', 'form', 'upload'], function(){
+  var $ = layui.$
+  ,form = layui.form
+  ,upload = layui.upload;
+  form.val("student-info-form",{
+
+  });
+  //上传头像
+  upload.render({
+    elem: '#layuiadmin-upload-useradmin'
+    ,url: './json/upload/demo.js'
+    ,accept: 'images'
+    ,method: 'get'
+    ,acceptMime: 'image/*'
+    ,done: function(res){
+      $(this.item).prev("div").children("input").val(res.data.src)
+    }
+  });
+})
+</script>

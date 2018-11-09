@@ -1,8 +1,8 @@
 package com.university.graduation.controller;
 
-import com.university.graduation.domain.bo.Student;
 import com.university.graduation.domain.vo.Message;
-import com.university.graduation.service.StudentService;
+import com.university.graduation.domain.vo.StudentInfo;
+import com.university.graduation.service.StudentInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,15 +10,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 @Controller
-public class StudentInformationController {
+public class StudentInfoController {
     @Autowired
-    StudentService studentService;
+    StudentInfoService studentInfoService;
 
     @ResponseBody
     @GetMapping("/getStudentInformation/all")
     Message getAllMessage() {
 
-        List<Student> students = studentService.getAllStudentInformation();
+        List<StudentInfo> students = studentInfoService.getStudentInfo();
         Message message = null;
         if (students == null) {
             message = new Message().error(1111, "获取失败");

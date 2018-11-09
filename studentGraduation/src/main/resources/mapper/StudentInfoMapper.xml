@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.university.graduation.dao.StudentInfoMapper" >
+    <resultMap id="StudentInfoResultMap" type="com.university.graduation.domain.vo.StudentInfo" >
+        <constructor >
+            <idArg column="student_id" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="student_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="graduation_year" jdbcType="INTEGER" javaType="java.lang.Integer" />
+            <arg column="college_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="specialty_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="class_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="student_sex" jdbcType="TINYINT" javaType="java.lang.Integer" />
+            <arg column="id_card_num" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="politics_status" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="phone" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="email" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="student_photo" jdbcType="VARCHAR" javaType="java.lang.String" />
+        </constructor>
+    </resultMap>
+
+    <select id="selectStudentInfo" resultMap="StudentInfoResultMap">
+        select student_id,student_name,graduation_year,college_name,specialty_name,class_name,student_sex,id_card_num,politics_status,student_photo,phone,email
+        from student ,college,class,specialty
+        WHERE student.college_id=college.college_id
+        AND   student.specialty_id=specialty.specialty_id
+         AND student.class_id=class.class_id
+
+    </select>
+</mapper>

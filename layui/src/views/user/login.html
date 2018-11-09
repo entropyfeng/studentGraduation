@@ -116,13 +116,8 @@
                                 key: setter.request.tokenName
                                 , value: data['jwt']
                             });
-                            //写入 appId
-                            layui.data(setter.tableName, {
-                                key: setter.request.appId
-                                , value: data['appId']
-                            });
+
                             console.log(data['jwt']);
-                            console.log(data['appId']);
 
                         }
 

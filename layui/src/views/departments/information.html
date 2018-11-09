@@ -1,0 +1,109 @@
+<title>部门信息</title>
+
+<div class="layui-card layadmin-header">
+    <div class="layui-breadcrumb" lay-filter="breadcrumb">
+        <a lay-href="">主页</a>
+        <a><cite>部门信息</cite></a>
+    </div>
+</div>
+
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-form layui-card-header layuiadmin-card-header-auto"
+             lay-filter="graduation-departmentInformation-formlist">
+
+
+        <div class="layui-card-body">
+            <div style="padding-bottom: 10px;">
+                <button class="layui-btn layuiadmin-btn-useradmin" data-type="batchdel">删除</button>
+                <button class="layui-btn layuiadmin-btn-useradmin" data-type="add">添加</button>
+            </div>
+
+            <table id="department-information" lay-filter="department-information"></table>
+
+            <script type="text/html" id="department-information-bar">
+                <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"><i
+                        class="layui-icon layui-icon-edit"></i>编辑</a>
+                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i
+                        class="layui-icon layui-icon-delete"></i>删除</a>
+            </script>
+        </div>
+    </div>
+</div>
+
+<script>
+
+
+
+    layui.define(['table', 'form'], function(exports){
+        var $ = layui.$
+            ,admin = layui.admin
+            ,view = layui.view
+            ,table = layui.table
+            ,form = layui.form
+            ,setter=layui.setter
+            ,true_url=layui.setter.true_url
+            ,jwt=layui.data(setter.tableName)['jwt'];
+        //用户管理
+        table.render({
+            elem: '#department-information'
+            ,url: true_url+'/getDepartmentInformation/all' //向服务器请求接口
+            ,method:'get'
+            ,headers:{
+                "jwt":jwt
+            }
+            ,parseData:function (res) {
+                var meta=res['meta'];
+                var data=res['data'];
+                return {
+                    "code":0
+                    ,"data":data['departments']
+                    ,"msg":meta['msg']
+                    ,"count":data['count']
+
+                }
+            }
+            ,cols: [[
+                {type: 'checkbox', fixed: 'left'}
+                ,{field: 'departmentId', width: 100, title: 'ID', sort: true}
+                ,{field: 'departmentName', title: '部门名称', minWidth: 100}
+                ,{field: 'departmentDescription', title: '部门描述'}
+                ,{title: '操作', width: 150, align:'center', fixed: 'right', toolbar: '#department-information-bar'}
+            ]]
+            ,page: true
+            ,limit: 30
+            ,height: 'full-320'
+            ,text: '对不起，加载出现异常！'
+        });
+
+        //监听工具条
+        table.on('tool(department-information)', function(obj){
+            var data = obj.data;
+            if(obj.event === 'del'){
+                layer.prompt({
+                    formType: 1
+                    ,title: '敏感操作，请验证口令'
+                }, function(value, index){
+                    layer.close(index);
+
+                    layer.confirm('真的删除行么', function(index){
+                        obj.del();
+                        layer.close(index);
+                    });
+                });
+            } else if(obj.event === 'edit'){
+                admin.popup({
+                    title: '编辑用户'
+                    ,area: ['500px', '450px']
+                    ,id: 'LAY-popup-user-add'
+                    ,success: function(layero, index){
+                        console.log(data);
+                        view(this.id).render('departments/departmentform',data);
+
+                    }
+                });
+            }
+        });
+    });
+
+</script>

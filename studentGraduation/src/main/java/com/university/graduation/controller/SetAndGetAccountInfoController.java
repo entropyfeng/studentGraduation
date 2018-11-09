@@ -28,7 +28,7 @@ public class SetAndGetAccountInfoController {
         System.out.println("进入setControl");
         Map<String,String> params=  RequestResponseUtil.getRequestParameters(request);
 
-        String appId=RequestResponseUtil.getHeader(request,"appId");
+        String appId= RequestResponseUtil.getAppId(request);
         String oldPassword= params.get("oldPassword");
         String password=params.get("password");
 
@@ -49,7 +49,7 @@ public class SetAndGetAccountInfoController {
     @ResponseBody
     @GetMapping("/getAccount/username")
     Message getAccountUsername(HttpServletRequest request){
-        String appId= RequestResponseUtil.getHeader(request,"appId");
+        String appId= RequestResponseUtil.getAppId(request);
         AuthUser authUser=userService.getUserByAppId(appId);
       String username=authUser.getUsername();
         Message message= new Message().ok(6666,"成功获取").addData("username",username);
@@ -59,7 +59,7 @@ public class SetAndGetAccountInfoController {
     @ResponseBody
     @GetMapping("/getAccount/info")
     Message getAccountInfo(HttpServletRequest request){
-        String appId= RequestResponseUtil.getHeader(request,"appId");
+        String appId= RequestResponseUtil.getAppId(request);
         AuthUser authUser=userService.getUserByAppId(appId);
 
         Message message= new Message().ok(6666,"成功获取");

@@ -55,11 +55,7 @@
 
 
         <table tableName="student" domainObjectName="Student"/>
-        <table tableName="graduation_flow" domainObjectName="GraduationFlow"/>
-        <table tableName="graduation_link" domainObjectName="GraduationLink"/>
-        <table tableName="college" domainObjectName="College"/>
-        <table tableName="department" domainObjectName="Department"/>
-        <table tableName="specialty" domainObjectName="Specialty"/>
+
 
 
 

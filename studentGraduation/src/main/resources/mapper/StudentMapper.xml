@@ -5,6 +5,7 @@
     <constructor >
       <idArg column="student_id" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="student_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="student_photo" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="graduation_year" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="college_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="specialty_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
@@ -12,20 +13,8 @@
       <arg column="student_sex" jdbcType="BIT" javaType="java.lang.Boolean" />
       <arg column="id_card_num" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="politics_status" jdbcType="VARCHAR" javaType="java.lang.String" />
-    </constructor>
-  </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.university.graduation.domain.bo.Student" >
-    <constructor >
-      <idArg column="student_id" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="student_name" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="graduation_year" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="college_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="specialty_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="class_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="student_sex" jdbcType="BIT" javaType="java.lang.Boolean" />
-      <arg column="id_card_num" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="politics_status" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="student_photo" jdbcType="LONGVARBINARY" javaType="_byte[]" />
+      <arg column="phone" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="email" jdbcType="VARCHAR" javaType="java.lang.String" />
     </constructor>
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -87,28 +76,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    student_id, student_name, graduation_year, college_id, specialty_id, class_id, student_sex, 
-    id_card_num, politics_status
+    student_id, student_name, student_photo, graduation_year, college_id, specialty_id, 
+    class_id, student_sex, id_card_num, politics_status, phone, email
   </sql>
-  <sql id="Blob_Column_List" >
-    student_photo
-  </sql>
-  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.university.graduation.domain.bo.StudentExample" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from student
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-  </select>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.university.graduation.domain.bo.StudentExample" >
     select
     <if test="distinct" >
@@ -123,18 +93,9 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectAll" resultMap="ResultMapWithBLOBs">
-    select
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from student
-  </select>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from student
     where student_id = #{studentId,jdbcType=VARCHAR}
   </select>
@@ -149,14 +110,16 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.university.graduation.domain.bo.Student" >
-    insert into student (student_id, student_name, graduation_year, 
-      college_id, specialty_id, class_id, 
-      student_sex, id_card_num, politics_status, 
-      student_photo)
-    values (#{studentId,jdbcType=VARCHAR}, #{studentName,jdbcType=VARCHAR}, #{graduationYear,jdbcType=INTEGER}, 
-      #{collegeId,jdbcType=INTEGER}, #{specialtyId,jdbcType=INTEGER}, #{classId,jdbcType=INTEGER}, 
-      #{studentSex,jdbcType=BIT}, #{idCardNum,jdbcType=VARCHAR}, #{politicsStatus,jdbcType=VARCHAR}, 
-      #{studentPhoto,jdbcType=LONGVARBINARY})
+    insert into student (student_id, student_name, student_photo, 
+      graduation_year, college_id, specialty_id, 
+      class_id, student_sex, id_card_num, 
+      politics_status, phone, email
+      )
+    values (#{studentId,jdbcType=VARCHAR}, #{studentName,jdbcType=VARCHAR}, #{studentPhoto,jdbcType=VARCHAR}, 
+      #{graduationYear,jdbcType=INTEGER}, #{collegeId,jdbcType=INTEGER}, #{specialtyId,jdbcType=INTEGER}, 
+      #{classId,jdbcType=INTEGER}, #{studentSex,jdbcType=BIT}, #{idCardNum,jdbcType=VARCHAR}, 
+      #{politicsStatus,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.university.graduation.domain.bo.Student" >
     insert into student
@@ -166,6 +129,9 @@
       </if>
       <if test="studentName != null" >
         student_name,
+      </if>
+      <if test="studentPhoto != null" >
+        student_photo,
       </if>
       <if test="graduationYear != null" >
         graduation_year,
@@ -188,8 +154,11 @@
       <if test="politicsStatus != null" >
         politics_status,
       </if>
-      <if test="studentPhoto != null" >
-        student_photo,
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="email != null" >
+        email,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -198,6 +167,9 @@
       </if>
       <if test="studentName != null" >
         #{studentName,jdbcType=VARCHAR},
+      </if>
+      <if test="studentPhoto != null" >
+        #{studentPhoto,jdbcType=VARCHAR},
       </if>
       <if test="graduationYear != null" >
         #{graduationYear,jdbcType=INTEGER},
@@ -220,8 +192,11 @@
       <if test="politicsStatus != null" >
         #{politicsStatus,jdbcType=VARCHAR},
       </if>
-      <if test="studentPhoto != null" >
-        #{studentPhoto,jdbcType=LONGVARBINARY},
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -239,6 +214,9 @@
       </if>
       <if test="record.studentName != null" >
         student_name = #{record.studentName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.studentPhoto != null" >
+        student_photo = #{record.studentPhoto,jdbcType=VARCHAR},
       </if>
       <if test="record.graduationYear != null" >
         graduation_year = #{record.graduationYear,jdbcType=INTEGER},
@@ -261,26 +239,13 @@
       <if test="record.politicsStatus != null" >
         politics_status = #{record.politicsStatus,jdbcType=VARCHAR},
       </if>
-      <if test="record.studentPhoto != null" >
-        student_photo = #{record.studentPhoto,jdbcType=LONGVARBINARY},
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null" >
+        email = #{record.email,jdbcType=VARCHAR},
       </if>
     </set>
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExampleWithBLOBs" parameterType="map" >
-    update student
-    set student_id = #{record.studentId,jdbcType=VARCHAR},
-      student_name = #{record.studentName,jdbcType=VARCHAR},
-      graduation_year = #{record.graduationYear,jdbcType=INTEGER},
-      college_id = #{record.collegeId,jdbcType=INTEGER},
-      specialty_id = #{record.specialtyId,jdbcType=INTEGER},
-      class_id = #{record.classId,jdbcType=INTEGER},
-      student_sex = #{record.studentSex,jdbcType=BIT},
-      id_card_num = #{record.idCardNum,jdbcType=VARCHAR},
-      politics_status = #{record.politicsStatus,jdbcType=VARCHAR},
-      student_photo = #{record.studentPhoto,jdbcType=LONGVARBINARY}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -289,13 +254,16 @@
     update student
     set student_id = #{record.studentId,jdbcType=VARCHAR},
       student_name = #{record.studentName,jdbcType=VARCHAR},
+      student_photo = #{record.studentPhoto,jdbcType=VARCHAR},
       graduation_year = #{record.graduationYear,jdbcType=INTEGER},
       college_id = #{record.collegeId,jdbcType=INTEGER},
       specialty_id = #{record.specialtyId,jdbcType=INTEGER},
       class_id = #{record.classId,jdbcType=INTEGER},
       student_sex = #{record.studentSex,jdbcType=BIT},
       id_card_num = #{record.idCardNum,jdbcType=VARCHAR},
-      politics_status = #{record.politicsStatus,jdbcType=VARCHAR}
+      politics_status = #{record.politicsStatus,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -305,6 +273,9 @@
     <set >
       <if test="studentName != null" >
         student_name = #{studentName,jdbcType=VARCHAR},
+      </if>
+      <if test="studentPhoto != null" >
+        student_photo = #{studentPhoto,jdbcType=VARCHAR},
       </if>
       <if test="graduationYear != null" >
         graduation_year = #{graduationYear,jdbcType=INTEGER},
@@ -327,15 +298,19 @@
       <if test="politicsStatus != null" >
         politics_status = #{politicsStatus,jdbcType=VARCHAR},
       </if>
-      <if test="studentPhoto != null" >
-        student_photo = #{studentPhoto,jdbcType=LONGVARBINARY},
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
       </if>
     </set>
     where student_id = #{studentId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.university.graduation.domain.bo.Student" >
+  <update id="updateByPrimaryKey" parameterType="com.university.graduation.domain.bo.Student" >
     update student
     set student_name = #{studentName,jdbcType=VARCHAR},
+      student_photo = #{studentPhoto,jdbcType=VARCHAR},
       graduation_year = #{graduationYear,jdbcType=INTEGER},
       college_id = #{collegeId,jdbcType=INTEGER},
       specialty_id = #{specialtyId,jdbcType=INTEGER},
@@ -343,19 +318,8 @@
       student_sex = #{studentSex,jdbcType=BIT},
       id_card_num = #{idCardNum,jdbcType=VARCHAR},
       politics_status = #{politicsStatus,jdbcType=VARCHAR},
-      student_photo = #{studentPhoto,jdbcType=LONGVARBINARY}
-    where student_id = #{studentId,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.university.graduation.domain.bo.Student" >
-    update student
-    set student_name = #{studentName,jdbcType=VARCHAR},
-      graduation_year = #{graduationYear,jdbcType=INTEGER},
-      college_id = #{collegeId,jdbcType=INTEGER},
-      specialty_id = #{specialtyId,jdbcType=INTEGER},
-      class_id = #{classId,jdbcType=INTEGER},
-      student_sex = #{studentSex,jdbcType=BIT},
-      id_card_num = #{idCardNum,jdbcType=VARCHAR},
-      politics_status = #{politicsStatus,jdbcType=VARCHAR}
+      phone = #{phone,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR}
     where student_id = #{studentId,jdbcType=VARCHAR}
   </update>
 </mapper>
