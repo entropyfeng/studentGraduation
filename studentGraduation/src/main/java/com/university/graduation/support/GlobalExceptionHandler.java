@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /* *
- * @Author tomsun28
  * @Description 全局的的异常拦截器（拦截所有的控制器）（带有@RequestMapping注解的方法上都会拦截）
  * @Date 22:40 2018/4/16
  */
@@ -26,7 +25,7 @@ public class GlobalExceptionHandler {
     /* *
      * @Description 拦截操作数据库异常
      * @Param [e]
-     * @Return com.usthe.bootshiro.domain.vo.Message
+     * @Return
      */
     @ExceptionHandler(DataAccessException.class)
     @ResponseStatus(HttpStatus.OK)
@@ -43,7 +42,7 @@ public class GlobalExceptionHandler {
     /* *
      * @Description拦截未知的运行时异常
      * @Param [e]
-     * @Return com.usthe.bootshiro.domain.vo.Message
+     * @Return
      */
     @ExceptionHandler(RuntimeException.class)
     @ResponseStatus(HttpStatus.OK)

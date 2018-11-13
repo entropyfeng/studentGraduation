@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.university.graduation.dao.FastDfsMapper" >
+
+  <select id="getTrueName" parameterType="String" resultType="String">
+
+    select true_name from fastdfsmap WHERE fast_dfs_name=#{fastDfsName}
+  </select>
+
+  <select id="getFastDfsName" parameterType="String" resultType="String">
+    SELECT fast_dfs_name from fastdfsmap WHERE true_name=#{trueName}
+  </select>
+
+  <insert id="setMap" >
+    insert into fastdfsmap(true_name, fast_dfs_name) VALUE (#{trueName},#{fastDfsName})
+  </insert>
+
+</mapper>

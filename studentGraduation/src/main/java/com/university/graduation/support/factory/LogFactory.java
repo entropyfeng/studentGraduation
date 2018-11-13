@@ -8,7 +8,7 @@ import com.university.graduation.domain.bo.AuthOperationLog;
 import java.util.Date;
 
 /* *
- * @Author tomsun28
+
  * @Description 日志对象工厂
  * @Date 9:50 2018/4/22
  */

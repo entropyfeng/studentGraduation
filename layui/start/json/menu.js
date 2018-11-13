@@ -21,7 +21,13 @@
         "name":"information"
         ,"title":"部门信息"
         ,"jump":"departments/information"
-    }]
+    }
+    ,{
+        "name":"test"
+            ,"title":"测试"
+            ,"jump":"departments/test"
+        }
+    ]
 }
       ,{
     "name": "user"
@@ -45,17 +51,6 @@
     ,"title": "设置"
     ,"icon": "layui-icon-set"
     ,"list": [{
-      "name": "system"
-      ,"title": "系统设置"
-      ,"spread": true
-      ,"list": [{
-        "name": "website"
-        ,"title": "网站设置"
-      },{
-        "name": "email"
-        ,"title": "邮件服务"
-      }]
-    },{
       "name": "user"
       ,"title": "我的设置"
       ,"spread": true

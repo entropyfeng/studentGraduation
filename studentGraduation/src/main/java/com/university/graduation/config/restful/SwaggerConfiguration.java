@@ -12,7 +12,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /* *
- * @Author tomsun28
+
  * @Description swagger2配置 默认地址http://localhost:8080/swagger-ui.html
  * @Date 21:05 2018/3/17
  */
@@ -30,7 +30,7 @@ public class SwaggerConfiguration {
 
 	private ApiInfo apiInfo() {
 		return new ApiInfoBuilder()
-				.title("bootshiro:"+" Restful APIs")
+				.title("graduation:"+" Restful APIs")
 				.description("restful apis docs")
 				.termsOfServiceUrl("usThe.com").version("1.0").build();
 	}

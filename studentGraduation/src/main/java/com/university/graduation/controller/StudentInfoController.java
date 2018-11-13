@@ -2,6 +2,7 @@ package com.university.graduation.controller;
 
 import com.university.graduation.domain.vo.Message;
 import com.university.graduation.domain.vo.StudentInfo;
+import com.university.graduation.service.FileService;
 import com.university.graduation.service.StudentInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,7 @@ import java.util.List;
 public class StudentInfoController {
     @Autowired
     StudentInfoService studentInfoService;
+
 
     @ResponseBody
     @GetMapping("/getStudentInformation/all")

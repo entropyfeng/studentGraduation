@@ -47,9 +47,20 @@
             </div>
 
             <table id="student-information" lay-filter="student-information"></table>
-            <script type="text/html" id="imgTpl">
-                <img style="display: inline-block; width: 50%; height: 100%;" src={{ d.avatar }}>
+
+            <script type="text/html" template lay-done="console.log(d)" lay-url="{{layui.setter.true_url}}/student/photo/get?filename=181010415.jpg"  id="imgTem">
+
+
             </script>
+
+          <!--  <script type="text/html" template id="imgTem">
+
+                <img style="display: inline-block; width: 50%; height: 100%;" src= 'http://localhost:8080/student/photo/get?filename=181010415.jpg'>
+
+            </script>-->
+
+
+
             <script type="text/html" id="student-information-bar">
                 <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"><i
                         class="layui-icon layui-icon-edit"></i>编辑</a>
@@ -92,6 +103,8 @@
 
                 }
             }
+
+
             ,cols: [[
                 {type: 'checkbox', fixed: 'left'}
                 ,{field: 'studentId', width: 100, title: '学号', sort: true}
@@ -99,6 +112,7 @@
                 ,{field: 'studentSex', title: '性别', minWidth: 20,templet: function (d) {
                         return d.studentSex==0?'男':'女';
                     }}
+                ,{field:'studentPhoto',title:'图片',templet:'#imgTem'}
                 ,{field: 'graduationYear', title: '毕业时间', width: 100}
                 ,{field: 'collegeName', title: '学院'}
                 ,{field: 'specialtyName', title: '专业'}

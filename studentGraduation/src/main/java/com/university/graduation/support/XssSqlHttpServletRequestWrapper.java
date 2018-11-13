@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /* *
- * @Author tomsun28
+
  * @Description request请求安全过滤包装类
  * @Date 20:41 2018/4/15
  */

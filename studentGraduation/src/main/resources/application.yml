@@ -106,8 +106,7 @@ fdfs:
     height: 60
   tracker-list: # tracker地址
     - 120.78.210.70:22122
-  pool:
-    jmx-enabled: false
+
 
 ---
 # 开发环境配置(配置项只包括环境不同项)

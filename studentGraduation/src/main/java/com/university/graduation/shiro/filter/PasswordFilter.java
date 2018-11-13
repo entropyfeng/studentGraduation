@@ -25,7 +25,6 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 /* *
- * @Author tomsun28
  * @Description 基于 用户名密码 的认证过滤器
  * @Date 20:18 2018/2/10
  */

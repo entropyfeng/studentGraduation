@@ -56,14 +56,14 @@
 layui.use(['admin', 'form', 'upload'], function(){
   var $ = layui.$
   ,form = layui.form
-  ,upload = layui.upload;
-  
+  ,upload = layui.upload
+  ,true_url=layui.setter.true_url;
   //上传头像
   upload.render({
     elem: '#layuiadmin-upload-useradmin'
-    ,url: './json/upload/demo.js'
+    ,url: true_url+'/student/photo/upload'
     ,accept: 'images'
-    ,method: 'get'
+    ,method: 'post'
     ,acceptMime: 'image/*'
     ,done: function(res){
       $(this.item).prev("div").children("input").val(res.data.src)

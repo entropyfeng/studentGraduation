@@ -1,0 +1,53 @@
+
+<title>测试</title>
+
+<div class="layui-card layadmin-header">
+    <div class="layui-breadcrumb" lay-filter="breadcrumb">
+        <a lay-href="">主页</a>
+        <a><cite>部门管理</cite></a>
+        <a><cite>测试</cite></a>
+    </div>
+</div>
+<button type="button" class="layui-btn" id="test1">
+    <i class="layui-icon">&#xe67c;</i>上传图片
+</button>
+
+
+<script>
+    layui.use('upload', function(){
+        var upload = layui.upload;
+        var setter=layui.setter;
+        var true_url=layui.setter.true_url;
+        var jwt=layui.data(setter.tableName)['jwt'];
+        //执行实例
+        var uploadInst = upload.render({
+            elem: '#test1' //绑定元素
+            ,url: true_url+'/student/photo/upload' //上传接口
+            ,accept:'images'
+            ,method:'post'
+            ,headers:{
+                jwt:jwt
+            }
+            ,before:function (obj) {
+                layer.load();
+
+            }
+            ,done: function(res){
+                //上传完毕回调
+                var meta=res['meta'];
+                if(meta['code']==6666){
+                    layer.closeAll('loading');
+                    layer.msg('上传成功');
+                }else {
+                    layer.closeAll('loading');
+                    layer.msg('上传失败');
+                }
+            }
+            ,error: function(){
+                //请求异常回调
+                layer.closeAll('loading');
+                layer.msg('上传失败');
+            }
+        });
+    });
+</script>

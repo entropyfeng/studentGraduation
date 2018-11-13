@@ -1,10 +1,8 @@
 package com.university.graduation.controller;
 
-import com.github.tobato.fastdfs.domain.MataData;
-import com.github.tobato.fastdfs.domain.StorePath;
-import com.github.tobato.fastdfs.proto.storage.DownloadByteArray;
 import com.github.tobato.fastdfs.service.FastFileStorageClient;
-import org.apache.commons.io.FilenameUtils;
+import com.university.graduation.domain.vo.Message;
+import com.university.graduation.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -13,55 +11,69 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URLEncoder;
-import java.util.HashSet;
-import java.util.Set;
 
 @RestController
 public class FastDfsController {
-@Autowired
+    @Autowired
     private FastFileStorageClient fastFileStorageClient;
 
-@PostMapping("/student/photo/upload")
-    public StorePath upload(@RequestParam MultipartFile file){
-    StorePath storePath=null;
-    Set<MataData> metaData =new HashSet<>();
-    try {
-      storePath  =fastFileStorageClient.uploadFile(file.getInputStream(),file.getSize(),FilenameUtils.getExtension(file.getOriginalFilename()),metaData);
+    @Autowired
+    private FileService pictureService;
 
-    }catch (IOException e){
-        e.printStackTrace();
+    @ResponseBody
+    @PostMapping("/student/photo/upload")
+    public Message upload(@RequestParam MultipartFile file) {
+
+        try {
+            System.out.println(file.getOriginalFilename());
+            pictureService.uploadPicture(file);
+        } catch (Exception e) {
+          return new Message().error(1111,e.getMessage());
+        }
+
+        return new Message().ok(6666,"上传成功");
     }
-return storePath;
-}
 
+    @ResponseBody
     @DeleteMapping("/student/photo/delete")
-    public String delete(@RequestParam String path) {
+    public Message delete(@RequestParam String path) {
+        try {
+            pictureService.deletePicture(path);
+        } catch (Exception e) {
+            return new Message().error(1111,e.getMessage());
+        }
 
-        // 第一种删除：参数：完整地址
-        fastFileStorageClient.deleteFile(path);
-
-        // 第二种删除：参数：组名加文件路径
-        // fastFileStorageClient.deleteFile(group,path);
-
-        return "恭喜恭喜，删除成功！";
+        return new Message().ok(6666,"上传成功");
     }
 
-    @GetMapping("/student/photo/download")
-    public void downLoad(@RequestParam String group, @RequestParam String path, @RequestParam String fileName, HttpServletResponse response) throws IOException {
 
+    @GetMapping("/student/photo/get")
+    public void downLoad(@RequestParam String filename, HttpServletResponse response) throws IOException {
+        byte[] bytes=null;
+        Message message=new Message();
         // 获取文件
-        byte[] bytes = fastFileStorageClient.downloadFile(group, path, new DownloadByteArray());
+        try {
+            bytes = pictureService.downloadPicture(filename);
+        }catch (Exception e){
+            message.error(1111,e.getMessage());
+        }
+
+        if(bytes==null){
+            message.error(1111,"下载失败");
+        }
 
         //设置相应类型application/octet-stream        （注：applicatoin/octet-stream 为通用，一些其它的类型苹果浏览器下载内容可能为空）
         response.reset();
+        //response.setContentType("image/jpeg");
+       // response.setHeader("Access-Control-Allow-Origin","http://localhost:8081");
+       // response.setHeader("Access-Control-Allow-Credentials","true");
         response.setContentType("applicatoin/octet-stream");
         //设置头信息                 Content-Disposition为属性名  附件形式打开下载文件   指定名称  为 设定的fileName
-        response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(fileName, "UTF-8"));
+       // response.setHeader("Content-Disposition", "inline;filename=" + URLEncoder.encode(filename, "UTF-8"));
         // 写入到流
         ServletOutputStream out = response.getOutputStream();
         out.write(bytes);
         out.close();
     }
-
 
 }

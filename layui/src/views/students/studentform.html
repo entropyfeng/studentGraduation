@@ -1,6 +1,8 @@
 
 
+
 <div class="layui-form"  lay-filter="student-info-form" style="padding: 20px 0 0 0;">
+
   <div class="layui-form-item">
     <label class="layui-form-label">学号</label>
     <div class="layui-input-inline">
@@ -104,7 +106,7 @@
         <input type="text" name="avatar" value="{{ d.params.avatar || '' }}" lay-verify="required" placeholder="请上传图片" autocomplete="off" class="layui-input" >
       </script>
     </div>
-    <button style="float: left;" type="button" class="layui-btn" id="layuiadmin-upload-useradmin">上传图片</button> 
+    <button style="float: left;" type="button" class="layui-btn" id="image">上传图片</button>
   </div>
 
   <div class="layui-form-item">
@@ -116,23 +118,40 @@
 </div>
 
 <script>
-layui.use(['admin', 'form', 'upload'], function(){
-  var $ = layui.$
-  ,form = layui.form
-  ,upload = layui.upload;
-  form.val("student-info-form",{
+    layui.use('upload', function(){
+        var upload = layui.upload;
+        var setter=layui.setter;
+        var true_url=layui.setter.true_url;
+        var jwt=layui.data(setter.tableName)['jwt'];
+        //执行实例
+        var uploadInst = upload.render({
+            elem: '#test1' //绑定元素
+            ,url: true_url+'/student/photo/upload' //上传接口
+            ,accept:'images'
+            ,method:'post'
+            ,headers:{
+                jwt:jwt
+            }
+            ,before:function (obj) {
+                layer.load();
 
-  });
-  //上传头像
-  upload.render({
-    elem: '#layuiadmin-upload-useradmin'
-    ,url: './json/upload/demo.js'
-    ,accept: 'images'
-    ,method: 'get'
-    ,acceptMime: 'image/*'
-    ,done: function(res){
-      $(this.item).prev("div").children("input").val(res.data.src)
-    }
-  });
-})
+            }
+            ,done: function(res){
+                //上传完毕回调
+                var meta=res['meta'];
+                if(meta['code']==6666){
+                    layer.closeAll('loading');
+                    layer.msg('上传成功');
+                }else {
+                    layer.closeAll('loading');
+                    layer.msg('上传失败');
+                }
+            }
+            ,error: function(){
+                //请求异常回调
+                layer.closeAll('loading');
+                layer.msg('上传失败');
+            }
+        });
+    });
 </script>
