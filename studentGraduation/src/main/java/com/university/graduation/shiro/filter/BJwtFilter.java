@@ -52,6 +52,9 @@ public class BJwtFilter extends BPathMatchingFilter {
         if ((null != subject && !subject.isAuthenticated()) && isJwtSubmission(servletRequest)) {
 
             String jwt = RequestResponseUtil.getHeader(servletRequest,"jwt");
+            if(jwt==null){
+               jwt= RequestResponseUtil.getParameter(servletRequest,"jwt");
+            }
             JwtAccount jwtAccount = null;
             try {
                 jwtAccount = JsonWebTokenUtil.parseJwt(jwt, JsonWebTokenUtil.SECRET_KEY);
@@ -120,6 +123,9 @@ public class BJwtFilter extends BPathMatchingFilter {
 
         String jwt = RequestResponseUtil.getHeader(request,"jwt");
 
+        if(jwt==null){
+            jwt=RequestResponseUtil.getParameter(request,"jwt");
+        }
         return (request instanceof HttpServletRequest)
                 && !StringUtils.isEmpty(jwt);
 

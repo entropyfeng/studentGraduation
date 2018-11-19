@@ -20,63 +20,74 @@ import java.io.FileOutputStream;
 @Service
 public class FileServiceImpl implements FileService {
 
-    private Logger logger=LoggerFactory.getLogger(FileServiceImpl.class);
+    private Logger logger = LoggerFactory.getLogger(FileServiceImpl.class);
     @Autowired
     private FastFileStorageClient fastFileStorageClient;
     @Autowired
     private FastDfsMapper fastDfsMapper;
+
     @Override
-    public String uploadPicture(MultipartFile file) throws Exception {
-        if(file==null){
-            throw  new Exception("上传失败：未找到该文件");
+    public String uploadPicture(MultipartFile file ,String trueFileName) throws Exception {
+        if (file == null) {
+            throw new Exception("上传失败：未找到该文件");
         }
+
+        String fileUrl=fastDfsMapper.getFastDfsName(trueFileName);
+
         //FilenameUtils.getExtension(file.getOriginalFilename()) 作用是获取后缀名
-        StorePath storePath=fastFileStorageClient.uploadFile(file.getInputStream(),file.getSize(),FilenameUtils.getExtension(file.getOriginalFilename()),null);
+        StorePath storePath = fastFileStorageClient.uploadFile(file.getInputStream(), file.getSize(), FilenameUtils.getExtension(file.getOriginalFilename()), null);
 
-        String fullPath=storePath.getFullPath();
-fastDfsMapper.setMap(file.getOriginalFilename(),fullPath);
+        String fullPath = storePath.getFullPath();
+        //如果数据库存在 删除fastDfs中老的数据 并更新数据库 否则直接添加
+        if(fileUrl!=null){
+            fastFileStorageClient.deleteFile(fileUrl);
+            fastDfsMapper.updateMap(trueFileName,fullPath);
+        }else {
+            fastDfsMapper.setMap(trueFileName, fullPath);
+        }
 
-        return storePath.getFullPath();
+
+
+        return fullPath;
 
     }
 
     @Override
-    public String uploadPicture(File file) throws Exception{
-        FileInputStream fileInputStream= null;
+    public String uploadPicture(File file) throws Exception {
+        FileInputStream fileInputStream = null;
         try {
             fileInputStream = new FileInputStream(file);
         } catch (FileNotFoundException e) {
             throw new FileNotFoundException("上传失败：未找到该文件");
         }
-        StorePath storePath=fastFileStorageClient.uploadFile(fileInputStream,file.length(),FilenameUtils.getExtension(file.getName()),null);
-        String fullPath=storePath.getFullPath();
-        fastDfsMapper.setMap(file.getName(),fullPath);
+        StorePath storePath = fastFileStorageClient.uploadFile(fileInputStream, file.length(), FilenameUtils.getExtension(file.getName()), null);
+        String fullPath = storePath.getFullPath();
+        fastDfsMapper.setMap(file.getName(), fullPath);
         return storePath.getFullPath();
     }
 
     @Override
     public byte[] downloadPicture(String name) throws Exception {
-        String fileUrl=  fastDfsMapper.getFastDfsName(name);
-        if(fileUrl==null){
-          throw   new Exception("下载失败：未找到该文件");
+        String fileUrl = fastDfsMapper.getFastDfsName(name);
+        if (fileUrl == null) {
+            throw new Exception("下载失败：未找到该文件");
         }
         byte files[];
-        int pos= fileUrl.indexOf("/");
-        String group= fileUrl.substring(0,pos);
-        String path=fileUrl.substring(pos+1,fileUrl.length());
-        files=fastFileStorageClient.downloadFile(group,path,new DownloadByteArray());
+        int pos = fileUrl.indexOf("/");
+        String group = fileUrl.substring(0, pos);
+        String path = fileUrl.substring(pos + 1, fileUrl.length());
+        files = fastFileStorageClient.downloadFile(group, path, new DownloadByteArray());
 
 
-
-  return files;
+        return files;
     }
 
     @Override
-    public void deletePicture(String name) throws Exception{
+    public void deletePicture(String name) throws Exception {
 
-      String fileUrl=  fastDfsMapper.getFastDfsName(name);
-        if(fileUrl==null){
-            throw   new Exception("删除失败：未找到该文件");
+        String fileUrl = fastDfsMapper.getFastDfsName(name);
+        if (fileUrl == null) {
+            throw new Exception("删除失败：未找到该文件");
         }
         fastFileStorageClient.deleteFile(fileUrl);
 

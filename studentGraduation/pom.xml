@@ -12,16 +12,7 @@
     <name>graduation</name>
     <description>Demo project for Spring Boot</description>
 
-    <repositories>
-        <repository>
-            <!-- id必须唯一 -->
-            <id>jboss-repository</id>
-            <!-- 见名知意即可 -->
-            <name>jboss repository</name>
-            <!-- 仓库的url地址 -->
-            <url>https://maven.atlassian.com/3rdparty</url>
-        </repository>
-    </repositories>
+
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -163,19 +154,8 @@
             <version>0.7.0</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/com.octo.captcha/jcaptcha-->
-        <dependency>
-            <groupId>com.octo.captcha</groupId>
-            <artifactId>jcaptcha</artifactId>
-            <version>1.0</version>
-        </dependency>
 
-        <!-- https://mvnrepository.com/artifact/com.jhlabs/imaging -->
-        <dependency>
-            <groupId>com.jhlabs</groupId>
-            <artifactId>imaging</artifactId>
-            <version>01012005</version>
-        </dependency>
+
 
         <!-- restful api 文档 swagger2 -->
         <dependency>
@@ -219,14 +199,14 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
-            <version>1.1.6</version>
+            <version>1.1.11</version>
         </dependency>
 
         <!-- 分页支持pageHelper -->
         <dependency>
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper-spring-boot-starter</artifactId>
-            <version>1.2.4</version>
+            <version>1.2.3</version>
         </dependency>
         <dependency>
             <groupId>javax.xml.bind</groupId>
@@ -238,6 +218,19 @@
             <groupId>com.github.tobato</groupId>
             <artifactId>fastdfs-client</artifactId>
             <version>1.26.2</version>
+        </dependency>
+
+
+        <!--阿里云的短信服务SDK-->
+        <dependency>
+            <groupId>com.aliyun</groupId>
+            <artifactId>aliyun-java-sdk-core</artifactId>
+            <version>3.7.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.aliyun</groupId>
+            <artifactId>aliyun-java-sdk-dysmsapi</artifactId>
+            <version>1.1.0</version>
         </dependency>
     </dependencies>
 

@@ -20,4 +20,21 @@ public class DepartmentServiceImpl implements DepartmentService {
 
         return departmentMapper.selectByExample(departmentExample);
     }
+
+    @Override
+    public Integer updateDepartment(Department department) {
+        return departmentMapper.updateByPrimaryKey(department);
+    }
+
+    @Override
+    public Integer addDepartment(Department department) {
+       return departmentMapper.insert(department);
+
+    }
+
+    @Override
+    public Integer deleteDepartment(Integer departmentId) {
+
+        return departmentMapper.deleteByPrimaryKey(departmentId);
+    }
 }

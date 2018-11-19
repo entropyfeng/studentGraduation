@@ -1,0 +1,69 @@
+<table class="layui-table" cellpadding="0" cellspacing="0" border="1">
+    <tr>
+        <td width="64" height="33">姓名</td>
+        <script type="text/html" template>
+            <td width="109">{{d.params.studentName || ''}}</td>
+        </script>
+
+        <td width="73">性别</td>
+        <script type="text/html" template>
+            {{# if(d.params.studentSex===0){}}
+            <td width="53">男</td>
+            {{# }else{}}
+            <td width="53">女</td>
+            {{# } }}
+        </script>
+
+        <td width="112">学号</td>
+        <script type="text/html" template>
+            <td width="159">{{d.params.studentId || ''}}</td>
+        </script>
+
+        <script type="text/html" template>
+
+            <td width="154" rowspan="4"><p><img src="{{d.params.studentPhoto}} &jwt= {{layui.data('layuiAdmin').jwt }}"
+                                                width="154" height="203"/></p></td>
+        </script>
+    </tr>
+    <tr>
+        <td height="31">学院</td>
+        <script type="text/html" template>
+            <td>{{d.params.collegeName|| ''}}</td>
+        </script>
+        <td height="31">专业</td>
+        <script type="text/html" template>
+            <td>{{d.params.specialtyName || ''}}</td>
+        </script>
+        <td height="31">班级</td>
+        <script type="text/html" template>
+            <td>{{d.params.className || ''}}</td>
+        </script>
+    </tr>
+    <tr>
+
+        <td height="31">手机</td>
+        <script type="text/html" template>
+            <td>{{d.params.phoneNumber || ''}}</td>
+        </script>
+        <td>身份证号</td>
+        <script type="text/html" template>
+            <td>{{d.params.idCardNum || ''}}</td>
+        </script>
+        <td>政治面貌</td>
+        <script type="text/html" template>
+            <td>{{d.params.politicsStatus || ''}}</td>
+        </script>
+    </tr>
+    <tr>
+        <td height="46">邮箱</td>
+        <script type="text/html" template>
+            <td colspan="3">{{d.params.email|| ''}}</td>
+        </script>
+
+        <td>毕业日期</td>
+        <script type="text/html" template>
+            <td>{{d.params.graduationYear|| ''}}</td>
+        </script>
+    </tr>
+
+</table>

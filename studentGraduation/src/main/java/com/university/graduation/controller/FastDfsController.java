@@ -3,6 +3,7 @@ package com.university.graduation.controller;
 import com.github.tobato.fastdfs.service.FastFileStorageClient;
 import com.university.graduation.domain.vo.Message;
 import com.university.graduation.service.FileService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -22,11 +23,12 @@ public class FastDfsController {
 
     @ResponseBody
     @PostMapping("/student/photo/upload")
-    public Message upload(@RequestParam MultipartFile file) {
+    public Message upload(@RequestParam MultipartFile file, @Param("studentId")String studentId) {
 
+        System.out.println(studentId);
         try {
             System.out.println(file.getOriginalFilename());
-            pictureService.uploadPicture(file);
+            pictureService.uploadPicture(file,studentId);
         } catch (Exception e) {
           return new Message().error(1111,e.getMessage());
         }
@@ -64,10 +66,10 @@ public class FastDfsController {
 
         //设置相应类型application/octet-stream        （注：applicatoin/octet-stream 为通用，一些其它的类型苹果浏览器下载内容可能为空）
         response.reset();
-        //response.setContentType("image/jpeg");
-       // response.setHeader("Access-Control-Allow-Origin","http://localhost:8081");
-       // response.setHeader("Access-Control-Allow-Credentials","true");
-        response.setContentType("applicatoin/octet-stream");
+        response.setContentType("image/jpeg");
+        response.setHeader("Access-Control-Allow-Origin","http://localhost:8081");
+        response.setHeader("Access-Control-Allow-Credentials","true");
+        //response.setContentType("applicatoin/octet-stream");
         //设置头信息                 Content-Disposition为属性名  附件形式打开下载文件   指定名称  为 设定的fileName
        // response.setHeader("Content-Disposition", "inline;filename=" + URLEncoder.encode(filename, "UTF-8"));
         // 写入到流

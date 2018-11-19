@@ -24,4 +24,21 @@ public class StudentInfoServiceImpl implements StudentInfoService {
         return studentInfoList;
 
     }
+
+    @Override
+    public List<StudentInfo> getStudentInfoByCondition(String studentId, String studentName) {
+
+        if(studentId==null||studentId.equals("")){
+            studentId=null;
+        }
+        if(studentName==null||studentName.equals("")){
+            studentName=null;
+        }
+        return studentInfoMapper.selectStudentInfoByCondition(studentId,studentName);
+    }
+
+    @Override
+    public Integer getStudentNumbers() {
+       return  studentInfoMapper.selectStudentCounts();
+    }
 }

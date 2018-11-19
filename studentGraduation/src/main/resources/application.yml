@@ -87,12 +87,6 @@ mybatis:
 
 
 #pagehelper分页插件
-pagehelper:
-
-    helperDialect: mysql
-    reasonable: true
-    supportMethodsArguments: true
-    params: count=countSql
 
 jasypt:
   encryptor:
@@ -106,6 +100,11 @@ fdfs:
     height: 60
   tracker-list: # tracker地址
     - 120.78.210.70:22122
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
 
 
 ---

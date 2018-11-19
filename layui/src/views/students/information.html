@@ -14,26 +14,21 @@
              lay-filter="graduation-studentInformation-formlist">
             <div class="layui-form-item">
                 <div class="layui-inline">
-                    <label class="layui-form-label">ID</label>
+                    <label class="layui-form-label">学号</label>
                     <div class="layui-input-block">
-                        <input type="text" name="id" placeholder="请输入" autocomplete="off" class="layui-input">
+                        <input type="text" name="studentId" placeholder="请输入" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-inline">
-                    <label class="layui-form-label">用户名</label>
+                    <label class="layui-form-label">姓名</label>
                     <div class="layui-input-block">
-                        <input type="text" name="username" placeholder="请输入" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-inline">
-                    <label class="layui-form-label">邮箱</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="email" placeholder="请输入" autocomplete="off" class="layui-input">
+                        <input type="text" name="studentName" placeholder="请输入" autocomplete="off" class="layui-input">
                     </div>
                 </div>
 
+
                 <div class="layui-inline">
-                    <button class="layui-btn layuiadmin-btn-useradmin" lay-submit lay-filter="LAY-user-front-search">
+                    <button class="layui-btn layuiadmin-btn-useradmin" lay-submit lay-filter="student-front-search">
                         <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
                     </button>
                 </div>
@@ -48,20 +43,10 @@
 
             <table id="student-information" lay-filter="student-information"></table>
 
-            <script type="text/html" template lay-done="console.log(d)" lay-url="{{layui.setter.true_url}}/student/photo/get?filename=181010415.jpg"  id="imgTem">
-
-
-            </script>
-
-          <!--  <script type="text/html" template id="imgTem">
-
-                <img style="display: inline-block; width: 50%; height: 100%;" src= 'http://localhost:8080/student/photo/get?filename=181010415.jpg'>
-
-            </script>-->
-
-
-
             <script type="text/html" id="student-information-bar">
+
+                <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="view"><i
+                        class="layui-icon layui-icon-edit"></i>查看</a>
                 <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"><i
                         class="layui-icon layui-icon-edit"></i>编辑</a>
                 <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i
@@ -82,12 +67,13 @@
             ,table = layui.table
             ,form = layui.form
             ,setter=layui.setter
+            ,upload = layui.upload
             ,true_url=layui.setter.true_url
-            ,jwt=layui.data(setter.tableName)['jwt'];
+            , jwt=layui.data(setter.tableName)['jwt'];
         //用户管理
         table.render({
             elem: '#student-information'
-            ,url: true_url+'/getStudentInformation/all' //向服务器请求接口
+            ,url: true_url+'/getStudentInformation/condition' //向服务器请求接口
             ,method:'get'
             ,headers:{
                 "jwt":jwt
@@ -112,7 +98,10 @@
                 ,{field: 'studentSex', title: '性别', minWidth: 20,templet: function (d) {
                         return d.studentSex==0?'男':'女';
                     }}
-                ,{field:'studentPhoto',title:'图片',templet:'#imgTem'}
+               /* ,{field:'studentPhoto',title:'图片', templet:function (d) {
+                        var finalUrl=d.studentPhoto+"&jwt="+jwt;
+                        return "  <img style=\"display: inline-block; width: 100%; height: 100%;\" src="+finalUrl+" >";
+                    }}*/
                 ,{field: 'graduationYear', title: '毕业时间', width: 100}
                 ,{field: 'collegeName', title: '学院'}
                 ,{field: 'specialtyName', title: '专业'}
@@ -122,9 +111,17 @@
                 ,{title: '操作', width: 150, align:'center', fixed: 'right', toolbar: '#student-information-bar'}
             ]]
             ,page: true
-            ,limit: 30
             ,height: 'full-320'
             ,text: '对不起，加载出现异常！'
+        });
+
+        //监听搜索
+        form.on('submit(student-front-search)', function(data){
+            var field = data.field;
+            //执行重载
+            table.reload('student-information', {
+                where: field
+            });
         });
 
         //监听工具条
@@ -142,14 +139,30 @@
                         layer.close(index);
                     });
                 });
+            }else if(obj.event==='view'){
+                admin.popup({
+                    title:'详细信息'
+                    ,id:'view-detail-information'
+                    ,success: function (layero,index) {
+                        view(this.id).render('students/view-student-information',data);
+
+                    }
+
+                });
+
             } else if(obj.event === 'edit'){
                 admin.popup({
                     title: '编辑用户'
                     ,area: ['500px', '450px']
                     ,id: 'LAY-popup-user-add'
                     ,success: function(layero, index){
-                        console.log(data);
-                        view(this.id).render('students/studentform',data);
+                        view(this.id).render('students/edit-student-information',data).done(function () {
+
+
+                        });
+
+
+
            /*             view(this.id).render('students/studentform', data).done(function(){
                          //   form.render(null, 'student-info-form');
 

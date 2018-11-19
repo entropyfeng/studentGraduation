@@ -8,4 +8,7 @@ public interface StudentInfoService {
 
     List<StudentInfo> getStudentInfo();
 
+    List<StudentInfo> getStudentInfoByCondition(String studentId,String studentName);
+
+    Integer getStudentNumbers();
 }

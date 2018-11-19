@@ -59,7 +59,7 @@ public class ShiroFilterChainManager {
     public Map<String,String> initGetFilterChain() {
         Map<String,String> filterChain = new LinkedHashMap<>();
         // -------------anon 默认过滤器忽略的URL
-        List<String> defalutAnon = Arrays.asList("/css/**","/js/**","/student/photo/get");
+        List<String> defalutAnon = Arrays.asList("/css/**","/js/**");
         defalutAnon.forEach(ignored -> filterChain.put(ignored,"anon"));
 
         //jwt 认证

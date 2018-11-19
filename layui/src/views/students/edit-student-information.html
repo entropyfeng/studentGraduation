@@ -7,7 +7,7 @@
     <label class="layui-form-label">学号</label>
     <div class="layui-input-inline">
       <script type="text/html" template>
-        <input type="text" name="studentId" value="{{ d.params.studentId|| '' }}" readonly  class="layui-input">
+        <input id="studentId" type="text" name="studentId" value="{{ d.params.studentId|| '' }}" readonly  class="layui-input">
       </script>
     </div>
   </div>
@@ -101,12 +101,7 @@
   </div>
   <div class="layui-form-item">
     <label class="layui-form-label">头像</label>
-    <div class="layui-input-inline">
-      <script type="text/html" template>
-        <input type="text" name="avatar" value="{{ d.params.avatar || '' }}" lay-verify="required" placeholder="请上传图片" autocomplete="off" class="layui-input" >
-      </script>
-    </div>
-    <button style="float: left;" type="button" class="layui-btn" id="image">上传图片</button>
+    <button style="float: left;" type="button"   class="layui-btn"  id="image">选择图片</button>
   </div>
 
   <div class="layui-form-item">
@@ -116,25 +111,33 @@
     </div>
   </div>
 </div>
-
 <script>
     layui.use('upload', function(){
+        var $=layui.$;
         var upload = layui.upload;
         var setter=layui.setter;
+        var layer=layui.layer;
+        var form=layui.form;
         var true_url=layui.setter.true_url;
         var jwt=layui.data(setter.tableName)['jwt'];
         //执行实例
+       var studentIdVal=  $(" #studentId ").val();
+
+        layer.alert('警告！上传学生照片时，务必将照片名重命名为学生学号');
+
         var uploadInst = upload.render({
-            elem: '#test1' //绑定元素
+            elem: '#image' //绑定元素
             ,url: true_url+'/student/photo/upload' //上传接口
             ,accept:'images'
             ,method:'post'
             ,headers:{
                 jwt:jwt
             }
+            ,data:{
+                'studentId':studentIdVal
+            }
             ,before:function (obj) {
                 layer.load();
-
             }
             ,done: function(res){
                 //上传完毕回调

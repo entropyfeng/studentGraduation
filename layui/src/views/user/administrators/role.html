@@ -118,7 +118,7 @@ layui.use('useradmin', layui.factory('useradmin')).use(['admin', 'useradmin', 't
         }
       });
     }
-  }  
+  }  ;
   $('.layui-btn.layuiadmin-btn-role').on('click', function(){
     var type = $(this).data('type');
     active[type] ? active[type].call(this) : '';
