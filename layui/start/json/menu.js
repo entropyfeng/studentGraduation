@@ -22,11 +22,6 @@
         ,"title":"部门信息"
         ,"jump":"departments/information"
     }
-    ,{
-        "name":"test"
-            ,"title":"测试"
-            ,"jump":"departments/test"
-        }
     ]
 }
   , {

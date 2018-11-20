@@ -68,6 +68,7 @@ public class FileServiceImpl implements FileService {
 
     @Override
     public byte[] downloadPicture(String name) throws Exception {
+        System.out.println(name);
         String fileUrl = fastDfsMapper.getFastDfsName(name);
         if (fileUrl == null) {
             throw new Exception("下载失败：未找到该文件");

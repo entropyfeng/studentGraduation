@@ -1,6 +1,7 @@
 package com.university.graduation.dao;
 
 
+import com.university.graduation.domain.bo.AuthRole;
 import com.university.graduation.domain.bo.AuthUser;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -42,4 +43,6 @@ public interface AuthUserMapper {
     List<AuthUser> selectUserListByRoleId(Integer roleId) throws DataAccessException;
 
     List<AuthUser> selectUserListExtendByRoleId(Integer roleId) throws DataAccessException;
+
+    AuthRole selectRoleByAppId(@Param("appId") String appId);
 }

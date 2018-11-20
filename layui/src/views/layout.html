@@ -7,11 +7,7 @@
           <i class="layui-icon layui-icon-shrink-right" id="LAY_app_flexible"></i>
         </a>
       </li>
-      <!--<li class="layui-nav-item layui-this layui-hide-xs layui-hide-sm layui-show-md-inline-block">
-        <a lay-href="" title="">
-          控制台
-        </a>
-      </li>-->
+
       <li class="layui-nav-item layui-hide-xs" lay-unselect>
         <a href="http://www.baidu.com" target="_blank" title="百度">
           <i class="layui-icon layui-icon-website"></i>
@@ -41,7 +37,7 @@
         </a>
       </li>
       <li class="layui-nav-item" lay-unselect>
-        <script type="text/html" template lay-url="{{layui.setter.true_url}}/getAccount/username"
+        <script type="text/html" template lay-url="{{layui.setter.true_url}}/accountInfo/getUsername"
         lay-done="layui.element.render('nav', 'layadmin-layout-right');">
           <a href="javascript:;">
             <cite>{{ d.data.username }}</cite>

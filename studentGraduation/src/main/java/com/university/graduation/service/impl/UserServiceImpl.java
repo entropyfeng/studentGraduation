@@ -3,6 +3,7 @@ package com.university.graduation.service.impl;
 
 import com.university.graduation.dao.AuthUserMapper;
 import com.university.graduation.dao.AuthUserRoleMapper;
+import com.university.graduation.domain.bo.AuthRole;
 import com.university.graduation.domain.bo.AuthUser;
 import com.university.graduation.domain.bo.AuthUserRole;
 import com.university.graduation.service.UserService;
@@ -14,7 +15,7 @@ import java.util.Date;
 import java.util.List;
 
 /* *
- * @Author tomsun28
+
  * @Description 
  * @Date 21:15 2018/3/17
  */
@@ -48,6 +49,11 @@ public class UserServiceImpl implements UserService {
     public String loadAccountRole(String appId) throws DataAccessException {
 
         return userMapper.selectUserRoles(appId);
+    }
+
+    @Override
+    public AuthRole getAuthRoleByAppId(String appId) {
+        return userMapper.selectRoleByAppId(appId);
     }
 
     @Override
@@ -94,6 +100,11 @@ public class UserServiceImpl implements UserService {
     public AuthUser getUserByAppId(String appId) throws DataAccessException {
 
         return userMapper.selectByAppId(appId);
+    }
+
+    @Override
+    public Integer updateUser(AuthUser authUser) {
+      return   userMapper.updateByAppId(authUser);
     }
 
     @Override

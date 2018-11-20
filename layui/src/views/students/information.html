@@ -60,7 +60,7 @@
 
 
 
-    layui.define(['table', 'form'], function(exports){
+    layui.use(['table', 'form','upload'], function(){
         var $ = layui.$
             ,admin = layui.admin
             ,view = layui.view
@@ -156,11 +156,43 @@
                     ,area: ['500px', '450px']
                     ,id: 'LAY-popup-user-add'
                     ,success: function(layero, index){
+
                         view(this.id).render('students/edit-student-information',data).done(function () {
+                            upload.render({
+                                elem: '#image' //绑定元素
+                                ,url: true_url+'/student/photo/upload' //上传接口
+                                ,accept:'images'
+                                ,method:'post'
+                                ,headers:{
+                                    jwt:jwt
+                                }
+                                ,data:{
+                                    'studentId':data.studentId
+                                }
+                                ,before:function (obj) {
+                                    layer.load();
+                                }
+                                ,done: function(res){
+                                    //上传完毕回调
+                                    var meta=res['meta'];
+                                    if(meta['code']==6666){
+                                        layer.closeAll('loading');
+                                        layer.msg('上传成功');
+                                    }else {
+                                        layer.closeAll('loading');
+                                        layer.msg('上传失败');
+                                    }
+                                }
+                                ,error: function(){
+                                    //请求异常回调
+                                    layer.closeAll('loading');
+                                    layer.msg('上传失败');
+                                }
+                            });
+
 
 
                         });
-
 
 
            /*             view(this.id).render('students/studentform', data).done(function(){
@@ -177,6 +209,7 @@
                                    });*!/
                         });*/
                     }
+
                 });
             }
         });

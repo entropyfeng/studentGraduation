@@ -1,6 +1,3 @@
-
-
-
 <div class="layui-form"  lay-filter="student-info-form" style="padding: 20px 0 0 0;">
 
   <div class="layui-form-item">
@@ -11,7 +8,6 @@
       </script>
     </div>
   </div>
-
   <div class="layui-form-item">
     <label class="layui-form-label">用户名</label>
     <div class="layui-input-inline">
@@ -20,7 +16,6 @@
       </script>
     </div>
   </div>
-
   <div class="layui-form-item">
     <label class="layui-form-label">性别</label>
     <div class="layui-input-inline">
@@ -29,7 +24,6 @@
       </script>
     </div>
   </div>
-
   <div class="layui-form-item">
     <label class="layui-form-label">毕业时间</label>
     <div class="layui-input-inline">
@@ -38,7 +32,6 @@
       </script>
     </div>
   </div>
-
   <div class="layui-form-item">
     <label class="layui-form-label">学院</label>
     <div class="layui-input-inline">
@@ -47,7 +40,6 @@
       </script>
     </div>
   </div>
-
   <div class="layui-form-item">
     <label class="layui-form-label">专业</label>
     <div class="layui-input-inline">
@@ -72,7 +64,6 @@
       </script>
     </div>
   </div>
-
   <div class="layui-form-item">
     <label class="layui-form-label">政治面貌</label>
     <div class="layui-input-inline">
@@ -81,8 +72,6 @@
       </script>
     </div>
   </div>
-
-
   <div class="layui-form-item">
     <label class="layui-form-label">手机号码</label>
     <div class="layui-input-inline">
@@ -111,50 +100,5 @@
     </div>
   </div>
 </div>
-<script>
-    layui.use('upload', function(){
-        var $=layui.$;
-        var upload = layui.upload;
-        var setter=layui.setter;
-        var layer=layui.layer;
-        var form=layui.form;
-        var true_url=layui.setter.true_url;
-        var jwt=layui.data(setter.tableName)['jwt'];
-        //执行实例
-       var studentIdVal=  $(" #studentId ").val();
 
-        layer.alert('警告！上传学生照片时，务必将照片名重命名为学生学号');
 
-        var uploadInst = upload.render({
-            elem: '#image' //绑定元素
-            ,url: true_url+'/student/photo/upload' //上传接口
-            ,accept:'images'
-            ,method:'post'
-            ,headers:{
-                jwt:jwt
-            }
-            ,data:{
-                'studentId':studentIdVal
-            }
-            ,before:function (obj) {
-                layer.load();
-            }
-            ,done: function(res){
-                //上传完毕回调
-                var meta=res['meta'];
-                if(meta['code']==6666){
-                    layer.closeAll('loading');
-                    layer.msg('上传成功');
-                }else {
-                    layer.closeAll('loading');
-                    layer.msg('上传失败');
-                }
-            }
-            ,error: function(){
-                //请求异常回调
-                layer.closeAll('loading');
-                layer.msg('上传失败');
-            }
-        });
-    });
-</script>

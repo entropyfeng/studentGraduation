@@ -26,8 +26,9 @@ public class FastDfsController {
     public Message upload(@RequestParam MultipartFile file, @Param("studentId")String studentId) {
 
         System.out.println(studentId);
+        studentId+=".jpg";
         try {
-            System.out.println(file.getOriginalFilename());
+
             pictureService.uploadPicture(file,studentId);
         } catch (Exception e) {
           return new Message().error(1111,e.getMessage());

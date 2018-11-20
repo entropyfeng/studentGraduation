@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.university.graduation.dao.AuthUserMapper">
+
+
   <resultMap id="BaseResultMap" type="com.university.graduation.domain.bo.AuthUser">
     <id column="uid" jdbcType="VARCHAR" property="uid" />
     <result column="username" jdbcType="VARCHAR" property="username" />
@@ -226,4 +228,11 @@
     update auth_user set password = #{password,jdbcType=VARCHAR} WHERE uid=#{appId}
   </update>
 
+  <select id="selectRoleByAppId" parameterType="String" resultType="com.university.graduation.domain.bo.AuthRole">
+    select  auth_role.ID ,auth_role.CODE,auth_role.NAME,auth_role.STATUS,auth_role.CREATE_TIME,auth_role.UPDATE_TIME
+    from  auth_role ,auth_user_role
+    WHERE auth_role.ID=auth_user_role.ROLE_ID
+    AND auth_user_role.USER_ID=#{appId}
+
+  </select>
 </mapper>

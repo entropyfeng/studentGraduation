@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /* *
- * @Author tomsun28
+
  * @Description http request response 过滤XSS SQL 数据工具类
  * @Date 10:13 2018/2/14
  */

@@ -62,10 +62,8 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public boolean registerAccount(AuthUser account) throws DataAccessException {
-
         // 给新用户授权管理员角色
         userService.authorityUserRole(account.getUid(),100);
-
         return userMapper.insertSelective(account) ==1 ? Boolean.TRUE : Boolean.FALSE;
     }
 
