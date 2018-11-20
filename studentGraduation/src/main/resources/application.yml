@@ -90,7 +90,7 @@ mybatis:
 
 jasypt:
   encryptor:
-    password: e!swhdg&d763jo
+    password: ni1Shi2_?SHA3Zi
 
 fdfs:
   so-timeout: 1501

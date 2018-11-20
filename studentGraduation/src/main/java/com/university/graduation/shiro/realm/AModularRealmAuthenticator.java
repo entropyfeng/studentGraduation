@@ -14,6 +14,7 @@ import static java.util.stream.Collectors.toList;
  * @Author tomsun28
  * @Description 
  * @Date 21:15 2018/3/3
+ * 用来支持多个realm的
  */
 public class AModularRealmAuthenticator extends ModularRealmAuthenticator {
 

@@ -4,7 +4,7 @@ import java.util.Random;
 import java.util.UUID;
 
 /* *
- * @Author tomsun28
+
  * @Description 高频方法工具类
  * @Date 14:08 2018/3/12
  */
