@@ -86,7 +86,7 @@ fdfs:
     width: 60
     height: 60
   tracker-list: # tracker地址
-    - 120.78.210.70:22122
+    - xxx.xxx:22122
 #pagehelper分页插件
 pagehelper:
   helper-dialect: mysql
