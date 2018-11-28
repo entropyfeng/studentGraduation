@@ -26,8 +26,22 @@ public class CommonUtil {
         return sb.toString();
     }
 
-    public static String getUUID(){
-        return UUID.randomUUID().toString().replace("-","").toUpperCase();
+    public static String getRandomMessage() {
+        String base = "0123456789";
+        Random random = new Random();
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (int i = 0; i < 6; i++) {
+            int number = random.nextInt(base.length());
+            stringBuilder.append(base.charAt(number));
+        }
+        return stringBuilder.toString();
+
+
+    }
+
+    public static String getUUID() {
+        return UUID.randomUUID().toString().replace("-", "").toUpperCase();
 
     }
 }

@@ -39,12 +39,9 @@ public class PasswordFilter extends AccessControlFilter {
 
         Subject subject = getSubject(request,response);
         // 如果其已经登录，再此发送登录请求
-        if(null != subject && subject.isAuthenticated()){
-            return true;
-        }
+        return null != subject && subject.isAuthenticated();
         //  拒绝，统一交给 onAccessDenied 处理
 
-        return false;
     }
 
     @Override
@@ -123,9 +120,7 @@ public class PasswordFilter extends AccessControlFilter {
     private boolean isPublicKeyGet(ServletRequest request) {
 
         String publicKey = RequestResponseUtil.getParameter(request,"publicKey");
-        return (request instanceof HttpServletRequest)
-                && ((HttpServletRequest) request).getMethod().toUpperCase().equals("GET")
-                && null != publicKey && "get".equals(publicKey);
+        return (request instanceof HttpServletRequest) && ((HttpServletRequest) request).getMethod().toUpperCase().equals("GET") && "get".equals(publicKey);
     }
 
 

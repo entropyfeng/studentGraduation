@@ -93,6 +93,11 @@ public class FileServiceImpl implements FileService {
         fastFileStorageClient.deleteFile(fileUrl);
 
     }
+    private void deleteFile(String fileUrl){
+        StorePath storePath=StorePath.praseFromUrl(fileUrl);
+        fastFileStorageClient.deleteFile(storePath.getGroup(),storePath.getPath());
+    }
+
 
 
 }

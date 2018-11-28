@@ -70,6 +70,7 @@ public class DataSourceConfiguration {
         dataSource.setPassword(password);
 
         /*数据源补充配置*/
+
         dataSource.setMaxActive(maxActive);
         dataSource.setInitialSize(initialSize);
         dataSource.setMinIdle(minIdle);

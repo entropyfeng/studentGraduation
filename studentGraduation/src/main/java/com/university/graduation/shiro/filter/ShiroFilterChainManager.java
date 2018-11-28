@@ -46,6 +46,10 @@ public class ShiroFilterChainManager {
     // 初始化获取过滤链
     public Map<String,Filter> initGetFilters() {
         Map<String,Filter> filters = new LinkedHashMap<>();
+        VerCodeFilter verCodeFilter=new VerCodeFilter();
+
+        filters.put("verCode",verCodeFilter);
+
         PasswordFilter passwordFilter = new PasswordFilter();
         passwordFilter.setRedisTemplate(redisTemplate);
         filters.put("auth",passwordFilter);
@@ -59,8 +63,14 @@ public class ShiroFilterChainManager {
     public Map<String,String> initGetFilterChain() {
         Map<String,String> filterChain = new LinkedHashMap<>();
         // -------------anon 默认过滤器忽略的URL
-        List<String> defalutAnon = Arrays.asList("/css/**","/js/**");
+        List<String> defalutAnon = Arrays.asList("/css/**","/js/**","/forgetPassword/getVerCode","/forgetPassword/reset");
         defalutAnon.forEach(ignored -> filterChain.put(ignored,"anon"));
+
+        //短信验证码认证
+
+        List<String> verCodeFilterUrls=Arrays.asList("/verCode/login");
+        verCodeFilterUrls.forEach(verCode->filterChain.put(verCode,"verCode"));
+
 
         //jwt 认证
         List<String> jwtFilterUrls=Arrays.asList("/account/info/**");

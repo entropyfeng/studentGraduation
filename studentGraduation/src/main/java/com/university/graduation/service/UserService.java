@@ -42,6 +42,7 @@ public interface UserService {
 
     AuthUser getUserByAppId(String appId);
 
+    AuthUser getUserByPhoneNumber(String phone);
     Integer updateUser(AuthUser authUser);
     List<AuthUser> getNotAuthorityUserListByRoleId(Integer roleId);
 }

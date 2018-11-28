@@ -35,6 +35,8 @@ public class AccountServiceImpl implements AccountService {
         return user != null ? new Account(user.getUsername(),user.getPassword(),user.getSalt()) : null;
     }
 
+
+
     @Override
     public boolean isAccountExistByAppId(String appId) {
         AuthUser user = userMapper.selectByAppId(appId);

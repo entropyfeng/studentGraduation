@@ -103,6 +103,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public AuthUser getUserByPhoneNumber(String phone) {
+        return userMapper.selectByPhoneNumber(phone);
+    }
+
+    @Override
     public Integer updateUser(AuthUser authUser) {
       return   userMapper.updateByAppId(authUser);
     }

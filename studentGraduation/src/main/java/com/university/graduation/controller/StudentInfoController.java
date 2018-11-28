@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 
 @Controller
-@SuppressWarnings("commom-java:DuplicatedBlocks")
 public class StudentInfoController {
     @Autowired
     StudentInfoService studentInfoService;

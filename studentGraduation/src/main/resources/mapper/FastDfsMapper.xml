@@ -15,7 +15,7 @@
     insert into fastdfsmap(true_name, fast_dfs_name) VALUE (#{trueName},#{fastDfsName})
   </insert>
   <update id="updateMap" parameterType="String">
-    update fastdfsmap set fast_dfs_name = #{fastDfsName}  WHERE true_name=${trueName}
+    update fastdfsmap set fast_dfs_name = #{fastDfsName}  WHERE true_name=#{trueName}
   </update>
 
 </mapper>
